@@ -1,8 +1,8 @@
-import EmailIcon from "../../../assets/icons/email.svg";
-import FacebookIcon from "../../../assets/icons/facebook.svg";
-import InstagramIcon from "../../../assets/icons/instagram.svg";
-import YouTubeIcon from "../../../assets/icons/youtube.svg";
-import TikTokIcon from "../../../assets/icons/tiktok.svg";
+import EmailIcon from "../../assets/icons/email.svg";
+import FacebookIcon from "../../assets/icons/facebook.svg";
+import InstagramIcon from "../../assets/icons/instagram.svg";
+import YouTubeIcon from "../../assets/icons/youtube.svg";
+import TikTokIcon from "../../assets/icons/tiktok.svg";
 
 function getDate() {
 	const today = new Date();
@@ -10,8 +10,8 @@ function getDate() {
 }
 export default function Footer() {
   return (
-     <div className="bg-(--bg-secondary) fixed bottom-0 flex w-full justify-around h-10 items-center">
-			<div className="text-(--text-green-primary) text-xs tracking-wide font-mono hidden lg:flex">
+     <div className="bg-(--gray-primary) fixed bottom-0 flex w-full justify-around h-10 items-center">
+			<div className="text-(--green-primary) text-xs tracking-wide font-mono hidden lg:flex">
 				Copyright © {getDate()} Twoj Doradca OZE
 			</div>
 			<div className="socials flex flex-row gap-4 items-center">
@@ -22,7 +22,7 @@ export default function Footer() {
 					rel="noopener noreferrer"
 				>
 					<InstagramIcon
-						className="text-(--text-green-primary) hover:text-(--text-green-primary-hover) duration-500 w-5 h-5"
+						className="text-(--green-primary) hover:text-(--green-primary-hover) duration-500 w-5 h-5"
 						alt="Instagram Icon"
 					/>
 				</a>
@@ -32,7 +32,7 @@ export default function Footer() {
 					rel="noopener noreferrer"
 				>
 					<YouTubeIcon
-						className="text-(--text-green-primary) hover:text-(--text-green-primary-hover) duration-500 w-5 h-5"
+						className="text-(--green-primary) hover:text-(--green-primary-hover) duration-500 w-5 h-5"
 						alt="YouTube Icon"
 					/>
 				</a>
@@ -42,7 +42,7 @@ export default function Footer() {
 					rel="noopener noreferrer"
 				>
 					<TikTokIcon
-						className="text-(--text-green-primary) hover:text-(--text-green-primary-hover) duration-500 w-5 h-5"
+						className="text-(--green-primary) hover:text-(--green-primary-hover) duration-500 w-5 h-5"
 						alt="YouTube Icon"
 					/>
 				</a>
@@ -52,13 +52,13 @@ export default function Footer() {
 					rel="noopener noreferrer"
 				>
 					<FacebookIcon
-						className="text-(--text-green-primary) hover:text-(--text-green-primary-hover) duration-500 w-5 h-5"
+						className="text-(--green-primary) hover:text-(--green-primary-hover) duration-500 w-5 h-5"
 						alt="Facebook Icon"
 					/>
 				</a>
 				<a href="mailto:Kontakt@czyste-powietrze-dotacja.pl">
 					<EmailIcon
-						className="text-(--text-green-primary) hover:text-(--text-green-primary-hover) duration-500 w-6 h-6"
+						className="text-(--green-primary) hover:text-(--green-primary-hover) duration-500 w-6 h-6"
 						alt="Email Icon"
 					/>
 				</a>
