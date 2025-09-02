@@ -1,9 +1,12 @@
 import Link from "next/link";
 
+
+
 export default function HeroSection() {
   return (
-    <section className="absolute left-0 top-0 w-screen h-screen flex items-center bg-cover bg-center bg-[url(/img/hero-bg.png)]">
-      <div className="absolute inset-0 bg-black/40"></div>
+    <section className="left-0 top-0 w-screen h-screen flex items-center mask-alpha mask-b-from-green mask-b-from-90% mask-b-to-transparent "
+    style={{ backgroundImage: "url('img/hero-bg.png')" }}>
+      <div className="absolute inset-0 bg-black/40 left-0 top-0 w-screen h-screen"></div>
       <div className="relative z-10 flex flex-col items-center justify-center text-center h-full px-6">
         <span className="inline-block mb-6 px-4 py-1 border border-white/50 rounded-full text-white text-sm backdrop-blur-sm">
           Doradztwo | Pompy ciepła | Fotowoltaika
