@@ -41,7 +41,7 @@ const Navbar = () => {
 
 	return (
 		<nav
-			className="fixed w-full z-50 bg-(--gray-primary)"
+			className="absolute w-[90%] top-2  z-20 flex items-center justify-between  bg-white/20 backdrop-blur-md rounded-2xl"
 			aria-label="Główna nawigacja"
 		>
 			<div className="container mx-auto flex flex-wrap items-center justify-between lg:py-4 px-4 py-2">
