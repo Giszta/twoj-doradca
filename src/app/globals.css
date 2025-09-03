@@ -10,3 +10,8 @@
 --green-secondary: oklch(0.78 0.08 150);
 --yellow-primary: oklch(0.82 0.15 95);
 }
+
+* {
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
