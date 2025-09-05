@@ -33,7 +33,7 @@ const steps = [
 const HowIHelp: FC = () => {
   return (
     <section id="help" 
-    className="py-20 bg-white">
+    className="py-20 bg-stone-100">
       <div className="max-w-6xl mx-auto px-6 text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12">
           Jak <span className="text-green-600">pomagam</span> w OZE?
