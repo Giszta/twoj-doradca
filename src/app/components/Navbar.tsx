@@ -7,7 +7,7 @@ import MenuOverlay from "./MenuOverlay";
 // import Logo from "./Logo";
 
 const navbarItem = [
-	{ title: "Dlaczego OZE?", path: "#dlaczego-oze" },
+	{ title: "Dlaczego OZE?", path: "#why-oze" },
 	{ title: "Jak pomagam", path: "#help" },
 	{ title: "O mnie", path: "#o-mnie" },
 	{ title: "Opinie / Realizacje", path: "#opinie" },
