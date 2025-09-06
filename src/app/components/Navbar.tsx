@@ -10,9 +10,9 @@ const navbarItem = [
 	{ title: "Dlaczego OZE?", path: "#why-oze" },
 	{ title: "O mnie", path: "#about" },
 	{ title: "Jak pomagam", path: "#help" },
-	{ title: "Opinie / Realizacje", path: "#opinie" },
+	{ title: "Opinie", path: "#opinions" },
 	{ title: "FAQ", path: "#faq" },
-	{ title: "Kontakt", path: "#kontakt" },
+	{ title: "Kontakt", path: "#contact" },
 ];
 
 const Navbar = () => {
