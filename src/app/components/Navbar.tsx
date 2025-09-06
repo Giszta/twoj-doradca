@@ -8,8 +8,8 @@ import MenuOverlay from "./MenuOverlay";
 
 const navbarItem = [
 	{ title: "Dlaczego OZE?", path: "#why-oze" },
+	{ title: "O mnie", path: "#about" },
 	{ title: "Jak pomagam", path: "#help" },
-	{ title: "O mnie", path: "#o-mnie" },
 	{ title: "Opinie / Realizacje", path: "#opinie" },
 	{ title: "FAQ", path: "#faq" },
 	{ title: "Kontakt", path: "#kontakt" },

@@ -6,6 +6,7 @@ import HeroSection from "./components/HeroSection";
 import FAQ from "./components/Faq";
 import HowWeHelp from "./components/HelpSection";
 import WhyOZE from "./components/WhySection";
+import AboutMe from "./components/AboutSection";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <HeroSection></HeroSection>
       <div className="container  mx-auto px-12 py-4 ">
         <WhyOZE></WhyOZE>
+        <AboutMe></AboutMe>
         <HowWeHelp></HowWeHelp>
         <FAQ></FAQ>
       </div>
