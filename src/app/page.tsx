@@ -8,6 +8,7 @@ import HowWeHelp from "./components/HelpSection";
 import WhyOZE from "./components/WhySection";
 import AboutMe from "./components/AboutSection";
 import Opinions from "./components/OpinionsSection";
+import Contact from "./components/ContactSection";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <HowWeHelp></HowWeHelp>
         <FAQ></FAQ>
         <Opinions></Opinions>
+        <Contact></Contact>
       </div>
       
       <Footer/>

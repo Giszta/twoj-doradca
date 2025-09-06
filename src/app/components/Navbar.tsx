@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import NavbarItem from "./NavbarItem";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import MenuOverlay from "./MenuOverlay";
+import Image from "next/image";
 // import Logo from "./Logo";
 
 const navbarItem = [
@@ -50,8 +51,14 @@ const Navbar = () => {
 					animate={{ opacity: 1 }}
 					transition={{ duration: 0.5, ease: "easeOut" }}
 				>
-                    <span>LOGO</span>
-                    {/* <Logo /> */}
+		  <Image
+			src="/img/logo.png"
+			alt="Doradca OZE"
+			width={100}
+			height={100}
+			
+		  />
+
 				</motion.div>
 				<div className="mobile-menu block md:hidden">
 					<motion.button
