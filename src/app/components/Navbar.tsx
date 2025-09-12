@@ -15,7 +15,7 @@ const navbarItem = [
   { title: "Kontakt", path: "#contact" },
 ];
 
-const Navbar = () => {
+export default function Navbar () {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -134,4 +134,3 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;

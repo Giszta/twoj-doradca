@@ -8,7 +8,7 @@ const contacts = [
     img: "/img/instagram.png",
     alt: "Instagram",
     description:
-      "Zajrzyj na mój Instagram i zobacz kulisy pracy doradcy OZE – inspiracje, porady i realizacje w nowoczesnym stylu.",
+      "Zajrzyj na mój Instagram i zobacz kulisy pracy doradcy OZE, inspiracje, porady i realizacje w nowoczesnym stylu.",
     href: "https://www.instagram.com/twoj.doradca.oze/",
     color: "from-pink-500 to-purple-500",
     glow: "shadow-pink-500/70",
@@ -26,7 +26,7 @@ const contacts = [
     img: "/img/youtube.png",
     alt: "YouTube",
     description:
-      "Subskrybuj YouTube – tu tłumaczę krok po kroku zagadnienia związane z fotowoltaiką i pompami ciepła.",
+      "Subskrybuj YouTube, tu tłumaczę krok po kroku zagadnienia związane z fotowoltaiką i pompami ciepła.",
     href: "https://www.youtube.com/@TwojDoradcaOZE",
     color: "from-red-500 to-red-700",
     glow: "shadow-red-500/70",
@@ -35,7 +35,7 @@ const contacts = [
     img: "/img/tiktok.png",
     alt: "TikTok",
     description:
-      "Szybkie i dynamiczne treści edukacyjne o OZE – idealne, gdy chcesz w kilka sekund zrozumieć podstawy.",
+      "Szybkie i dynamiczne treści edukacyjne o OZE, idealne, gdy chcesz w kilka sekund zrozumieć podstawy.",
     href: "https://www.tiktok.com/@twojdoradca",
     color: "from-fuchsia-500 to-purple-600",
     glow: "shadow-fuchsia-500/70",
@@ -44,7 +44,7 @@ const contacts = [
     img: "/img/gmail.png",
     alt: "Gmail",
     description:
-      "Skontaktuj się bezpośrednio mailowo – odpowiem na Twoje pytania i przygotuję indywidualną ofertę.",
+      "Skontaktuj się bezpośrednio mailowo, odpowiem na Twoje pytania i przygotuję indywidualną ofertę.",
     href: "mailto:Kontakt@czyste-powietrze-dotacja.pl",
     color: "from-orange-400 to-red-500",
     glow: "shadow-orange-400/70",

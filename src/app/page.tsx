@@ -1,9 +1,8 @@
-"use client";
 
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
-import FAQ from "./components/Faq";
+import Faq from "./components/Faq";
 import HelpSection from "./components/HelpSection";
 import WhyOZE from "./components/WhySection";
 import AboutMe from "./components/AboutSection";
@@ -19,7 +18,7 @@ export default function Home() {
         <WhyOZE></WhyOZE>
         <AboutMe></AboutMe>
         <HelpSection></HelpSection>
-        <FAQ></FAQ>
+        <Faq></Faq>
         <Opinions></Opinions>
         <Contact></Contact>
       </div>

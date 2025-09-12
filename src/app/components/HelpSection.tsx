@@ -1,6 +1,5 @@
 "use client";
-
-import { FC } from "react";
+import React from "react";
 import { Sun, Leaf, Battery, Home } from "lucide-react";
 
 const steps = [
@@ -30,7 +29,7 @@ const steps = [
   },
 ];
 
-const HelpSection: FC = () => {
+export default function HelpSection () {
   return (
     <section id="help" 
     className="py-20 bg-stone-100">
@@ -64,4 +63,3 @@ const HelpSection: FC = () => {
   );
 };
 
-export default HelpSection;
