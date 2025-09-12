@@ -30,7 +30,7 @@ const steps = [
   },
 ];
 
-const HowIHelp: FC = () => {
+const HelpSection: FC = () => {
   return (
     <section id="help" 
     className="py-20 bg-stone-100">
@@ -64,4 +64,4 @@ const HowIHelp: FC = () => {
   );
 };
 
-export default HowIHelp;
+export default HelpSection;

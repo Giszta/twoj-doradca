@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import FAQ from "./components/Faq";
-import HowWeHelp from "./components/HelpSection";
+import HelpSection from "./components/HelpSection";
 import WhyOZE from "./components/WhySection";
 import AboutMe from "./components/AboutSection";
 import Opinions from "./components/OpinionsSection";
@@ -18,7 +18,7 @@ export default function Home() {
       <div className="container  mx-auto px-12 py-4 ">
         <WhyOZE></WhyOZE>
         <AboutMe></AboutMe>
-        <HowWeHelp></HowWeHelp>
+        <HelpSection></HelpSection>
         <FAQ></FAQ>
         <Opinions></Opinions>
         <Contact></Contact>
