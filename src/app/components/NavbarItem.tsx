@@ -38,9 +38,8 @@ function NavbarItem({ href, title, onClick }: NavbarItemValue) {
 			<a
 				onClick={handleClick}
 				href={href}
-				className="block py-2 pl-3 pr-4 text-(--gray-secondary) hover:text-(--green-primary-hover) sm:text-xl rounded md:p-0 
-                relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] 
-                after:bg-(--green-primary-hover) after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
+				className="block py-2 pl-3 pr-4 text-(--gray-secondary) hover:text-blue-500 sm:text-xl rounded md:p-0 
+                 after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
 			>
 				{title}
 			</a>
