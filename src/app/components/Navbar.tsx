@@ -7,11 +7,11 @@ import MenuOverlay from "./MenuOverlay";
 import Image from "next/image";
 
 const navbarItem = [
-  { title: "Dlaczego OZE?", path: "#why-oze" },
   { title: "O mnie", path: "#about" },
-  { title: "Jak pomagam", path: "#help" },
-  { title: "Opinie", path: "#opinions" },
-  { title: "FAQ", path: "#faq" },
+  { title: "Dotacje", path: "#grants" },
+  { title: "Realizacje", path: "#projects" },
+  { title: "Opinie", path: "#opinion" },
+  { title: "Oferta", path: "#offer" },
   { title: "Kontakt", path: "#contact" },
 ];
 
@@ -107,7 +107,7 @@ export default function Navbar () {
               href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-2 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold shadow-md hover:shadow-lg hover:from-blue-600 hover:to-blue-700 transition-all"
+              className="px-6 py-2 rounded-full  text-white font-semibold shadow-md hover:shadow-lg bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 transition-all "
               onClick={handleItemClick}
             >
               Wyceń swoją instalację

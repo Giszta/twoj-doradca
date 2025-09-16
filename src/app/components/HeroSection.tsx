@@ -19,15 +19,15 @@ export default function HeroSection() {
           Doradztwo | Pompy ciepła | Fotowoltaika
         </span>
 
-        <h1 className="text-4xl md:text-6xl font-semibold text-white leading-snug max-w-3xl">
-          Twój doradca <span className="text-blue-500">OZE</span>. <br /> Twoja
+        <h1 className="text-4xl md:text-6xl font-semibold text-white leading-snug max-w-3xl drop-shadow-xl  drop-shadow-neutral-900">
+          Twój doradca <span className=" text-blue-500 ">OZE</span>. <br /> Twoja
           energia przyszłości.
         </h1>
 
         <div className="mt-10 flex gap-4">
           <a
             href="#kontakt"
-            className="px-6 py-3 rounded-full bg-blue-500 text-white font-semibold hover:bg-blue-600 transition"
+            className="px-6 py-3 rounded-full  text-white font-semibold hover:shadow-lg bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 transition-all"
           >
             Skontaktuj się
           </a>
