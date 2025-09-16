@@ -8,6 +8,7 @@ import WhyOZE from "./components/WhySection";
 import AboutMe from "./components/AboutSection";
 import Opinions from "./components/OpinionsSection";
 import Contact from "./components/ContactSection";
+import Offer from "./components/OfferSection";
 
 export default function Home() {
   return (
@@ -15,6 +16,8 @@ export default function Home() {
       <div className="w-[90%] mx-auto flex items-center justify-between"><Navbar/></div>
       <HeroSection></HeroSection>
       <div className="container  mx-auto px-12 py-4 ">
+        <Offer></Offer>
+
         <WhyOZE></WhyOZE>
         <AboutMe></AboutMe>
         <HelpSection></HelpSection>
