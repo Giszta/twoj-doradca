@@ -38,7 +38,7 @@ export default function Navbar () {
   }, [navbarOpen]);
 
   return (
-    <header className="fixed top-2 z-30 flex w-[90%] items-center justify-between  mx-auto h-16 gap-6">
+    <header className="fixed top-2 z-50 flex w-[90%] items-center justify-between  mx-auto h-16 gap-6">
 
       <div className="bg-white/70 backdrop-blur-lg rounded-lg shadow-lg px-4 flex items-center h-full">
         <motion.div
