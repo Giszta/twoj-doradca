@@ -10,7 +10,7 @@ const navbarItem = [
   { title: "O mnie", path: "#about" },
   { title: "Dotacje", path: "#grants" },
   { title: "Realizacje", path: "#projects" },
-  { title: "Opinie", path: "#opinion" },
+  { title: "Opinie", path: "#opinions" },
   { title: "Oferta", path: "#offer" },
   { title: "Kontakt", path: "#contact" },
 ];
