@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, HelpCircle } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface FAQItem {
   question: string;
@@ -10,29 +11,29 @@ interface FAQItem {
 
 const faqs: FAQItem[] = [
   {
-    question: "Jakie korzyści daje instalacja fotowoltaiki?",
+    question: "Na czym polega Twoje doradztwo?",
     answer:
-      "Fotowoltaika pozwala obniżyć rachunki za prąd nawet o kilkadziesiąt procent, zwiększa niezależność energetyczną i korzystnie wpływa na środowisko.",
+      "Pomagam kompleksowo – od analizy potrzeb, przez dobór instalacji fotowoltaicznej, pomp ciepła czy magazynu energii, aż po wsparcie w uzyskaniu dotacji i finansowania.",
   },
   {
-    question: "Czy mogę otrzymać dofinansowanie na instalację OZE?",
+    question: "Czy zajmujesz się formalnościami?",
     answer:
-      "Tak, istnieją różne programy rządowe i regionalne, takie jak 'Mój Prąd' czy 'Czyste Powietrze'. Pomożemy Ci w procesie uzyskania dotacji.",
+      "Tak. Zajmuję się wszystkimi formalnościami, od dokumentów urzędowych po zgłoszenia do operatora sieci. Dzięki temu oszczędzasz czas i nerwy.",
   },
   {
-    question: "Jak długo trwa montaż paneli fotowoltaicznych?",
+    question: "Czy Twoje doradztwo jest bezpłatne?",
     answer:
-      "Sam montaż zajmuje zwykle 1–3 dni, w zależności od wielkości instalacji. Cały proces od podpisania umowy do uruchomienia to zazwyczaj 4–8 tygodni.",
+      "Tak – moje doradztwo jest bezpłatne. Zarabiam na prowizji od dostawców i instalatorów, a Ty nie ponosisz dodatkowych kosztów.",
   },
   {
-    question: "Czy instalacja wymaga serwisowania?",
+    question: "Czy mogę liczyć na wsparcie po instalacji?",
     answer:
-      "Systemy fotowoltaiczne są praktycznie bezobsługowe. Zaleca się jednak okresowe przeglądy i czyszczenie paneli dla zachowania maksymalnej wydajności.",
+      "Oczywiście. Doradzam nie tylko na etapie inwestycji, ale również po montażu – w zakresie optymalizacji, serwisów i rozbudowy instalacji.",
   },
   {
-    question: "Co się dzieje z nadwyżką wyprodukowanej energii?",
+    question: "Dlaczego warto wybrać właśnie Ciebie?",
     answer:
-      "Nadwyżka energii trafia do sieci energetycznej i możesz ją odebrać w późniejszym czasie zgodnie z zasadami systemu opustów lub net-billingu.",
+      "Od lat zajmuję się doradztwem w zakresie OZE. Stawiam na szczerość, przejrzystość i indywidualne podejście do klienta. Klienci cenią mnie za rzetelność i wsparcie na każdym kroku.",
   },
 ];
 
@@ -44,31 +45,63 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="bg-stone-100   w-full flex justify-center py-16">
+    <section
+      id="faq"
+      className=" w-full flex justify-center py-20 relative"
+    >
       <div className="w-full max-w-4xl px-4">
-        <h2 className="text-3xl font-bold text-center text-green-800 mb-10">
-          Najczęściej zadawane pytania
-        </h2>
+         <motion.h2
+                  className="flex items-center justify-center text-4xl font-bold text-gray-800 mb-12"
+                  initial={{ opacity: 0, y: -30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                ><span className="inline-block border-t border-gray-300 w-20 mr-6"></span>
+                 Najczęściej zadawane pytania
+                  <span className="inline-block border-t border-gray-300 w-20 ml-6"></span>
+                </motion.h2>
+
+
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="border border-green-200 rounded-2xl shadow-sm hover:bg-green-100/50 transition"
+              className="border border-blue-200 rounded-2xl shadow-md hover:shadow-lg bg-white/70 backdrop-blur-sm transition"
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="flex justify-between items-center w-full px-6 py-4 text-left text-lg font-medium text-green-900  transition"
+                className="flex justify-between items-center w-full px-6 py-4 text-left text-lg font-medium text-blue-900"
               >
-                {faq.question}
+                <span className="flex items-center gap-3">
+                  <HelpCircle className="w-5 h-5 text-blue-400" />
+                  {faq.question}
+                </span>
                 <ChevronDown
                   className={`w-5 h-5 transform transition-transform duration-300 ${
-                    openIndex === index ? "rotate-180" : ""
+                    openIndex === index ? "rotate-180 text-blue-500" : ""
                   }`}
                 />
               </button>
-              {openIndex === index && (
-                <div className="px-6 pb-4 text-gray-700">{faq.answer}</div>
-              )}
+
+              <AnimatePresence initial={false}>
+                {openIndex === index && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 120,
+                      damping: 20,
+                      mass: 0.8,
+                    }}
+                    className="overflow-hidden px-6"
+                  >
+                    <div className="pb-4 text-gray-700 leading-relaxed">
+                      {faq.answer}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           ))}
         </div>

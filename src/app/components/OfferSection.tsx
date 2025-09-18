@@ -56,7 +56,7 @@ const products = [
 
 export default function Offer() {
   return (
-    <section className="py-16 px-6">
+    <section id="offer" className="py-16 px-6">
       <div className="max-w-7xl mx-auto">
 <h2 className="flex items-center justify-center text-4xl font-bold text-gray-800 mb-12">
   <span className="inline-block border-t border-gray-300 w-20 mr-6"></span>
