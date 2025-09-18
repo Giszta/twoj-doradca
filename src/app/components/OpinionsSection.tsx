@@ -41,24 +41,29 @@ const reviews: Review[] = [
 export default function Opinions() {
   const [index, setIndex] = useState(0);
 
-
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % reviews.length);
-    }, 7000);
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
   const review = reviews[index];
 
   return (
-    <section id="opinions" className="relative py-20 bg-stone-100">
+    <section id="opinions" className="relative py-20 ">
       <div className="max-w-4xl mx-auto text-center px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12">
-          Opinie klientów
-        </h2>
+                <motion.h2
+                  className="flex items-center justify-center text-4xl font-bold text-gray-800 mb-12"
+                  initial={{ opacity: 0, y: -30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                ><span className="inline-block border-t border-gray-300 w-20 mr-6"></span>
+                  Opinie klientów
+                  <span className="inline-block border-t border-gray-300 w-20 ml-6"></span>
+                </motion.h2>
 
-        <div className="relative h-72 flex items-center justify-center">
+        <div className="relative h-80 flex items-center justify-center">
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
@@ -66,31 +71,35 @@ export default function Opinions() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.6 }}
-              className="bg-white shadow-xl rounded-2xl p-8 max-w-2xl mx-auto"
+              className="bg-gradient-to-br from-white to-blue-100 shadow-lg border border-blue-200 rounded-2xl p-8 max-w-2xl mx-auto"
             >
               <div className="flex justify-center mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                  <Star
+                    key={i}
+                    className="w-6 h-6 text-yellow-400 fill-yellow-400 drop-shadow"
+                  />
                 ))}
               </div>
 
-              <p className="text-gray-700 italic mb-6">&quot;{review.text}&quot;</p>
+              <p className="text-gray-700 italic mb-6 leading-relaxed">
+                &quot;{review.text}&quot;
+              </p>
 
-              <div className="text-sm text-gray-500">
+              <div className="text-sm text-blue-600 font-medium">
                 {review.date} — <span className="font-semibold">{review.author}</span>
               </div>
             </motion.div>
           </AnimatePresence>
         </div>
 
-
-        <div className="mt-8 flex justify-center gap-2">
+        <div className="mt-10 flex justify-center gap-2">
           {reviews.map((_, i) => (
             <button
               key={i}
               onClick={() => setIndex(i)}
-              className={`w-3 h-3 rounded-full transition-all ${
-                i === index ? "bg-green-500 w-6" : "bg-gray-300"
+              className={`h-3 rounded-full transition-all duration-300 ${
+                i === index ? "bg-blue-500 w-6" : "bg-blue-200 w-3"
               }`}
             />
           ))}

@@ -3,7 +3,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import Faq from "./components/Faq";
-import HelpSection from "./components/HelpSection";
+
 
 import AboutMe from "./components/AboutSection";
 import Opinions from "./components/OpinionsSection";
@@ -18,9 +18,8 @@ export default function Home() {
       <div className="container  mx-auto px-12 py-4 ">
         <Offer></Offer>
         <AboutMe></AboutMe>
-        <HelpSection></HelpSection>
-        <Faq></Faq>
         <Opinions></Opinions>
+        <Faq></Faq>
         <Contact></Contact>
       </div>
       
