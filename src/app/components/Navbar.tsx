@@ -7,11 +7,11 @@ import MenuOverlay from "./MenuOverlay";
 import Image from "next/image";
 
 const navbarItem = [
+  { title: "Oferta", path: "#offer" },
   { title: "O mnie", path: "#about" },
   { title: "Dotacje", path: "#grants" },
-  { title: "Realizacje", path: "#projects" },
+  { title: "Realizacje", path: "#realization" },
   { title: "Opinie", path: "#opinions" },
-  { title: "Oferta", path: "#offer" },
   { title: "Kontakt", path: "#contact" },
 ];
 
