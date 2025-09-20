@@ -9,6 +9,7 @@ import AboutMe from "./components/AboutSection";
 import Opinions from "./components/OpinionsSection";
 import Contact from "./components/ContactSection";
 import Offer from "./components/OfferSection";
+import Grants from "./components/GrantSection";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <div className="container  mx-auto px-12 py-4 ">
         <Offer></Offer>
         <AboutMe></AboutMe>
+        <Grants></Grants>
         <Opinions></Opinions>
         <Faq></Faq>
         <Contact></Contact>
