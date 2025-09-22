@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Oswald:wght@300..700&family=Poppins:wght@400..700&display=swap');
 
 :root {
 --bg-primary: oklch(0.95 0.005 120);
@@ -14,7 +14,12 @@
 * {
 	scrollbar-width: none;
 	-ms-overflow-style: none;
-  font-family: "JetBrains Mono", monospace;
-  font-optical-sizing: auto;
-  font-style: normal;
+font-family: "Inter", sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: "Poppins", sans-serif;
+}
+blockquote, .highlight {
+  font-family: "Oswald", sans-serif;
 }
