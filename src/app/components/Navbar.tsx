@@ -52,7 +52,7 @@ export default function Navbar () {
             alt="Doradca OZE"
             width={140}
             height={56}
-            className="h-full flex items-center object-contain"
+            className="h-full w-auto flex items-center object-contain"
             priority
           />
         </motion.div>
