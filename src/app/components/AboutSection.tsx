@@ -89,7 +89,7 @@ const AboutSection = () => {
         </div>
 
         {/* Schemat + Film */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-stretch">
           {/* Timeline kroków */}
           <motion.div
             className="relative space-y-8 border-l-4 border-blue-600 pl-8 md:col-span-7"
