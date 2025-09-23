@@ -1,7 +1,7 @@
 
 export default function HeroSection() {
   return (
-    <section className="left-0 top-0 w-screen h-screen flex items-center mask-alpha mask-b-from-green mask-b-from-90% mask-b-to-transparent "
+    <section className="left-0 top-0 w-screen h-screen flex items-center mask-alpha mask-b-from-white mask-b-from-97% mask-b-to-transparent "
     >
       <video
         className="absolute inset-0 w-full h-full object-cover"
@@ -14,7 +14,7 @@ export default function HeroSection() {
         Twoja przeglądarka nie wspiera elementu video.
       </video>
       <div className="absolute inset-0 bg-black/40 left-0 top-0 w-screen h-screen"></div>
-      <div className="relative z-10 flex flex-col items-center justify-center text-center h-full px-6">
+      <div className="relative z-10 flex flex-col items-center justify-center text-center h-full px-6 w-full">
         <span className="inline-block mb-6 px-4 py-1 border border-white/50 rounded-full text-white text-sm backdrop-blur-sm">
           Doradztwo | Pompy ciepła | Fotowoltaika
         </span>
