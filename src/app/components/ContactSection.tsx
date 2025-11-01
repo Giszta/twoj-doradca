@@ -5,7 +5,7 @@ import SocialMediaCards from "./SocialMediaCards";
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24">
+    <section id="contact" className="">
       <div className="max-w-7xl mx-auto px-6">
         {/* Nagłówek */}
         <motion.h2
@@ -40,17 +40,8 @@ export default function Contact() {
               To nic nie kosztuje, a możesz zyskać realne oszczędności i komfort na lata.
             </p>
           </motion.div>
-
-          {/* Formularz */}
-              <motion.div
-            layout
-            transition={{ duration: 0.35, ease: "easeInOut" }}
-            className="">
           <ContactForm />
-          </motion.div>
         </div>
-
-        {/* Social Media */}
         <SocialMediaCards />
       </div>
     </section>
