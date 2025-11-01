@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const steps = [
@@ -9,6 +9,7 @@ const steps = [
   "Inne produkty",
   "Dane kontaktowe",
 ];
+
 
 export default function ContactForm() {
   const [step, setStep] = useState(0);
@@ -26,7 +27,15 @@ export default function ContactForm() {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
+  // nasłuchuj zmian rozmiaru ekranu, by reagować płynnie
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 640);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   const handleChange = (field: string, value: string) => {
     setFormData({ ...formData, [field]: value });
 
@@ -80,6 +89,7 @@ export default function ContactForm() {
 
   if (isSubmitted) {
     return (
+      
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -104,36 +114,90 @@ export default function ContactForm() {
       viewport={{ once: true }}
       className="bg-white rounded-2xl shadow-xl p-10"
     >
+<div className="mb-10 mt-6 px-2">
       {/* Pasek postępu */}
-      <div className="mb-8">
-        <div className="w-full bg-gray-200 h-2 rounded-full">
-          <div
-            className="h-2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 transition-all duration-500"
-            style={{ width: `${((step + 0.5) / steps.length) * 100}%` }}
-          />
-        </div>
-        <div className="flex justify-between mt-2 text-xs font-medium text-gray-500">
-          {steps.map((label, i) => (
-            <span key={i} className={i === step ? "text-blue-600" : ""}>
-              {label}
-            </span>
-          ))}
-        </div>
+      <div className="relative w-full bg-gray-200 h-2 rounded-full overflow-hidden">
+        <div
+          className="absolute top-0 left-0 h-2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 transition-all duration-500 ease-in-out"
+          style={{ width: `${((step + 0.5) / steps.length) * 100}%` }}
+        />
       </div>
 
+      {/* Etykiety kroków */}
+      <div className="relative text-[10px] sm:text-xs font-medium text-gray-500">
+        <div className="absolute inset-0 flex justify-between pointer-events-none">
+          {steps.map((label, i) => {
+            const isTwoLine = label.split(" ").length > 1;
+            const isAbove = i % 2 === 0;
+            const mobileTop = isAbove
+              ? isTwoLine
+                ? -40
+                : -34
+              : isTwoLine
+              ? 4
+              : 10;
+            const desktopTop = 10;
+
+            return (
+              <div
+                key={i}
+                className={`relative flex-1 text-center ${
+                  i === step ? "text-blue-600 font-semibold" : ""
+                }`}
+              >
+                <span
+                  className="
+                    absolute left-1/2 -translate-x-1/2 text-center
+                    whitespace-normal break-words leading-tight
+                    max-w-none
+                    transition-all duration-500 ease-in-out
+                    will-change-transform will-change-top 
+                  "
+                  style={{
+                    top: isMobile ? `${mobileTop}px` : `${desktopTop}px`,
+                    transform: isMobile ? "translateY(0)" : "translateY(0)",
+                  }}
+                >
+                  {label}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+
+
+
+
       {/* Kroki formularza */}
+    <motion.div
+  layout
+  transition={{ duration: 0.35, ease: "easeInOut" }}
+  className="overflow-hidden"
+>
       <AnimatePresence mode="wait">
+         <motion.div
+      key={step}
+     
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className="grid gap-4"
+    >
         {/* Step 1 */}
         {step === 0 && (
           <motion.div
             key="step1"
+            
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -40 }}
             transition={{ duration: 0.3 }}
             className="grid gap-4"
           >
-            <h2 className="text-lg font-semibold">
+            <h2 className=" sm:text-lg font-semibold mt-8">
               1. Wybierz interesujący Cię produkt
             </h2>
             <div className="grid grid-cols-2 gap-3">
@@ -143,7 +207,7 @@ export default function ContactForm() {
                     type="button"
                     key={p}
                     onClick={() => handleChange("product", p)}
-                    className={`p-4 rounded-lg border transition cursor-pointer ${
+                    className={`p-3 sm:p-4 rounded-lg border transition cursor-pointer text-xs sm:text-base ${
                       formData.product === p
                         ? "bg-blue-600 text-white border-blue-600"
                         : "bg-white hover:bg-gray-100 border-gray-300"
@@ -164,13 +228,14 @@ export default function ContactForm() {
         {step === 1 && (
           <motion.div
             key="step2"
+           
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -40 }}
             transition={{ duration: 0.3 }}
             className="grid gap-4"
           >
-            <h2 className="text-lg font-semibold">2. Powierzchnia i stan budynku</h2>
+            <h2 className="sm:text-lg font-semibold mt-8">2. Powierzchnia i stan budynku</h2>
             <input
               type="number"
               placeholder="Powierzchnia budynku (np. 120 m²)"
@@ -187,7 +252,7 @@ export default function ContactForm() {
                   key={s}
                   type="button"
                   onClick={() => handleChange("buildingState", s)}
-                  className={`flex-1 p-3 rounded-lg border transition cursor-pointer ${
+                  className={`flex-1 p-3 sm:p-4 rounded-lg border transition cursor-pointer text-xs sm:text-base ${
                     formData.buildingState === s
                       ? "bg-blue-600 text-white border-blue-600"
                       : "bg-white hover:bg-gray-100 border-gray-300"
@@ -204,13 +269,14 @@ export default function ContactForm() {
         {step === 2 && (
           <motion.div
             key="step3"
+         
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -40 }}
             transition={{ duration: 0.3 }}
             className="grid gap-4"
           >
-            <h2 className="text-lg font-semibold">3. Kiedy planujesz realizację?</h2>
+            <h2 className="sm:text-lg font-semibold mt-8">3. Kiedy planujesz realizację?</h2>
             <div className="grid grid-cols-2 gap-3">
               {[
                 "Do 7 dni",
@@ -222,7 +288,7 @@ export default function ContactForm() {
                   key={t}
                   type="button"
                   onClick={() => handleChange("timeline", t)}
-                  className={`p-4 rounded-lg border transition cursor-pointer ${
+                  className={`p-3 sm:p-4 rounded-lg border transition cursor-pointer text-xs sm:text-base ${
                     formData.timeline === t
                       ? "bg-blue-600 text-white border-blue-600"
                       : "bg-white hover:bg-gray-100 border-gray-300"
@@ -239,13 +305,14 @@ export default function ContactForm() {
         {step === 3 && (
           <motion.div
             key="step4"
+        
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -40 }}
             transition={{ duration: 0.3 }}
             className="grid gap-4"
           >
-            <h2 className="text-lg font-semibold">
+            <h2 className="sm:text-lg font-semibold mt-8">
               4. Czy interesują Cię dodatkowe produkty?
             </h2>
             <div className="flex flex-col gap-3">
@@ -262,7 +329,7 @@ export default function ContactForm() {
                 placeholder="Tak, jakie?"
                 value={formData.otherProducts !== "Brak" ? formData.otherProducts : ""}
                 onChange={(e) => handleChange("otherProducts", e.target.value)}
-                className="border rounded-lg px-3 py-2"
+                className="border rounded-lg px-3 py-2  text-xs sm:text-base"
               />
             </div>
           </motion.div>
@@ -272,20 +339,21 @@ export default function ContactForm() {
         {step === 4 && (
           <motion.div
             key="step5"
+          
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -40 }}
             transition={{ duration: 0.3 }}
-            className="grid gap-4"
+            className="grid gap-4 "
           >
-            <h2 className="text-lg font-semibold">5. Twoje dane kontaktowe</h2>
+            <h2 className="sm:text-lg font-semibold mt-8">5. Twoje dane kontaktowe</h2>
             <input
               type="text"
               placeholder="Imię i nazwisko"
               autoComplete="name"
               value={formData.name}
               onChange={(e) => handleChange("name", e.target.value)}
-              className={`w-full border rounded-lg px-3 py-2 focus:ring-2 ${
+              className={`w-fill mx-1 border rounded-lg px-3 py-2 focus:ring-2 text-xs sm:text-base ${
                 errors.name
                   ? "border-red-500 focus:ring-red-400"
                   : "border-gray-300 focus:ring-blue-400"
@@ -298,7 +366,7 @@ export default function ContactForm() {
               autoComplete="email"
               value={formData.email}
               onChange={(e) => handleChange("email", e.target.value)}
-              className={`w-full border rounded-lg px-3 py-2 focus:ring-2 ${
+              className={`w-fill mx-1 border rounded-lg px-3 py-2 focus:ring-2 text-xs sm:text-base ${
                 errors.email
                   ? "border-red-500 focus:ring-red-400"
                   : "border-gray-300 focus:ring-blue-400"
@@ -311,7 +379,7 @@ export default function ContactForm() {
               autoComplete="tel"
               value={formData.phone}
               onChange={(e) => handleChange("phone", e.target.value)}
-              className={`w-full border rounded-lg px-3 py-2 focus:ring-2 ${
+              className={`w-fill mx-1 border rounded-lg px-3 py-2 focus:ring-2 text-xs sm:text-base ${
                 errors.phone
                   ? "border-red-500 focus:ring-red-400"
                   : "border-gray-300 focus:ring-blue-400"
@@ -322,17 +390,16 @@ export default function ContactForm() {
               placeholder="Dodatkowe informacje (opcjonalne)"
               value={formData.message}
               onChange={(e) => handleChange("message", e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400"
+              className="w-fill border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 text-xs sm:text-base mx-1"
             />
             <p className="text-xs text-gray-500 mt-2">
               🔒 Twoje dane są bezpieczne – nie udostępniamy ich osobom trzecim.
             </p>
           </motion.div>
         )}
-      </AnimatePresence>
 
       {/* Nawigacja */}
-      <div className="flex justify-between mt-8">
+      <div className="grid gap-4 sm:flex sm:justify-between mt-8">
         {step > 0 && (
           <button
             type="button"
@@ -347,7 +414,7 @@ export default function ContactForm() {
             type="button"
             onClick={next}
             disabled={!isStepValid()}
-            className={`ml-auto px-6 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-500 text-white transition ${
+            className={`order-first w-full sm:w-auto  sm:order-last ml-auto px-6 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-500 text-white transition ${
               isStepValid()
                 ? "hover:opacity-90 cursor-pointer"
                 : "opacity-50 cursor-not-allowed"
@@ -359,7 +426,7 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={isSubmitting || !isStepValid()}
-            className={`ml-auto px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold shadow-md transition ${
+            className={`order-first w-full sm:w-auto  sm:order-last ml-auto px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold shadow-md transition ${
               isSubmitting || !isStepValid()
                 ? "opacity-70 cursor-not-allowed"
                 : "hover:shadow-lg hover:scale-105 cursor-pointer"
@@ -369,6 +436,9 @@ export default function ContactForm() {
           </button>
         )}
       </div>
+              </motion.div>
+      </AnimatePresence>
+</motion.div>
     </motion.form>
   );
 }
