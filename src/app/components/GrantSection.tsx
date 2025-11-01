@@ -1,25 +1,25 @@
 "use client";
 
-import { Sun, Home, Flame } from "lucide-react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const grants = [
   {
-    title: "Mój prąd",
+    title: "Moja elektrownia wiatrowa",
     description:
-      "Program wsparcia dla instalacji fotowoltaicznych. Obecnie w końcowej fazie.",
-    icon: Sun,
-    status: "Kończy się",
+      "Program dotacji wspierający budowę mikroinstalacji wiatrowych dla gospodarstw domowych.",
+    image: "/img/grants/moja-elektrownia-wiatrowa.png",
+    status: "Nowość 2025",
     benefits: [
-      "Dofinansowanie do 6 000 zł",
-      "Tylko dla instalacji PV",
-      "Łączenie z magazynem energii",
+      "Dofinansowanie do 45 000 zł",
+      "Wsparcie dla przydomowych turbin",
+      "Możliwość łączenia z fotowoltaiką",
     ],
   },
   {
     title: "Moje ciepło",
     description: "Dotacja na pompy ciepła dla nowych budynków jednorodzinnych.",
-    icon: Home,
+    image: "/img/grants/moje-cieplo.png",
     status: "Nowe budynki",
     benefits: [
       "Dofinansowanie do 21 000 zł",
@@ -31,7 +31,7 @@ const grants = [
     title: "Czyste powietrze",
     description:
       "Wsparcie przy wymianie starego źródła ciepła na ekologiczne rozwiązanie.",
-    icon: Flame,
+    image: "/img/grants/czyste-powietrze.png",
     status: "Wymiana pieca",
     benefits: [
       "Dofinansowanie do 45 000 zł",
@@ -72,9 +72,8 @@ export default function Grants() {
               transition={{ duration: 0.6, delay: index * 0.2 }}
               className="flex flex-col items-center text-center border border-blue-200 rounded-2xl shadow-md hover:shadow-xl bg-white/80 backdrop-blur-sm p-8 transition transform hover:scale-105"
             >
-              <div className="flex items-center justify-center w-20 h-20 rounded-full bg-blue-100 text-blue-600 mb-6">
-                <grant.icon className="w-10 h-10" />
-              </div>
+<div className="flex items-center justify-center w-48 h-24 rounded-3xl bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 shadow-md mb-6 overflow-hidden"> 
+  <Image src={grant.image} alt={grant.title} width={100} height={100} className="object-contain drop-shadow-lg" /> </div>
 
               <h3 className="text-xl font-semibold text-blue-900 mb-3">
                 {grant.title}
