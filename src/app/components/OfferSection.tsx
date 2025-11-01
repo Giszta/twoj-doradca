@@ -6,51 +6,50 @@ import Image from "next/image";
 const products = [
   {
     name: "Pompy ciepła",
-    price: "od 18 000 zł",
     description:
       "Nowoczesne rozwiązania grzewcze oparte na odnawialnych źródłach energii. Idealne do domów jednorodzinnych.",
     image: "/img/offer/pompa-ciepla.png",
   },
   {
     name: "Kotły pelletowe",
-    price: "od 12 000 zł",
     description:
       "Ekologiczne kotły na pellet zapewniające wygodę i wysoką sprawność spalania.",
     image: "/img/offer/kociol-pellet.png",
   },
   {
     name: "Kotły zgazowujące drewno",
-    price: "od 10 000 zł",
     description:
       "Efektywne i ekonomiczne źródło ciepła dla miłośników drewna opałowego.",
     image: "/img/offer/kociol-drewno.png",
   },
   {
     name: "Fotowoltaika",
-    price: "od 15 000 zł",
     description:
       "Instalacje fotowoltaiczne pozwalające oszczędzać na rachunkach za prąd i korzystać z zielonej energii.",
     image: "/img/offer/fotowoltaika.png",
   },
   {
     name: "Ogrzewanie podłogowe",
-    price: "od 8 000 zł",
     description: "Komfortowe i energooszczędne ogrzewanie dla całego domu.",
     image: "/img/offer/podlogowka.png",
   },
   {
     name: "Instalacje wod.-kan.",
-    price: "wycena indywidualna",
     description:
       "Profesjonalne instalacje wodno-kanalizacyjne zapewniające niezawodność i bezpieczeństwo.",
     image: "/img/offer/wod-kan.png",
   },
   {
     name: "Rekuperacja",
-    price: "od 9 000 zł",
     description:
       "Nowoczesne systemy wentylacji mechanicznej z odzyskiem ciepła.",
     image: "/img/offer/rekuperacja.png",
+  },
+    {
+    name: "Turbiny wiatrowe",
+    description:
+      "Przydomowe i komercyjne turbiny wiatrowe umożliwiające niezależną produkcję energii z wiatru przez cały rok.",
+    image: "/img/offer/turbina-wiatrowa.png",
   },
 ];
 
@@ -73,7 +72,7 @@ export default function Offer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative flex flex-col sm:flex-row items-center sm:item-start sm:gap-8 pb-4 pl-4 pr-4 sm:p-8  rounded-2xl border border-blue-200 shadow-md  hover:shadow-xl bg-white/80  transition transform hover:scale-105"
+              className="relative flex flex-col sm:flex-row items-center sm:item-start sm:gap-8 p-4 sm:p-8  rounded-2xl border border-blue-200 shadow-md  hover:shadow-xl bg-white/80  transition transform hover:scale-105"
             >
               <div className="hidden sm:block absolute top-8 left-0 w-full h-12 bg-gradient-to-r from-blue-600 to-cyan-500 z-0" />
               
@@ -81,9 +80,10 @@ export default function Offer() {
                 <Image
                   src={product.image}
                   alt={product.name}
-                  width={260}
-                  height={260}
-                  className="z-10 drop-shadow-xl bg-transparent drop-shadow-neutral-500"
+                  
+                  height={150}
+                  width={150}
+                  className="z-10 drop-shadow-xl bg-transparent drop-shadow-neutral-500 h-[200px] w-auto"
                 />
               </div>
 
@@ -91,7 +91,7 @@ export default function Offer() {
                 <h3 className=" text-xl font-bold text-blue-700 sm:text-white mb-3  px-4 py-2">
                   {product.name}
                 </h3>
-                <p className="text-lg text-gray-600 mb-2">{product.price}</p>
+                
                 <p className="text-gray-500 mb-6">{product.description}</p>
                 <button className="px-6 py-2 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-full shadow hover:opacity-90 transition">
                   Zobacz więcej
