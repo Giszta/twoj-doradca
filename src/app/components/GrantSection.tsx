@@ -43,7 +43,7 @@ const grants = [
 
 export default function Grants() {
   return (
-    <section id="grants" className=" py-20 w-full flex justify-center relative">
+    <section id="grants" className=" w-full flex justify-center relative">
       <div className="max-w-7xl mx-auto px-6">
        <motion.h2
                 className="flex items-center justify-center text-center text-xl sm:text-2xl xl:text-4xl font-bold text-gray-800 mb-20"

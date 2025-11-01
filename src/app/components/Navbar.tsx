@@ -4,6 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import NavbarItem from "./NavbarItem";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
+import FacebookIcon from "../../assets/icons/facebook.svg?react";
+import InstagramIcon from "../../assets/icons/instagram.svg?react";
+import YouTubeIcon from "../../assets/icons/youtube.svg?react";
+import TikTokIcon from "../../assets/icons/tiktok.svg?react";
+import EmailIcon from "../../assets/icons/email.svg?react";
 
 const navbarItem = [
   { title: "Oferta", path: "#offer" },
@@ -243,6 +248,48 @@ export default function Navbar() {
                 >
                   Wyceń swoją instalację
                 </motion.a>
+                        {/* Ikony */}
+        <div className="flex gap-5 mt-3 md:mt-0 justify-center items-end h-full">
+          {[
+            {
+              href: "https://www.instagram.com/twoj.doradca.oze/",
+              Icon: InstagramIcon,
+              hover: "hover:text-pink-500",
+            },
+            {
+              href: "https://www.youtube.com/@TwojDoradcaOZE",
+              Icon: YouTubeIcon,
+              hover: "hover:text-red-500",
+            },
+            {
+              href: "https://www.tiktok.com/@twojdoradca",
+              Icon: TikTokIcon,
+              hover: "hover:text-black",
+            },
+            {
+              href: "https://www.facebook.com/profile.php?id=61567533345453",
+              Icon: FacebookIcon,
+              hover: "hover:text-blue-600",
+            },
+            {
+              href: "mailto:Kontakt@czyste-powietrze-dotacja.pl",
+              Icon: EmailIcon,
+              hover: "hover:text-cyan-600",
+            },
+          ].map(({ href, Icon, hover }) => (
+            <motion.a
+              key={href}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.2, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
+              className={`transition-colors duration-300 ${hover}`}
+            >
+              <Icon className="w-6 h-6" />
+            </motion.a>
+          ))}
+        </div>
               </motion.div>
             </motion.div>
           )}
