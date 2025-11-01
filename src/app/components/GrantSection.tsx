@@ -44,17 +44,17 @@ const grants = [
 export default function Grants() {
   return (
     <section id="grants" className=" py-20 w-full flex justify-center relative">
-      <div className="w-full max-w-6xl px-6">
-        <motion.h2
-          className="flex items-center justify-center text-4xl font-bold text-gray-800 mb-12"
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <span className="inline-block border-t border-gray-300 w-20 mr-6"></span>
-          Aktualne programy dotacyjne
-          <span className="inline-block border-t border-gray-300 w-20 ml-6"></span>
-        </motion.h2>
+      <div className="max-w-7xl mx-auto px-6">
+       <motion.h2
+                className="flex items-center justify-center text-center text-xl sm:text-2xl xl:text-4xl font-bold text-gray-800 mb-20"
+                initial={{ opacity: 0, y: -30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              ><span className="inline-block border-t border-gray-400 w-20 mr-6"></span>
+                Aktualne programy dotacyjne
+                <span className="inline-block border-t border-gray-400 w-20 ml-6"></span>
+              </motion.h2>
+        
         <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
           Skorzystaj z dostępnych programów wsparcia i odzyskaj nawet{" "}
           <span className="font-semibold text-blue-700">45 000 zł</span>. Pomogę

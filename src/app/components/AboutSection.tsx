@@ -31,7 +31,7 @@ const Counter: React.FC<CounterProps> = ({ value, label, Icon, duration = 2000 }
 
   return (
     <motion.div
-      className="flex flex-col items-center bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-2xl p-6 w-60 shadow-lg hover:scale-105 transition-transform duration-300"
+      className="flex flex-col items-center bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-2xl p-6 w-full max-w-[220px] sm:max-w-[260px] md:max-w-[280px] shadow-lg hover:scale-105 transition-transform duration-300"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -68,62 +68,34 @@ const AboutSection = () => {
     }
   };
   return (
-    <section id="about" className=" py-20 ">
+    <section id="about" className="">
       <div className="max-w-7xl mx-auto px-6">
         {/* Tytuł */}
         <motion.h2
-          className="flex items-center justify-center text-4xl font-bold text-gray-800 mb-12"
+          className="flex items-center justify-center text-center text-xl sm:text-2xl xl:text-4xl font-bold text-gray-800 mb-20"
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-        ><span className="inline-block border-t border-gray-300 w-20 mr-6"></span>
+        ><span className="inline-block border-t border-gray-400 w-20 mr-6"></span>
           Moja misja - Twój komfort
-          <span className="inline-block border-t border-gray-300 w-20 ml-6"></span>
+          <span className="inline-block border-t border-gray-400 w-20 ml-6"></span>
         </motion.h2>
 
         {/* Statystyki */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 justify-items-center mb-20">
-          <Counter value={97} label="Zadowolonych klientów" Icon={FaSmile} />
-          <Counter value={400} label="Zrealizowanych projektów" Icon={FaProjectDiagram} />
-          <Counter value={2020} label="Działam" Icon={FaCalendarAlt} />
-        </div>
+<div className="grid grid-cols-1 md:grid-cols-3 gap-10 justify-items-center text-center mb-20 max-w-6xl mx-auto px-4">
+  <Counter value={97} label="Zadowolonych klientów" Icon={FaSmile} />
+  <Counter value={400} label="Zrealizowanych projektów" Icon={FaProjectDiagram} />
+  <Counter value={2020} label="Działam" Icon={FaCalendarAlt} />
+</div>
+
+
+
 
         {/* Schemat + Film */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-stretch">
-          {/* Timeline kroków */}
-          <motion.div
-            className="relative space-y-8 border-l-4 border-blue-600 pl-8 md:col-span-7"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-2xl font-semibold text-blue-700 mb-6">
-              Jak wygląda współpraca ze mną krok po kroku?
-            </h3>
-            {steps.map((step, i) => (
-              <motion.div
-                key={i}
-                className="relative"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <div className="absolute -left-12 bg-blue-600 text-white p-3 rounded-full shadow-lg">
-                  <step.icon className="text-lg" />
-                </div>
-                <h4 className="text-lg font-bold text-blue-800">{step.title}</h4>
-                <p className="text-gray-600">{step.text}</p>
-              </motion.div>
-            ))}
-            <p className="mt-6 text-blue-600 font-semibold">
-              Dzięki temu masz pewność, że inwestujesz świadomie i zyskujesz realne oszczędności – bez stresu i bez przepłacania.
-            </p>
-          </motion.div>
-
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12 items-start">
           {/* Film lokalny */}
          <motion.div
-            className="order-first sm:order-last  relative w-[80%] rounded-2xl overflow-hidden shadow-2xl md:col-span-5 flex justify-center align-center mx-auto"
+            className="order-first lg:order-last relative  max-w-[400px] rounded-2xl overflow-hidden shadow-2xl flex justify-center align-center mx-auto"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -135,7 +107,7 @@ const AboutSection = () => {
               muted
               loop
               playsInline
-              className="rounded-xl object-cover"
+              className=" object-cover rounded-xl"
             />
 
             {/* Pulsujący przycisk mute/unmute */}
@@ -153,6 +125,38 @@ const AboutSection = () => {
 </button>
 
           </motion.div>
+          {/* Timeline kroków */}
+          <motion.div
+            className="relative  mt-8 md:mt-0 border-l-4 border-blue-600 pl-6 md:pl-8 space-y-8"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-2xl font-semibold text-blue-700 mb-6">
+              Jak wygląda współpraca ze mną krok po kroku?
+            </h3>
+            {steps.map((step, i) => (
+              <motion.div
+                key={i}
+                className="relative"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <div className="absolute -left-14 bg-blue-600 text-white p-3 rounded-full shadow-lg">
+                  <step.icon className="text-lg" />
+                </div>
+                <h4 className="text-lg font-bold text-blue-800">{step.title}</h4>
+                <p className="text-gray-600">{step.text}</p>
+              </motion.div>
+            ))}
+            <p className="mt-6 text-blue-600 font-semibold">
+              Dzięki temu masz pewność, że inwestujesz świadomie i zyskujesz realne oszczędności – bez stresu i bez przepłacania.
+            </p>
+          </motion.div>
+
+          
         </div>
       </div>
     </section>

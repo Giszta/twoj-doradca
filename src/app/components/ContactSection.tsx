@@ -8,11 +8,16 @@ export default function Contact() {
     <section id="contact" className="py-24">
       <div className="max-w-7xl mx-auto px-6">
         {/* Nagłówek */}
-        <h2 className="flex items-center justify-center text-4xl font-bold text-gray-800 mb-16">
-          <span className="inline-block border-t border-gray-300 w-20 mr-6"></span>
-          Napisz do mnie – resztą zajmę się ja!
-          <span className="inline-block border-t border-gray-300 w-20 ml-6"></span>
-        </h2>
+        <motion.h2
+                  className="flex items-center justify-center text-center text-xl sm:text-2xl xl:text-4xl font-bold text-gray-800 mb-20"
+                  initial={{ opacity: 0, y: -30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                ><span className="inline-block border-t border-gray-400 w-20 mr-6"></span>
+                  Napisz do mnie – resztą zajmę się ja!
+                  <span className="inline-block border-t border-gray-400 w-20 ml-6"></span>
+                </motion.h2>
+    
 
         {/* CTA + Formularz */}
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
@@ -37,7 +42,12 @@ export default function Contact() {
           </motion.div>
 
           {/* Formularz */}
+              <motion.div
+            layout
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+            className="">
           <ContactForm />
+          </motion.div>
         </div>
 
         {/* Social Media */}
