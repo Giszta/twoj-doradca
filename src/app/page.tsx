@@ -4,7 +4,7 @@ import HeroSection from "./components/HeroSection";
 import Faq from "./components/Faq";
 import Opinions from "./components/OpinionsSection";
 import Contact from "./components/ContactSection";
-import Offer from "./components/OfferSection";
+import OfferSection from "./components/Offer/OfferSection";
 import Grants from "./components/GrantSection";
 import RealizacjeCarousel from "./components/RealisationSection";
 import AboutSection from "./components/AboutSection";
@@ -21,9 +21,9 @@ export default function Home() {
 
       <HeroSection />
 
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-12 space-y-20">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8  space-y-20">
 
-        <Offer />
+        <OfferSection />
         <AboutSection />
         <Grants />
         <RealizacjeCarousel />
