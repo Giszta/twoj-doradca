@@ -1,12 +1,10 @@
-// components/offer/hooks/useMobileScroll.ts - FIXED GLITCH
-
 import { useEffect, useRef, useState } from "react";
 
 export function useMobileScroll(productsLength: number) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const isAdjustingRef = useRef(false);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   useEffect(() => {
     const el = scrollRef.current;
