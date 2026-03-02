@@ -1,6 +1,7 @@
 import type { Configuration } from "webpack";
+import type { NextConfig } from "next";
 
-const nextConfig = {
+const nextConfig: NextConfig = {
   webpack(config: Configuration) {
     if (config.module && config.module.rules) {
       config.module.rules.push({
