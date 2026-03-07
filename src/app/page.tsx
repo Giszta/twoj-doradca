@@ -7,7 +7,7 @@ import Contact from "./components/ContactSection";
 import OfferSection from "./components/Offer/OfferSection";
 import Grants from "./components/GrantSection";
 import RealizacjeCarousel from "./components/RealisationSection";
-import AboutSection from "./components/AboutSection";
+import AboutSection from "./components/About/AboutSection";
 
 export default function Home() {
   return (
@@ -21,7 +21,7 @@ export default function Home() {
 
       <HeroSection />
 
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8  space-y-20">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-20">
 
         <OfferSection />
         <AboutSection />

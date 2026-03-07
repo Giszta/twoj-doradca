@@ -12,7 +12,7 @@ export default function CTASection() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 text-center mt-16">
+    <div className="max-w-4xl mx-auto px-4 text-center ">
       
       <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3">
         Gotowy na oszczędności?
@@ -26,7 +26,7 @@ export default function CTASection() {
         
         <button 
           onClick={scrollToContact}
-          className="group w-full px-6 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold rounded-full shadow-lg active:scale-95 transition-all flex items-center justify-center gap-3"
+          className="group w-full px-6 py-4 bg-linear-to-r from-blue-500 to-cyan-500 text-white font-bold rounded-full shadow-lg active:scale-95 transition-all flex items-center justify-center gap-3"
         >
           <span>Umów bezpłatną konsultację</span>
           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

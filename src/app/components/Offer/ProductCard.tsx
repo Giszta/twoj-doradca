@@ -14,7 +14,7 @@ export default function ProductCard({
 }: Props) {
   return (
     <div
-      className="flex-shrink-0 w-[350px] h-[450px] group"
+      className="shrink-0 w-87.5 h-112.5 group"
       style={{ perspective: '1000px' }}
       onMouseEnter={() => onHover(true)}
       onMouseLeave={() => onHover(false)}
