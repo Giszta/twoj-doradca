@@ -28,7 +28,7 @@ export default function DesktopCarousel({ products }: Props) {
       />
 
 <div className="overflow-hidden 
-  [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]
+  mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]
   [-webkit-mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
     
         <div className="overflow-hidden py-20">

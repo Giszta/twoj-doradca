@@ -1,5 +1,3 @@
-// components/offer/CarouselNavigation.tsx
-
 import { LucideIcon } from "lucide-react";
 
 type Product = {
@@ -33,7 +31,7 @@ export default function CarouselNavigation({
               title={product.name}
               className={`relative flex items-center gap-2 px-4 py-2.5 rounded-full transition-all duration-300 ${
                 isActive
-                  ? "bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-md"
+                  ? "bg-linear-to-br from-blue-500 to-cyan-500 text-white shadow-md"
                   : "text-gray-600 hover:bg-gray-100 hover:text-blue-600"
               }`}
             >

@@ -10,7 +10,7 @@ export default function OfferSection() {
     <section className=" bg-stone-100  overflow-hidden">
 
       <div className="py-12">
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-30"></div>
+        <div className="w-full h-px bg-linear-to-r from-transparent via-blue-500 to-transparent opacity-30"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
