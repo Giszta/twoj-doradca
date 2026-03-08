@@ -25,7 +25,7 @@ export default function ProductCardBack({ product }: Props) {
 
   return (
     <div className="absolute inset-0 backface-hidden rotate-y-180">
-      <div className="bg-gradient-to-br from-blue-600 to-cyan-600 rounded-3xl overflow-hidden border-2 border-blue-400 shadow-2xl h-full p-8 flex flex-col justify-between">
+      <div className="bg-linear-to-br from-blue-600 to-cyan-600 rounded-3xl overflow-hidden border-2 border-blue-400 shadow-2xl h-full p-8 flex flex-col justify-between">
 
         <div>
           <div className="flex justify-center mb-4">

@@ -6,7 +6,6 @@ import { FaSmile, FaProjectDiagram, FaCalendarAlt } from "react-icons/fa";
 export default function AboutStats() {
   return (
     <div className="mb-16 md:mb-20">
-      {/* Title */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -21,7 +20,6 @@ export default function AboutStats() {
         </p>
       </motion.div>
 
-      {/* Desktop: Traditional 3-column cards */}
       <div className="hidden md:grid md:grid-cols-3 gap-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -67,7 +65,6 @@ export default function AboutStats() {
         </motion.div>
       </div>
 
-      {/* Mobile: Bar Chart Style */}
       <div className="md:hidden max-w-lg mx-auto space-y-3 px-4">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
