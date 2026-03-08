@@ -1,5 +1,3 @@
-// components/offer/MobilePagination.tsx
-
 type Props = {
   total: number;
   activeIndex: number;

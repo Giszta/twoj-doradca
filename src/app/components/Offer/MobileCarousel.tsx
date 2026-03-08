@@ -1,5 +1,3 @@
-// components/offer/MobileCarousel.tsx - INFINITE LOOP VERSION
-
 import { useMobileScroll } from "./hooks/useMobileScroll";
 import { Product } from "./types";
 import MobileProductCard from "./MobileProductCard";
@@ -12,20 +10,18 @@ type Props = {
 export default function MobileCarousel({ products }: Props) {
   const { scrollRef, activeIndex } = useMobileScroll(products.length);
 
-  // Create 3 copies for infinite loop
+
   const displayProducts = [...products, ...products, ...products];
 
   return (
     <div className="md:hidden">
       
-      {/* Swipe hint */}
       <div className="text-center mb-6">
         <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full">
           <span className="text-sm font-semibold text-blue-700">← Przesuń →</span>
         </div>
       </div>
 
-      {/* Scroll container */}
       <div
         ref={scrollRef}
         className="overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 -mx-4 px-4"
@@ -40,13 +36,12 @@ export default function MobileCarousel({ products }: Props) {
         </div>
       </div>
 
-      {/* Pagination - shows only original products count */}
+
       <MobilePagination
         total={products.length}
         activeIndex={activeIndex}
       />
 
-      {/* Hide scrollbar */}
       <style jsx>{`
         .scrollbar-hide {
           -ms-overflow-style: none;
