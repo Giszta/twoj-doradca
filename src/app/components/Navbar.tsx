@@ -12,10 +12,10 @@ import EmailIcon from "../../assets/icons/email.svg?react";
 
 const navbarItem = [
   { title: "Oferta", path: "#offer" },
-  { title: "O mnie", path: "#about" },
+  { title: "Jak pomagam?", path: "#about" },
   { title: "Dotacje", path: "#grants" },
-  { title: "Realizacje", path: "#realization" },
   { title: "Opinie", path: "#opinions" },
+  { title: "Realizacje", path: "#realization" },
   { title: "Kontakt", path: "#contact" },
 ];
 
@@ -195,7 +195,7 @@ export default function Navbar() {
             className="px-3 xl:px-6 py-2 rounded-full text-white text-lg xl:text-xl font-semibold shadow-md hover:shadow-lg bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 transition-all "
             onClick={() => handleNavItemClick("#contact")}
           >
-            Wyceń swoją instalację
+            Bezpłatna konsultacja
           </motion.a>
           </motion.div>
         </motion.div>

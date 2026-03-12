@@ -18,12 +18,12 @@ export default function HeroSection() {
       </video>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80"></div>
+      <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/40 to-black/80"></div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 w-full max-w-5xl">
+      <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 w-full max-w-6xl">
         <motion.span
-          className="inline-block mb-6 px-4 py-1 border border-white/30 rounded-full text-white text-sm md:text-base backdrop-blur-sm"
+          className="inline-block mb-6 px-4 py-1 border border-white/30 rounded-full text-white text-xs md:text-base backdrop-blur-sm"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -37,40 +37,45 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          Twój doradca <span className="text-blue-500">OZE</span>. <br />
-          Twoja energia przyszłości.
+          Zła decyzja w <span className="text-blue-500">OZE</span> <br />
+          Kosztuje dziesiątki tysięcy złotych.
         </motion.h1>
 
         <motion.p
-          className="mt-6 text-white/90 text-base md:text-lg max-w-2xl"
+          className="mt-6 text-white/90 text-sm md:text-lg max-w-3xl"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.8 }}
         >
-          Zainwestuj w niezależność energetyczną. Pomagam dobrać najlepsze
-          rozwiązania – od fotowoltaiki po pompy ciepła i dotacje.
+          <span className="text-2xl md:text-3xl">Pomagam jej uniknąć!</span> <br />
+          <br />
+          Dobieram najlepsze rozwiązania, dopasowane do Twojej sytuacji i potrzeb. Zajmuję się formalnościami, a Ty cieszysz się czystą energią i oszczędnościami.
         </motion.p>
 
         {/* CTA */}
         <motion.div
-          className="mt-10 flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+          className="mt-5 md:mt-10 flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.8 }}
         >
           <a
             href="#contact"
-            className="px-8 py-3 rounded-full text-white font-semibold shadow-md hover:shadow-lg bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 transition-all text-center"
+            className=" px-8 py-3 rounded-full text-white font-semibold shadow-md hover:shadow-lg bg-linear-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 transition-all text-center"
           >
-            Skontaktuj się
+            Sprawdź czy to ma sens w Twoim domu
           </a>
-          <a
-            href="#offer"
-            className="px-8 py-3 rounded-full bg-white/20 border border-white text-white font-semibold hover:bg-white/30 transition text-center"
-          >
-            Zobacz ofertę
-          </a>
+          
         </motion.div>
+
+        <motion.span
+          className="inline-block mt-5 md:mt-20 px-4 py-1 border border-white/30 rounded-full text-white text-xs md:text-base backdrop-blur-sm"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          Bezpłatnie | bez zobowiązań | 100% satysfakcji
+        </motion.span>
       </div>
     </section>
   );

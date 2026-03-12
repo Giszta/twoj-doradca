@@ -28,7 +28,7 @@ export default function AboutStats() {
           transition={{ delay: 0.1 }}
         >
           <CounterCard 
-            value={97} 
+            value={98} 
             label="Zadowolonych klientów" 
             Icon={FaSmile} 
             suffix="%" 
@@ -42,7 +42,7 @@ export default function AboutStats() {
           transition={{ delay: 0.2 }}
         >
           <CounterCard 
-            value={400} 
+            value={500} 
             label="Zrealizowanych projektów" 
             Icon={FaProjectDiagram} 
             color="purple" 
@@ -56,7 +56,7 @@ export default function AboutStats() {
           transition={{ delay: 0.3 }}
         >
           <CounterCard 
-            value={5} 
+            value={6} 
             label="Lat doświadczenia" 
             Icon={FaCalendarAlt}
             suffix="+" 
@@ -73,7 +73,7 @@ export default function AboutStats() {
           transition={{ delay: 0.1 }}
         >
           <BarCounter 
-            value={97} 
+            value={98} 
             maxValue={100}
             label="Zadowolonych klientów" 
             Icon={FaSmile} 
@@ -89,8 +89,8 @@ export default function AboutStats() {
           transition={{ delay: 0.2 }}
         >
           <BarCounter 
-            value={400} 
-            maxValue={410}
+            value={500} 
+            maxValue={510}
             label="Zrealizowanych projektów" 
             Icon={FaProjectDiagram} 
             color="purple" 
@@ -104,8 +104,8 @@ export default function AboutStats() {
           transition={{ delay: 0.3 }}
         >
           <BarCounter 
-            value={5} 
-            maxValue={6}
+            value={6} 
+            maxValue={7}
             label="Lat doświadczenia" 
             Icon={FaCalendarAlt} 
             color="green"
