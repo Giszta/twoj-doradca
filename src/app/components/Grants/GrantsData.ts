@@ -3,31 +3,6 @@ import { Grant } from "./types";
 
 export const grants: Grant[] = [
   {
-    id: "wiatrowa",
-    title: "Moja elektrownia wiatrowa",
-    description:
-      "Program dotacji wspierający budowę mikroinstalacji wiatrowych dla gospodarstw domowych.",
-    image: "/img/grants/moja-elektrownia-wiatrowa.png",
-    icon: FaWind,
-    status: "Nowość 2025",
-    statusColor: "bg-green-100 text-green-700 border-green-300",
-    maxAmount: 45000,
-    benefits: [
-      "Dofinansowanie do 45 000 zł",
-      "Wsparcie dla przydomowych turbin",
-      "Możliwość łączenia z fotowoltaiką",
-    ],
-    requirements: [
-      "Gospodarstwo domowe",
-      "Odpowiednie warunki wiatrowe (min. 4 m/s)",
-      "Zgoda sąsiadów w promieniu 100m",
-      "Pozwolenie na budowę"
-    ],
-    timeline: "3-6 miesięcy",
-    difficulty: "Średni",
-  },
-
-  {
     id: "cieplo",
     title: "Moje ciepło",
     description: "Dotacja na pompy ciepła dla nowych budynków jednorodzinnych.",
@@ -75,5 +50,29 @@ export const grants: Grant[] = [
     timeline: "4-8 miesięcy",
     difficulty: "Średni",
     recommended: true
+  },
+    {
+    id: "wiatrowa",
+    title: "Moja elektrownia wiatrowa",
+    description:
+      "Program dotacji wspierający budowę mikroinstalacji wiatrowych dla gospodarstw domowych.",
+    image: "/img/grants/moja-elektrownia-wiatrowa.png",
+    icon: FaWind,
+    status: "Nowość 2025",
+    statusColor: "bg-green-100 text-green-700 border-green-300",
+    maxAmount: 45000,
+    benefits: [
+      "Dofinansowanie do 45 000 zł",
+      "Wsparcie dla przydomowych turbin",
+      "Możliwość łączenia z fotowoltaiką",
+    ],
+    requirements: [
+      "Gospodarstwo domowe",
+      "Odpowiednie warunki wiatrowe (min. 4 m/s)",
+      "Zgoda sąsiadów w promieniu 100m",
+      "Pozwolenie na budowę"
+    ],
+    timeline: "3-6 miesięcy",
+    difficulty: "Średni",
   }
 ];

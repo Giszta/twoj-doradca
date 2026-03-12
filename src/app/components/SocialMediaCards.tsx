@@ -31,13 +31,6 @@ const contacts = [
     href: "https://www.tiktok.com/@twojdoradca",
     gradient: "from-black to-pink-600",
   },
-  {
-    img: "/img/gmail.png",
-    alt: "Email",
-    description: "Masz pytania? Napisz – odpowiadam szybko i konkretnie.",
-    href: "mailto:Kontakt@czyste-powietrze-dotacja.pl",
-    gradient: "from-orange-600 to-red-500",
-  },
 ];
 
 export default function SocialMediaCards() {
