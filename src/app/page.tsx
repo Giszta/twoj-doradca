@@ -6,7 +6,7 @@ import Opinions from "./components/OpinionsSection";
 import Contact from "./components/ContactSection";
 import OfferSection from "./components/Offer/OfferSection";
 import Grants from "./components/Grants/GrantSection";
-import RealizacjeCarousel from "./components/RealisationSection";
+import RealizacjeCarousel from "./components/Realizations/RealizationCarousel";
 import AboutSection from "./components/About/AboutSection";
 
 export default function Home() {
