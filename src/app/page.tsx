@@ -2,7 +2,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import Faq from "./components/Faq/FAQ";
-import Opinions from "./components/OpinionsSection";
+import Opinions from "./components/opinions/Opinions";
 import Contact from "./components/ContactSection";
 import OfferSection from "./components/Offer/OfferSection";
 import Grants from "./components/Grants/GrantSection";
