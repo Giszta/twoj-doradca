@@ -4,14 +4,14 @@ import { products } from "./data";
 import DesktopCarousel from "./DesktopCarousel";
 import MobileCarousel from "./MobileCarousel";
 import CTASection from "./CTASection";
+import Separator from "../Separator";
 
 export default function OfferSection() {
   return (
     <section className=" bg-stone-100  overflow-hidden">
+  
+<Separator />
 
-      <div className="py-12">
-        <div className="w-full h-px bg-linear-to-r from-transparent via-blue-500 to-transparent opacity-30"></div>
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <DesktopCarousel products={products} />

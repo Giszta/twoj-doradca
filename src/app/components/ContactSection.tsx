@@ -2,21 +2,13 @@
 import { motion } from "framer-motion";
 import ContactForm from "./ContactForm";
 import SocialMediaCards from "./SocialMediaCards";
+import Separator from "./Separator";
 
 export default function Contact() {
   return (
     <section id="contact" className="">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Nagłówek */}
-        <motion.h2
-                  className="flex items-center justify-center text-center text-xl sm:text-2xl xl:text-4xl font-bold text-gray-800 mb-20"
-                  initial={{ opacity: 0, y: -30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                ><span className="inline-block border-t border-gray-400 w-20 mr-6"></span>
-                  Napisz do mnie – resztą zajmę się ja!
-                  <span className="inline-block border-t border-gray-400 w-20 ml-6"></span>
-                </motion.h2>
+<Separator />
     
 
         {/* CTA + Formularz */}

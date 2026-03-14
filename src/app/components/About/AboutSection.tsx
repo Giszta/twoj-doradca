@@ -4,6 +4,7 @@ import AboutStats from "./AboutStats";
 import AboutSteps from "./AboutSteps";
 import AboutVideo from "./AboutVideo";
 import { videoTimestamps } from "./videoTimestamps";
+import Separator from "../Separator";
 
 export default function AboutSection() {
   const [activeStep, setActiveStep] = useState<number>(0);
@@ -20,9 +21,8 @@ export default function AboutSection() {
 
   return (
     <section id="about" className="bg-gray-100">
-      <div className="pb-12">
-        <div className="w-full h-px bg-linear-to-r from-transparent via-blue-500 to-transparent opacity-30"></div>
-      </div>
+<Separator />
+
 
       <div className="max-w-7xl mx-auto px-6">
         <AboutStats />

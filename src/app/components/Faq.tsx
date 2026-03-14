@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronDown, HelpCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Separator from "./Separator";
 
 interface FAQItem {
   question: string;
@@ -50,16 +51,7 @@ export default function FAQ() {
       className=" "
     >
      <div className="max-w-7xl mx-auto px-6">
-        {/* Tytuł */}
-        <motion.h2
-          className="flex items-center justify-center text-center text-xl sm:text-2xl xl:text-4xl font-bold text-gray-800 mb-20"
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        ><span className="inline-block border-t border-gray-400 w-20 mr-6"></span>
-          Najczęściej zadawane pytania
-          <span className="inline-block border-t border-gray-400 w-20 ml-6"></span>
-        </motion.h2>
+<Separator />
 
 
 <div className="space-y-4">
