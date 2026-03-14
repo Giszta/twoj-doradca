@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Separator from "../Separator";
 
 export default function GrantsHeader() {
 
@@ -9,9 +10,7 @@ export default function GrantsHeader() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
     >
-        <div className="py-12">
-        <div className="w-full h-px bg-linear-to-r from-transparent via-blue-500 to-transparent opacity-30"></div>
-      </div>
+       <Separator/>
 
 <h2 className="text-xl md:text-3xl font-bold mb-2 bg-linear-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
             Aktualne programy dotacyjne

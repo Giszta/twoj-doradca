@@ -33,7 +33,7 @@ export default function SocialCard({ contact, index }: Props) {
       className="group relative cursor-pointer flex flex-col items-center bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow transform-gpu will-change-transform overflow-hidden border-2 border-gray-100 hover:border-gray-200 p-6"
     >
       <div
-        className={`absolute inset-0 bg-gradient-to-br ${contact.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+        className={`absolute inset-0 bg-linear-to-br ${contact.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
       />
 
       <SocialIcon contact={contact} priority={index === 0} />

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Separator from "./Separator";
 
 const realizacje = [
   {
@@ -49,7 +50,10 @@ export default function RealizacjeCarousel() {
   }, []);
 
   return (
-    <section id="realization" className="w-full relative overflow-hidden bg-black">
+    <section id="realization" >
+       <Separator />
+        <div className="w-full relative overflow-hidden bg-black">
+          
         
       <div className="relative h-[60vh] md:h-[70vh] w-full">
         <AnimatePresence initial={false}>
@@ -100,6 +104,7 @@ export default function RealizacjeCarousel() {
             }`}
           />
         ))}
+      </div>
       </div>
     </section>
   );
