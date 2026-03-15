@@ -1,4 +1,4 @@
-import Footer from "./components/Footer";
+import Footer from "./components/footer/Footer";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import Faq from "./components/Faq/FAQ";
