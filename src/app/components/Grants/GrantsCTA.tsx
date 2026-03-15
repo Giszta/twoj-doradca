@@ -17,7 +17,7 @@ export default function GrantsCTA({ scrollToContact }: GrantsCTAProps) {
       transition={{ duration: 0.6, delay: 0.8 }}
       className="text-center"
     >
-      {/* Desktop CTA */}
+
       <div className="hidden md:block bg-linear-to-r from-blue-600 to-cyan-500 rounded-2xl p-10 shadow-2xl text-white">
         <h3 className="text-3xl font-bold mb-4">
           Nie wiesz, z którego programu skorzystać?
@@ -35,7 +35,6 @@ export default function GrantsCTA({ scrollToContact }: GrantsCTAProps) {
         </button>
       </div>
 
-      {/* Mobile CTA - Compact & Action-Oriented */}
       <div className="md:hidden bg-linear-to-br from-blue-600 to-cyan-500 rounded-2xl p-6 shadow-xl text-white">
         <div className="mb-6">
           <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
@@ -49,7 +48,6 @@ export default function GrantsCTA({ scrollToContact }: GrantsCTAProps) {
           </p>
         </div>
 
-        {/* Mobile action buttons */}
         <div className="space-y-3">
           <button 
             onClick={scrollToContact}
@@ -74,7 +72,6 @@ export default function GrantsCTA({ scrollToContact }: GrantsCTAProps) {
           </a>
         </div>
 
-        {/* Trust indicators */}
         <div className="mt-6 pt-6 border-t border-white/20">
           <div className="flex items-center justify-center gap-6 text-xs text-blue-100">
             <div className="flex items-center gap-1">

@@ -72,7 +72,6 @@ export default function Grants() {
     });
   };
 
-  // Track scroll position for active dot indicator
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
@@ -95,7 +94,6 @@ export default function Grants() {
 
         <GrantsHeader />
 
-        {/* Scroll hint for mobile */}
         <div className="md:hidden text-center mb-4">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 rounded-full">
             <span className="text-xs font-semibold text-blue-700">← Przesuń aby zobaczyć więcej →</span>
