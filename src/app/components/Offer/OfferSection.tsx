@@ -8,7 +8,7 @@ import Separator from "../Separator";
 
 export default function OfferSection() {
   return (
-    <section className=" bg-stone-100  overflow-hidden">
+    <section className=" bg-stone-100  overflow-hidden">git a
   
 <Separator />
 
