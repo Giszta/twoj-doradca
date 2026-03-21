@@ -1,11 +1,9 @@
-// app/api/contact/route.ts
-
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
     const data = await request.json();
-    
+
     const {
       product,
       answer1,
@@ -18,12 +16,31 @@ export async function POST(request: NextRequest) {
       email,
       phone,
       message,
+      consentRequired,
+      consentEmailMarketing,
+      consentPhoneMarketing,
+      consentNewsletter,
     } = data;
 
-    // Get question labels based on product
+    if (!product || !area || !budget || !timeline || !name || !email || !phone) {
+      return NextResponse.json(
+        { success: false, message: "Brak wymaganych danych." },
+        { status: 400 }
+      );
+    }
+
+    if (!consentRequired) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Musisz zaakceptować regulamin i politykę prywatności.",
+        },
+        { status: 400 }
+      );
+    }
+
     const questionLabels = getQuestionLabels(product);
 
-    // Format email content
     const emailContent = `
 NOWE ZAPYTANIE Z FORMULARZA KONTAKTOWEGO
 ==========================================
@@ -32,9 +49,9 @@ ZAINTERESOWANIE:
 ${product}
 
 SZCZEGÓŁY PRODUKTU:
-${questionLabels[0]}: ${answer1}
-${questionLabels[1]}: ${answer2}
-${questionLabels[2]}: ${answer3}
+${questionLabels[0]}: ${answer1 || "-"}
+${questionLabels[1]}: ${answer2 || "-"}
+${questionLabels[2]}: ${answer3 || "-"}
 
 INFORMACJE OGÓLNE:
 Powierzchnia domu: ${area}
@@ -46,48 +63,35 @@ Imię i nazwisko: ${name}
 Email: ${email}
 Telefon: ${phone}
 
-${message ? `DODATKOWE INFORMACJE:\n${message}` : ''}
+${message ? `DODATKOWE INFORMACJE:\n${message}\n` : ""}
+
+ZGODY:
+Akceptacja Regulaminu i Polityki Prywatności: ${consentRequired ? "TAK" : "NIE"}
+Zgoda e-mail marketing: ${consentEmailMarketing ? "TAK" : "NIE"}
+Zgoda telefon marketing: ${consentPhoneMarketing ? "TAK" : "NIE"}
+Zgoda newsletter: ${consentNewsletter ? "TAK" : "NIE"}
 
 ==========================================
-Data wysłania: ${new Date().toLocaleString('pl-PL')}
+Data wysłania: ${new Date().toLocaleString("pl-PL")}
     `.trim();
 
-    // TODO: Configure your email service here
-    // Option 1: Resend
-    // const { Resend } = require('resend');
-    // const resend = new Resend(process.env.RESEND_API_KEY);
-    // await resend.emails.send({
-    //   from: 'formularz@twojdomena.pl',
-    //   to: process.env.EMAIL_TO!,
-    //   subject: `Nowe zapytanie: ${product}`,
-    //   text: emailContent,
-    // });
-
-    // Option 2: Nodemailer
-    // const nodemailer = require('nodemailer');
-    // const transporter = nodemailer.createTransporter({...});
-    // await transporter.sendMail({...});
-
-    // For now, just log it
-    console.log('=== NEW FORM SUBMISSION ===');
+    console.log("=== NEW FORM SUBMISSION ===");
     console.log(emailContent);
-    console.log('===========================');
+    console.log("===========================");
 
-    return NextResponse.json({ 
-      success: true, 
-      message: 'Formularz został wysłany pomyślnie' 
+    return NextResponse.json({
+      success: true,
+      message: "Formularz został wysłany pomyślnie",
     });
-
   } catch (error) {
-    console.error('Error processing form:', error);
+    console.error("Error processing form:", error);
     return NextResponse.json(
-      { success: false, message: 'Wystąpił błąd podczas wysyłania formularza' },
+      { success: false, message: "Wystąpił błąd podczas wysyłania formularza" },
       { status: 500 }
     );
   }
 }
 
-// Helper function to get question labels
 function getQuestionLabels(product: string): string[] {
   const questions: Record<string, string[]> = {
     "Pompy ciepła gruntowe": [
@@ -100,7 +104,7 @@ function getQuestionLabels(product: string): string[] {
       "Funkcja chłodzenia",
       "Obecne źródło ogrzewania",
     ],
-    "Fotowoltaika": [
+    Fotowoltaika: [
       "Zużycie prądu miesięcznie",
       "Rodzaj dachu",
       "Kierunek połaci dachowej",
@@ -110,7 +114,7 @@ function getQuestionLabels(product: string): string[] {
       "Liczba pomieszczeń",
       "Stan budynku",
     ],
-    "Rekuperacja": [
+    Rekuperacja: [
       "Kubatura budynku",
       "Liczba kondygnacji",
       "Alergicy w domu",

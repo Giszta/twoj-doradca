@@ -23,7 +23,7 @@ export function useContactForm() {
     return productQuestions[formData.product];
   }, [formData.product]);
 
-  const updateField = (field: ContactField, value: string) => {
+  const updateField = (field: ContactField, value: string | boolean) => {
     setFormData((prev) => {
       const next = { ...prev, [field]: value };
 
@@ -63,6 +63,7 @@ export function useContactForm() {
           !!formData.name.trim() &&
           !!formData.email.trim() &&
           !!formData.phone.trim() &&
+          formData.consentRequired === true &&
           Object.keys(validateContactData(formData)).length === 0
         );
 

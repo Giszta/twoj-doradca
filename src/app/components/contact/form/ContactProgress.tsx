@@ -19,7 +19,7 @@ export default function ContactProgress({ step, steps }: Props) {
 
       <div className="relative h-2 w-full overflow-hidden rounded-full bg-gray-200">
         <div
-          className="absolute left-0 top-0 h-2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 transition-all duration-500 ease-in-out"
+          className="absolute left-0 top-0 h-2 rounded-full bg-linear-to-r from-blue-600 to-cyan-500 transition-all duration-500 ease-in-out"
           style={{ width: `${progress}%` }}
         />
       </div>
@@ -50,7 +50,7 @@ export default function ContactProgress({ step, steps }: Props) {
               </div>
 
               <span
-                className={`block max-w-full text-[11px] leading-tight whitespace-normal break-words ${
+                className={`block max-w-full text-[11px] leading-tight whitespace-normal wrap-break-words ${
                   isActive ? "font-semibold text-blue-600" : "text-gray-500"
                 }`}
               >

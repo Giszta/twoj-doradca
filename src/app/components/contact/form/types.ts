@@ -26,6 +26,10 @@ export type ContactFormData = {
   email: string;
   phone: string;
   message: string;
+    consentRequired: boolean;
+  consentEmailMarketing: boolean;
+  consentPhoneMarketing: boolean;
+  consentNewsletter: boolean;
 };
 
 export type ContactFormErrors = Partial<Record<keyof ContactFormData, string>>;
