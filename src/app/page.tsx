@@ -3,7 +3,7 @@ import Navbar from "./components/navbar/Navbar";
 import HeroSection from "./components/hero/HeroSection";
 import Faq from "./components/Faq/FAQ";
 import Opinions from "./components/opinions/Opinions";
-import Contact from "./components/ContactSection";
+import Contact from "./components/contact/Contact";
 import OfferSection from "./components/Offer/OfferSection";
 import Grants from "./components/Grants/GrantSection";
 import RealizacjeCarousel from "./components/Realizations/RealizationCarousel";
