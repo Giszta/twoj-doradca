@@ -1,19 +1,22 @@
-import FooterCopyright from "./FooterCopyright"
-import FooterTagline from "./FooterTagline"
-import FooterSocials from "./FooterSocials"
+import FooterCopyright from "./FooterCopyright";
+import FooterTagline from "./FooterTagline";
+import FooterSocials from "./FooterSocials";
+import FooterLegalLinks from "./FooterLegalLinks";
+import FooterCookieSettingsButton from "./FooterCookieSettingsButton";
 
 export default function FooterContainer() {
-
   return (
-    <div className="w-[92%] mx-auto flex flex-col md:flex-row items-center justify-between bg-white/70 backdrop-blur-lg rounded-lg shadow-lg px-6 py-4 mt-2">
+    <div className="w-[92%] mx-auto bg-white/70 backdrop-blur-lg rounded-lg shadow-lg px-6 py-5 mt-2">
+      <div className="flex flex-col items-center gap-4 md:flex-row md:items-center md:justify-between">
+        <FooterCopyright />
+        <FooterTagline />
+        <FooterSocials />
+      </div>
 
-      <FooterCopyright />
-
-      <FooterTagline />
-
-      <FooterSocials />
-
+      <div className="mt-5 border-t border-gray-200 pt-4 flex flex-col items-center gap-3">
+        <FooterLegalLinks />
+        <FooterCookieSettingsButton />
+      </div>
     </div>
-  )
-
+  );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { formSteps, progressLabels } from "./form/config";
+import { progressLabels } from "./form/config";
 import { useContactForm } from "./form/useContactForm";
 import ContactNavigation from "./form/ContactNavigation";
 import ContactProgress from "./form/ContactProgress";
@@ -64,11 +64,11 @@ export default function ContactForm() {
         <AnimatePresence mode="wait">
           <motion.div
             key={step}
-            initial={{ opacity: 0, }}
-            animate={{ opacity: 1, }}
-            exit={{ opacity: 0,  }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="grid gap-4 "
+            className="grid gap-4"
           >
             {currentStep.type === "product" && (
               <OptionStep
@@ -82,8 +82,12 @@ export default function ContactForm() {
 
             {currentStep.type === "question" && (
               <OptionStep
-                title={`${step + 1}. ${currentQuestions[currentStep.questionIndex]?.question ?? ""}`}
-                options={currentQuestions[currentStep.questionIndex]?.options ?? []}
+                title={`${step + 1}. ${
+                  currentQuestions[currentStep.questionIndex]?.question ?? ""
+                }`}
+                options={
+                  currentQuestions[currentStep.questionIndex]?.options ?? []
+                }
                 value={formData[currentStep.field]}
                 error={errors[currentStep.field]}
                 onSelect={(value) => updateField(currentStep.field, value)}

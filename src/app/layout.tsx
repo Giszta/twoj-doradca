@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-
 import "./globals.css";
-
+import CookieBanner from "./components/cookies/CookieBanner";
 
 export const metadata: Metadata = {
   title: "Tomasz Kurek - Twój Doradca",
-  description: "Profesjonalne doradztwo Oze - Panele fotowoltaiczne, pompy ciepła, magazyny energii, rekuperacja",
+  description:
+    "Profesjonalne doradztwo OZE - panele fotowoltaiczne, pompy ciepła, magazyny energii, rekuperacja",
 };
 
 export default function RootLayout({
@@ -15,10 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl" className="hide-scrollbar">
-      <body
-
-      >
+      <body suppressHydrationWarning>
         {children}
+        <CookieBanner />
       </body>
     </html>
   );

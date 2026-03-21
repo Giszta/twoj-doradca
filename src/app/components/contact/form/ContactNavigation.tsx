@@ -31,7 +31,7 @@ export default function ContactNavigation({
           name="intent"
           value="next"
           disabled={!isStepValid}
-          className={`order-first w-full sm:w-auto sm:order-last ml-auto px-6 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-500 text-white transition ${
+          className={`order-first w-full sm:w-auto sm:order-last ml-auto px-6 py-2 rounded-lg bg-linear-to-r from-blue-600 to-cyan-500 text-white transition ${
             isStepValid
               ? "hover:opacity-90 cursor-pointer"
               : "opacity-50 cursor-not-allowed"
@@ -45,7 +45,7 @@ export default function ContactNavigation({
           name="intent"
           value="submit"
           disabled={isSubmitting || !isStepValid}
-          className={`order-first w-full sm:w-auto sm:order-last ml-auto px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold shadow-md transition ${
+          className={`order-first w-full sm:w-auto sm:order-last ml-auto px-6 py-3 rounded-lg bg-linear-to-r from-blue-600 to-cyan-500 text-white font-semibold shadow-md transition ${
             isSubmitting || !isStepValid
               ? "opacity-70 cursor-not-allowed"
               : "hover:shadow-lg hover:scale-105 cursor-pointer"
