@@ -1,21 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Oswald:wght@300..700&family=Poppins:wght@400..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
---bg-primary: oklch(0.95 0.005 120);
---gray-primary: oklch(0.88 0.007 120);
---gray-secondary: oklch(0.35 0.02 260);
---green-primary: oklch(0.55 0.12 150);
---green-primary-hover: oklch(0.42 0.12 150);
---green-secondary: oklch(0.78 0.08 150);
---yellow-primary: oklch(0.82 0.15 95);
+  --bg-primary: oklch(0.95 0.005 120);
+  --gray-primary: oklch(0.88 0.007 120);
+  --gray-secondary: oklch(0.35 0.02 260);
+  --green-primary: oklch(0.55 0.12 150);
+  --green-primary-hover: oklch(0.42 0.12 150);
+  --green-secondary: oklch(0.78 0.08 150);
+  --yellow-primary: oklch(0.82 0.15 95);
+
+  --scrollbar-track: #eef2f7;
+  --scrollbar-thumb: #93c5fd;
+  --scrollbar-thumb-hover: #60a5fa;
 }
 
 * {
-	scrollbar-width: none;
-	-ms-overflow-style: none;
-font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, sans-serif;
   font-style: normal;
   font-optical-sizing: auto;
 }
@@ -30,8 +31,81 @@ blockquote, .highlight {
   font-family: "Oswald", sans-serif;
 }
 
-html, body {
-  /* overflow-x: hidden; */
+html,
+body {
   width: 100%;
   max-width: 100vw;
+}
+
+html {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* global scrollbar — Chrome / Edge / Safari */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 9999px;
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 9999px;
+  border: 2px solid var(--scrollbar-track);
+}
+
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+html::-webkit-scrollbar-corner,
+body::-webkit-scrollbar-corner {
+  background: var(--scrollbar-track);
+}
+
+/* ukryj scrollbar tylko gdy hero jest widoczne */
+html.hero-scroll-hidden {
+  scrollbar-width: none;
+}
+
+html.hero-scroll-hidden::-webkit-scrollbar,
+body.hero-scroll-hidden::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* utility do wewnętrznych kontenerów z overflow */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 9999px;
+  border: 2px solid var(--scrollbar-track);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
 }
