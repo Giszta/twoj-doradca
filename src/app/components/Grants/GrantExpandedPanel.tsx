@@ -13,19 +13,18 @@ export default function GrantExpandedPanel({
   requirements,
   expandedRef
 }: GrantExpandedPanelProps) {
-
   return (
-    <AnimatePresence>
+    <AnimatePresence initial={false}>
       {isExpanded && (
         <motion.div
           ref={expandedRef}
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="absolute left-0 right-0 top-full mt-4 z-20"
+          initial={{ opacity: 0, height: 0, y: -8 }}
+          animate={{ opacity: 1, height: "auto", y: 0 }}
+          exit={{ opacity: 0, height: 0, y: -8 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="overflow-hidden"
         >
-          <div className="p-4 bg-blue-50 rounded-xl border-2 border-blue-200 shadow-lg">
+          <div className="mt-4 p-4 bg-blue-50 rounded-xl border-2 border-blue-200 shadow-lg">
             <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
               <FaArrowRight className="text-blue-600" />
               Wymagania do spełnienia:

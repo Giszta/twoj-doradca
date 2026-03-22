@@ -6,7 +6,7 @@ import HeroContent from "./HeroContent"
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full h-screen flex items-center justify-center">
+    <section id="landing" className="relative w-full h-screen flex items-center justify-center">
       <HeroVideo />
       <HeroOverlay />
       <HeroContent />

@@ -16,7 +16,7 @@ export default function ProductCardFront({ product }: Props) {
     <div className="absolute inset-0 backface-hidden">
       <div className="bg-white rounded-3xl overflow-hidden border border-gray-300 shadow-lg h-full">
 
-        <div className="relative bg-gradient-to-br from-blue-500 to-cyan-500 h-64 flex items-center justify-center">
+        <div className="relative bg-linear-to-br from-blue-500 to-cyan-500 h-64 flex items-center justify-center">
 
           <div className="absolute inset-0 opacity-10">
             <div

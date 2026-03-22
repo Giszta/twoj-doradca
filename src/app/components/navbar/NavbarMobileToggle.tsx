@@ -1,85 +1,70 @@
 "use client"
 
-import { motion, AnimatePresence } from "framer-motion"
-import { Bars3Icon } from "@heroicons/react/24/solid"
+import { motion } from "framer-motion"
 
 interface Props {
   navbarOpen: boolean
   scrolled: boolean
-  openMenu: () => void
+  toggleMenu: () => void
 }
 
 export default function NavbarMobileToggle({
   navbarOpen,
   scrolled,
-  openMenu,
+  toggleMenu,
 }: Props) {
   return (
-    <div className="block lg:hidden relative z-50">
-      <AnimatePresence>
+    <motion.div
+      className="block lg:hidden relative z-[60]"
+      initial={{ opacity: 0, y: -8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.24, ease: "easeOut" }}
+    >
+      <button
+        onClick={toggleMenu}
+        aria-label={navbarOpen ? "Zamknij menu" : "Otwórz menu"}
+        aria-expanded={navbarOpen}
+        className={`relative flex h-11 w-11 items-center justify-center rounded-xl bg-white/40 md:bg-white/80 backdrop-blur-lg transition-all duration-300 ${
+          navbarOpen ? "border border-transparent shadow-none" : "border border-slate-300 shadow-md"
+        }`}
+      >
+        <span className="sr-only">
+          {navbarOpen ? "Zamknij menu" : "Otwórz menu"}
+        </span>
 
-        {/* BURGER BUTTON */}
-        {!navbarOpen && !scrolled && (
-          <motion.button
-            key="burger"
-            onClick={openMenu}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.3 }}
-            aria-label="Otwórz menu"
-            className="flex items-center px-3 py-2 rounded-lg bg-white/40 text-white border border-white/40 shadow-sm backdrop-blur-md"
-          >
-            <Bars3Icon className="h-6 w-6 text-white" />
-          </motion.button>
-        )}
+        <motion.span
+          className="absolute h-0.5 w-5 rounded-full"
+          initial={false}
+          animate={{
+            rotate: navbarOpen ? 45 : 0,
+            y: navbarOpen ? 0 : -6,
+            backgroundColor: navbarOpen || scrolled ? "#0f172a" : "#ffffff",
+          }}
+          transition={{ duration: 0.28, ease: "easeInOut" }}
+        />
 
-        {/* ARROW BUTTON WHEN SCROLLED */}
-        {!navbarOpen && scrolled && (
-          <motion.button
-            key="arrow"
-            onClick={openMenu}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            transition={{ duration: 0.35 }}
-            aria-label="Otwórz menu"
-            className="fixed top-1/2 right-0 -translate-y-1/2 flex items-center justify-center h-12 w-8
-                       bg-white/50 backdrop-blur-xl border border-white/30 shadow-md hover:shadow-lg transition-all group"
-            style={{
-              borderTopLeftRadius: 9999,
-              borderBottomLeftRadius: 9999,
-            }}
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="url(#arrowGradient)"
-              strokeWidth="2.4"
-              className="h-6 w-6 transition-transform group-hover:-translate-x-0.5"
-            >
-              <defs>
-                <linearGradient
-                  id="arrowGradient"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="100%"
-                >
-                  <stop offset="0%" stopColor="#2563eb" />
-                  <stop offset="100%" stopColor="#06b6d4" />
-                </linearGradient>
-              </defs>
+        <motion.span
+          className="absolute h-0.5 w-5 rounded-full"
+          initial={false}
+          animate={{
+            opacity: navbarOpen ? 0 : 1,
+            scaleX: navbarOpen ? 0.2 : 1,
+            backgroundColor: scrolled ? "#0f172a" : "#ffffff",
+          }}
+          transition={{ duration: 0.22, ease: "easeInOut" }}
+        />
 
-              <path
-                d="M15 6 L9 12 L15 18"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </motion.button>
-        )}
-      </AnimatePresence>
-    </div>
+        <motion.span
+          className="absolute h-0.5 w-5 rounded-full"
+          initial={false}
+          animate={{
+            rotate: navbarOpen ? -45 : 0,
+            y: navbarOpen ? 0 : 6,
+            backgroundColor: navbarOpen || scrolled ? "#0f172a" : "#ffffff",
+          }}
+          transition={{ duration: 0.28, ease: "easeInOut" }}
+        />
+      </button>
+    </motion.div>
   )
 }

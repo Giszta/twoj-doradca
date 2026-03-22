@@ -14,7 +14,7 @@ export default function CTASection() {
   return (
     <div className="max-w-4xl mx-auto px-4 text-center ">
       
-      <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+      <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 my-5">
         Gotowy na oszczędności?
       </h3>
       

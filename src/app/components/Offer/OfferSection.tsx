@@ -8,11 +8,8 @@ import Separator from "../Separator";
 
 export default function OfferSection() {
   return (
-    <section className=" bg-stone-100  overflow-hidden">git a
-  
+    <section id="offer" className=" bg-stone-100  overflow-hidden">  
 <Separator />
-
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <DesktopCarousel products={products} />
         <MobileCarousel products={products} />

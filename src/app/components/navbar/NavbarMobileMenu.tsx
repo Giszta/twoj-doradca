@@ -1,5 +1,4 @@
 import { motion } from "framer-motion"
-import { XMarkIcon } from "@heroicons/react/24/solid"
 import NavbarItem from "./NavbarItem"
 import NavbarSocials from "./NavbarSocials"
 import { navbarItems } from "./navbarData"
@@ -17,26 +16,27 @@ export default function NavbarMobileMenu({
 }: Props) {
   return (
     <motion.div
-      initial={{ x: "100%" }}
-      animate={{ x: 0 }}
-      exit={{ x: "100%" }}
-      transition={{ duration: 0.4 }}
-      className="relative w-3/4 sm:w-2/5 bg-white shadow-xl p-8 flex flex-col space-y-6"
+      initial={{ x: "100%", opacity: 0.98 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: "100%", opacity: 0.98 }}
+      transition={{
+        type: "spring",
+        stiffness: 280,
+        damping: 30,
+        mass: 0.95,
+      }}
+      className="relative w-[82%] sm:w-2/5 bg-white shadow-xl p-8 flex flex-col space-y-6 border border-slate-200 rounded-l-2xl"
     >
-      <button
-        onClick={close}
-        className="absolute top-4 right-4 p-2 text-gray-600"
-      >
-        <XMarkIcon className="h-7 w-7" />
-      </button>
-
-      <ul className="flex flex-col gap-6 text-lg font-medium mt-10">
+      <ul className="flex flex-col gap-6 text-lg font-medium mt-14">
         {navbarItems.map((link) => (
           <li key={link.path}>
             <NavbarItem
               href={link.path}
               title={link.title}
-              onClick={onClick}
+              onClick={(path) => {
+                onClick(path)
+                close()
+              }}
               isActive={activeSection === link.path}
             />
           </li>

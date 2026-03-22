@@ -6,21 +6,20 @@ import NavbarCTA from "./NavbarCTA"
 import { navbarItems } from "./navbarData"
 
 interface NavbarDesktopProps {
-  scrolled: boolean
   activeSection: string
   onClick: (path?: string) => void
 }
 
 export default function NavbarDesktop({
-  scrolled,
   activeSection,
   onClick,
 }: NavbarDesktopProps) {
   return (
     <motion.div
-      className="hidden lg:flex lg:w-full lg:justify-around px-4 bg-white/70 backdrop-blur-lg rounded-lg shadow-lg h-full"
-      animate={{ opacity: scrolled ? 0 : 1, x: scrolled ? 20 : 0 }}
-      transition={{ duration: 0.45 }}
+      className="hidden lg:flex lg:w-full lg:justify-around px-4 bg-white/70 backdrop-blur-lg rounded-lg border border-slate-300 shadow-lg h-full"
+      initial={{ opacity: 0, y: -12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35 }}
     >
       <ul className="flex xl:gap-8 gap-4 items-center h-full xl:text-xl text-lg">
         {navbarItems.map((link) => (
