@@ -102,7 +102,7 @@ export default function Grants() {
 
         <div
           ref={scrollContainerRef}
-          className="mb-4 pt-5 flex md:grid md:grid-cols-3 md:gap-8 overflow-x-auto md:overflow-visible scrollbar-hide snap-x snap-mandatory gap-4 pb-4 px-4 -mx-4"
+          className="mb-4 pt-5 flex md:grid md:grid-cols-3 md:items-start md:gap-8 overflow-x-auto md:overflow-visible scrollbar-hide snap-x snap-mandatory gap-4 pb-4 px-4 -mx-4"
         >
 
           {grants.map((grant, index) => (

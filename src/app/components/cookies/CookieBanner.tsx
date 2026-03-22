@@ -40,10 +40,7 @@ export default function CookieBanner() {
     };
 
     window.addEventListener("open-cookie-settings", handler);
-
-    return () => {
-      window.removeEventListener("open-cookie-settings", handler);
-    };
+    return () => window.removeEventListener("open-cookie-settings", handler);
   }, []);
 
   const handleAcceptAll = () => {
@@ -80,56 +77,64 @@ export default function CookieBanner() {
   return (
     <>
       {visible && (
-        <div className="fixed inset-x-0 bottom-0 z-50 border-t border-gray-200 bg-white/95 shadow-2xl backdrop-blur">
-          <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-5 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-3xl">
-              <h2 className="text-base font-semibold text-gray-900">
-                Używamy plików cookies
-              </h2>
-              <p className="mt-2 text-sm leading-6 text-gray-600">
-                Używamy plików cookies i podobnych technologii, aby zapewnić
-                prawidłowe działanie strony, analizować ruch oraz prowadzić
-                działania marketingowe. Możesz zaakceptować wszystkie cookies,
-                odrzucić opcjonalne lub dostosować ustawienia. Szczegóły
-                znajdziesz w{" "}
-                <Link
-                  href="/polityka-prywatnosci"
-                  className="text-blue-600 underline"
+        <div className="fixed inset-x-0 bottom-0 z-50 px-3 pb-3 sm:px-4 sm:pb-4">
+          <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-gray-200 bg-white/95 shadow-2xl backdrop-blur">
+            <div className="px-4 py-4 sm:px-6 sm:py-5">
+              <div className="max-w-3xl">
+                <h2 className="text-sm sm:text-base font-semibold text-gray-900">
+                  Używamy plików cookies
+                </h2>
+
+                <p className="mt-2 text-xs sm:text-sm leading-5 sm:leading-6 text-gray-600">
+                  Używamy cookies, aby strona działała poprawnie, analizować ruch
+                  i ulepszać marketing. Możesz zaakceptować wszystkie, odrzucić
+                  opcjonalne albo dostosować ustawienia.
+                </p>
+
+                <p className="mt-2 text-xs text-gray-500">
+                  Szczegóły w{" "}
+                  <Link
+                    href="/polityka-prywatnosci"
+                    className="text-blue-600 underline underline-offset-2"
+                  >
+                    Polityce Prywatności
+                  </Link>{" "}
+                  i{" "}
+                  <Link
+                    href="/regulamin"
+                    className="text-blue-600 underline underline-offset-2"
+                  >
+                    Regulaminie
+                  </Link>
+                  .
+                </p>
+              </div>
+
+              <div className="mt-4 grid grid-cols-1 gap-2 sm:flex sm:flex-wrap sm:justify-end">
+                <button
+                  type="button"
+                  onClick={handleAcceptAll}
+                  className="order-1 w-full rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 sm:order-3 sm:w-auto"
                 >
-                  Polityce Prywatności
-                </Link>{" "}
-                oraz{" "}
-                <Link href="/regulamin" className="text-blue-600 underline">
-                  Regulaminie
-                </Link>
-                .
-              </p>
-            </div>
+                  Akceptuj wszystkie
+                </button>
 
-            <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">
-              <button
-                type="button"
-                onClick={() => setSettingsOpen(true)}
-                className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                Ustawienia
-              </button>
+                <button
+                  type="button"
+                  onClick={handleRejectOptional}
+                  className="order-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50 sm:w-auto"
+                >
+                  Odrzuć opcjonalne
+                </button>
 
-              <button
-                type="button"
-                onClick={handleRejectOptional}
-                className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                Odrzuć opcjonalne
-              </button>
-
-              <button
-                type="button"
-                onClick={handleAcceptAll}
-                className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
-              >
-                Akceptuj wszystkie
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setSettingsOpen(true)}
+                  className="order-3 w-full rounded-xl px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50 sm:order-1 sm:w-auto sm:border sm:border-gray-300"
+                >
+                  Dostosuj ustawienia
+                </button>
+              </div>
             </div>
           </div>
         </div>

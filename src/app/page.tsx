@@ -21,7 +21,7 @@ export default function Home() {
 
       <HeroSection />
 
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-10">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 ">
 
         <OfferSection />
         <AboutSection />

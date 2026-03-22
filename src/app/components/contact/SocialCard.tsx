@@ -61,7 +61,7 @@ export default function SocialCard({ contact, index }: Props) {
       </p>
 
       <div
-        className={`px-3 py-1 rounded-full bg-linear-to-r ${contact.gradient} text-white text-xs font-semibold mb-4`}
+        className={`px-3 py-1 rounded-full bg-linear-to-r ${contact.gradient} text-white text-xs font-semibold mb-4 text-center`}
       >
         {contact.stats}
       </div>

@@ -3,17 +3,13 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 
-interface Props {
-  scrolled: boolean
-}
-
-export default function NavbarLogo({ scrolled }: Props) {
+export default function NavbarLogo() {
   return (
     <motion.div
-      className="bg-white/40 md:bg-white/80 backdrop-blur-lg border border-white/20 rounded-xl shadow-md px-4 flex items-center h-full"
-      animate={{ opacity: scrolled ? 0 : 1, x: scrolled ? -20 : 0 }}
+      className="bg-white/40 md:bg-white/80 backdrop-blur-lg border border-slate-300 rounded-xl shadow-md px-4 flex items-center h-full"
+      initial={{ opacity: 0, y: -12 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      initial={{ opacity: 0 }}
     >
       <Image
         src="/img/logo.png"

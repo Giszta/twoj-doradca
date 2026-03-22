@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { navbarItems } from "./navbarData"
 
+const NAVBAR_OFFSET = 140
+
 export function useActiveSection() {
   const [activeSection, setActiveSection] = useState("")
 
@@ -9,20 +11,37 @@ export function useActiveSection() {
       .map((item) => document.querySelector(item.path))
       .filter(Boolean) as HTMLElement[]
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-            setActiveSection(`#${entry.target.id}`)
-          }
-        })
-      },
-      { threshold: [0.5] }
-    )
+    if (!sections.length) return
 
-    sections.forEach((s) => observer.observe(s))
+    const updateActiveSection = () => {
+      const currentScroll = window.scrollY + NAVBAR_OFFSET
 
-    return () => observer.disconnect()
+      const firstSectionTop = sections[0].offsetTop
+      if (currentScroll < firstSectionTop) {
+        setActiveSection("")
+        return
+      }
+
+      let nextActiveSection = ""
+
+      for (const section of sections) {
+        if (section.offsetTop <= currentScroll) {
+          nextActiveSection = `#${section.id}`
+        }
+      }
+
+      setActiveSection(nextActiveSection)
+    }
+
+    updateActiveSection()
+
+    window.addEventListener("scroll", updateActiveSection, { passive: true })
+    window.addEventListener("resize", updateActiveSection)
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection)
+      window.removeEventListener("resize", updateActiveSection)
+    }
   }, [])
 
   return activeSection
