@@ -37,15 +37,16 @@ export default function SocialCard({ contact, index }: Props) {
         <div
           className={`absolute inset-0 rounded-full bg-linear-to-br ${contact.gradient} opacity-20 blur-lg`}
         />
-        <Image
-          src={contact.img}
-          alt={contact.alt}
-          width={64}
-          height={64}
-          sizes="64px"
-          priority={index === 0}
-          className="relative drop-shadow-lg transition-transform duration-200 group-hover:scale-105"
-        />
+       <div className="relative w-16 h-16">
+  <Image
+    src={contact.img}
+    alt={contact.alt}
+    fill
+    sizes="(max-width: 768px) 100vw, 16vw"
+    className="object-contain drop-shadow-lg transition-transform duration-200 group-hover:scale-105"
+    priority={index === 0}
+  />
+</div>
       </div>
 
       <h3 className="mb-1 text-center text-lg font-bold text-gray-900 md:text-xl">
