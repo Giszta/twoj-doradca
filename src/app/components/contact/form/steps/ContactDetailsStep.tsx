@@ -1,4 +1,6 @@
 import Link from "next/link";
+import CheckboxField from "../fields/CheckboxField";
+import TextField from "../fields/TextField";
 import { ContactFormData, ContactFormErrors } from "../types";
 
 type Props = {
@@ -7,187 +9,102 @@ type Props = {
   onChange: (field: keyof ContactFormData, value: string | boolean) => void;
 };
 
-function FieldError({ id, error }: { id: string; error?: string }) {
-  if (!error) return null;
-  return (
-    <p id={id} className="text-red-500 text-sm">
-      {error}
-    </p>
-  );
-}
-
 export default function ContactDetailsStep({ data, errors, onChange }: Props) {
   return (
     <div className="grid gap-4">
-      <h2 className="sm:text-lg font-semibold mt-8">
+      <h2 className="mt-8 font-semibold sm:text-lg">
         8. Twoje dane kontaktowe
       </h2>
 
-      <div className="grid gap-2">
-        <label
-          htmlFor="contact-name"
-          className="text-sm font-medium text-gray-700"
-        >
-          Imię i nazwisko
-        </label>
-        <input
-          id="contact-name"
-          type="text"
-          autoComplete="name"
-          value={data.name}
-          onChange={(e) => onChange("name", e.target.value)}
-          aria-invalid={!!errors.name}
-          aria-describedby={errors.name ? "contact-name-error" : undefined}
-          className={`w-full border rounded-lg px-3 py-2 focus:ring-2 text-xs sm:text-base ${
-            errors.name
-              ? "border-red-500 focus:ring-red-400"
-              : "border-gray-300 focus:ring-blue-400"
-          }`}
-        />
-        <FieldError id="contact-name-error" error={errors.name} />
-      </div>
+      <TextField
+        id="contact-name"
+        label="Imię i nazwisko"
+        value={data.name}
+        error={errors.name}
+        autoComplete="name"
+        onChange={(value) => onChange("name", value)}
+      />
 
-      <div className="grid gap-2">
-        <label
-          htmlFor="contact-email"
-          className="text-sm font-medium text-gray-700"
-        >
-          Adres e-mail
-        </label>
-        <input
-          id="contact-email"
-          type="email"
-          autoComplete="email"
-          value={data.email}
-          onChange={(e) => onChange("email", e.target.value)}
-          aria-invalid={!!errors.email}
-          aria-describedby={errors.email ? "contact-email-error" : undefined}
-          className={`w-full border rounded-lg px-3 py-2 focus:ring-2 text-xs sm:text-base ${
-            errors.email
-              ? "border-red-500 focus:ring-red-400"
-              : "border-gray-300 focus:ring-blue-400"
-          }`}
-        />
-        <FieldError id="contact-email-error" error={errors.email} />
-      </div>
+      <TextField
+        id="contact-email"
+        label="Adres e-mail"
+        type="email"
+        value={data.email}
+        error={errors.email}
+        autoComplete="email"
+        onChange={(value) => onChange("email", value)}
+      />
 
-      <div className="grid gap-2">
-        <label
-          htmlFor="contact-phone"
-          className="text-sm font-medium text-gray-700"
-        >
-          Numer telefonu
-        </label>
-        <input
-          id="contact-phone"
-          type="tel"
-          autoComplete="tel"
-          value={data.phone}
-          onChange={(e) => onChange("phone", e.target.value)}
-          aria-invalid={!!errors.phone}
-          aria-describedby={errors.phone ? "contact-phone-error" : undefined}
-          className={`w-full border rounded-lg px-3 py-2 focus:ring-2 text-xs sm:text-base ${
-            errors.phone
-              ? "border-red-500 focus:ring-red-400"
-              : "border-gray-300 focus:ring-blue-400"
-          }`}
-        />
-        <FieldError id="contact-phone-error" error={errors.phone} />
-      </div>
+      <TextField
+        id="contact-phone"
+        label="Numer telefonu"
+        type="tel"
+        value={data.phone}
+        error={errors.phone}
+        autoComplete="tel"
+        onChange={(value) => onChange("phone", value)}
+      />
 
-      <div className="grid gap-2">
-        <label
-          htmlFor="contact-message"
-          className="text-sm font-medium text-gray-700"
-        >
-          Dodatkowe informacje
-        </label>
-        <textarea
-          id="contact-message"
-          rows={3}
-          value={data.message}
-          onChange={(e) => onChange("message", e.target.value)}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 text-xs sm:text-base"
-        />
-      </div>
+      <TextField
+        id="contact-message"
+        label="Dodatkowe informacje"
+        value={data.message}
+        multiline
+        rows={3}
+        onChange={(value) => onChange("message", value)}
+      />
 
       <div className="mt-4 grid gap-4 rounded-xl border border-gray-200 bg-gray-50 p-4">
-        <label className="flex items-start gap-3 text-sm leading-6 text-gray-600">
-          <input
-            type="checkbox"
-            checked={data.consentRequired}
-            onChange={(e) => onChange("consentRequired", e.target.checked)}
-            className="mt-1 h-4 w-4 rounded border-gray-300"
-          />
-          <span>
-            Oświadczam, że zapoznałem się/zapoznałam się z{" "}
-            <Link href="/terms" className="text-blue-600 underline">
-              Regulaminem
-            </Link>{" "}
-            i{" "}
-            <Link
-              href="/privacyPolicy"
-              className="text-blue-600 underline"
-            >
-              Polityką Prywatności
-            </Link>{" "}
-            www.twojdoradcaoze.pl oraz zgadzam się na ich stosowanie i
-            akceptuję ich treść.
-          </span>
-        </label>
+        <CheckboxField
+          id="consent-required"
+          checked={data.consentRequired}
+          error={errors.consentRequired}
+          onChange={(checked) => onChange("consentRequired", checked)}
+        >
+          Oświadczam, że zapoznałem się/zapoznałam się z{" "}
+          <Link href="/terms" className="text-blue-600 underline">
+            Regulaminem
+          </Link>{" "}
+          i{" "}
+          <Link href="/privacyPolicy" className="text-blue-600 underline">
+            Polityką Prywatności
+          </Link>{" "}
+          www.twojdoradcaoze.pl oraz zgadzam się na ich stosowanie i akceptuję
+          ich treść.
+        </CheckboxField>
 
-        {errors.consentRequired && (
-          <p className="text-red-500 text-sm">{errors.consentRequired}</p>
-        )}
+        <CheckboxField
+          id="consent-email-marketing"
+          checked={data.consentEmailMarketing}
+          onChange={(checked) => onChange("consentEmailMarketing", checked)}
+        >
+          Wyrażam zgodę na kierowanie na podany adres e-mail informacji o
+          usługach, promocjach i nowościach przez Twój Doradca OZE na zasadach
+          wskazanych w Regulaminie i Polityce Prywatności.
+        </CheckboxField>
 
-        <label className="flex items-start gap-3 text-sm leading-6 text-gray-600">
-          <input
-            type="checkbox"
-            checked={data.consentEmailMarketing}
-            onChange={(e) =>
-              onChange("consentEmailMarketing", e.target.checked)
-            }
-            className="mt-1 h-4 w-4 rounded border-gray-300"
-          />
-          <span>
-            Wyrażam zgodę na kierowanie na podany adres e-mail informacji o
-            usługach, promocjach i nowościach przez Twój Doradca OZE na zasadach
-            wskazanych w Regulaminie i Polityce Prywatności.
-          </span>
-        </label>
+        <CheckboxField
+          id="consent-phone-marketing"
+          checked={data.consentPhoneMarketing}
+          onChange={(checked) => onChange("consentPhoneMarketing", checked)}
+        >
+          Wyrażam zgodę na kierowanie na podany numer telefonu informacji o
+          usługach, promocjach i nowościach przez Twój Doradca OZE na zasadach
+          wskazanych w Regulaminie i Polityce Prywatności.
+        </CheckboxField>
 
-        <label className="flex items-start gap-3 text-sm leading-6 text-gray-600">
-          <input
-            type="checkbox"
-            checked={data.consentPhoneMarketing}
-            onChange={(e) =>
-              onChange("consentPhoneMarketing", e.target.checked)
-            }
-            className="mt-1 h-4 w-4 rounded border-gray-300"
-          />
-          <span>
-            Wyrażam zgodę na kierowanie na podany numer telefonu informacji o
-            usługach, promocjach i nowościach przez Twój Doradca OZE na zasadach
-            wskazanych w Regulaminie i Polityce Prywatności.
-          </span>
-        </label>
-
-        <label className="flex items-start gap-3 text-sm leading-6 text-gray-600">
-          <input
-            type="checkbox"
-            checked={data.consentNewsletter}
-            onChange={(e) => onChange("consentNewsletter", e.target.checked)}
-            className="mt-1 h-4 w-4 rounded border-gray-300"
-          />
-          <span>
-            Wyrażam zgodę na kierowanie na podany adres e-mail informacji
-            newslettera od Twój Doradca OZE na zasadach wskazanych w Regulaminie
-            i Polityce Prywatności.
-          </span>
-        </label>
+        <CheckboxField
+          id="consent-newsletter"
+          checked={data.consentNewsletter}
+          onChange={(checked) => onChange("consentNewsletter", checked)}
+        >
+          Wyrażam zgodę na kierowanie na podany adres e-mail informacji
+          newslettera od Twój Doradca OZE na zasadach wskazanych w Regulaminie i
+          Polityce Prywatności.
+        </CheckboxField>
       </div>
 
-      <p className="text-xs text-gray-500 mt-2">
+      <p className="mt-2 text-xs text-gray-500">
         🔒 Twoje dane są bezpieczne – nie udostępniamy ich osobom trzecim.
       </p>
     </div>

@@ -1,4 +1,9 @@
-export const videoTimestamps = [
+export interface VideoTimestamp {
+  start: number;
+  end: number;
+}
+
+export const videoTimestamps: VideoTimestamp[] = [
   { start: 7, end: 14 },
   { start: 14, end: 26 },
   { start: 26, end: 34 },

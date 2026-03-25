@@ -1,46 +1,52 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-export default function AnimatedCounter({
-  value,
-  duration = 1000,
-}: {
+type Props = {
   value: number;
   duration?: number;
-}) {
+};
+
+export default function AnimatedCounter({ value, duration = 1000 }: Props) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement | null>(null);
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
+        if (!entry.isIntersecting || hasAnimated.current) return;
 
-          let start = 0;
-          const increment = value / (duration / 16);
+        hasAnimated.current = true;
 
-          const timer = setInterval(() => {
-            start += increment;
+        let startTime: number | null = null;
 
-            if (start >= value) {
-              clearInterval(timer);
-              setCount(value);
-            } else {
-              setCount(Math.ceil(start));
-            }
-          }, 16);
-        }
+        const animate = (timestamp: number) => {
+          if (!startTime) startTime = timestamp;
+
+          const progress = Math.min((timestamp - startTime) / duration, 1);
+          const current = Math.floor(progress * value);
+
+          setCount(current);
+
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          }
+        };
+
+        requestAnimationFrame(animate);
+        observer.unobserve(el);
       },
       { threshold: 0.3 }
     );
 
-    if (ref.current) observer.observe(ref.current);
+    observer.observe(el);
 
     return () => observer.disconnect();
-  }, [value, duration, hasAnimated]);
+  }, [value, duration]);
 
   return (
     <span ref={ref} className="text-2xl md:text-4xl font-black text-green-600">

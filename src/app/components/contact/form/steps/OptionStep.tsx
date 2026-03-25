@@ -17,7 +17,7 @@ export default function OptionStep({
 }: Props) {
   return (
     <div className="grid gap-4">
-      <h2 className="sm:text-lg font-semibold mt-8">{title}</h2>
+      <h2 className="mt-8 font-semibold sm:text-lg">{title}</h2>
 
       <div className="grid grid-cols-2 gap-3">
         {options.map((option) => (
@@ -30,7 +30,7 @@ export default function OptionStep({
         ))}
       </div>
 
-      {error && <p className="text-red-500 text-sm">{error}</p>}
+      {error && <p className="text-sm text-red-500">{error}</p>}
     </div>
   );
 }

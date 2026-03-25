@@ -1,7 +1,9 @@
+"use client";
+
 import { motion } from "framer-motion";
 import CounterCard from "./CounterCard";
-import BarCounter from "./BarCouter";
-import { FaSmile, FaProjectDiagram, FaCalendarAlt } from "react-icons/fa";
+import BarCounter from "./BarCounter";
+import { stats } from "./stats.data";
 
 export default function AboutStats() {
   return (
@@ -21,97 +23,44 @@ export default function AboutStats() {
       </motion.div>
 
       <div className="hidden md:grid md:grid-cols-3 gap-6">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-        >
-          <CounterCard 
-            value={98} 
-            label="Zadowolonych klientów" 
-            Icon={FaSmile} 
-            suffix="%" 
-          />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-        >
-          <CounterCard 
-            value={500} 
-            label="Zrealizowanych projektów" 
-            Icon={FaProjectDiagram} 
-            color="purple" 
-          />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-        >
-          <CounterCard 
-            value={6} 
-            label="Lat doświadczenia" 
-            Icon={FaCalendarAlt}
-            suffix="+" 
-            color="green" 
-          />
-        </motion.div>
+        {stats.map((stat, index) => (
+          <motion.div
+            key={stat.label}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 + index * 0.1 }}
+          >
+            <CounterCard
+              value={stat.value}
+              label={stat.label}
+              Icon={stat.Icon}
+              suffix={stat.suffix}
+              color={stat.color}
+            />
+          </motion.div>
+        ))}
       </div>
 
       <div className="md:hidden max-w-lg mx-auto space-y-3 px-4">
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-        >
-          <BarCounter 
-            value={98} 
-            maxValue={100}
-            label="Zadowolonych klientów" 
-            Icon={FaSmile} 
-            suffix="%" 
-            color="blue"
-          />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-        >
-          <BarCounter 
-            value={500} 
-            maxValue={510}
-            label="Zrealizowanych projektów" 
-            Icon={FaProjectDiagram} 
-            color="purple" 
-          />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-        >
-          <BarCounter 
-            value={6} 
-            maxValue={7}
-            label="Lat doświadczenia" 
-            Icon={FaCalendarAlt} 
-            color="green"
-            suffix="+"
-          />
-        </motion.div>
+        {stats.map((stat, index) => (
+          <motion.div
+            key={stat.label}
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 + index * 0.1 }}
+          >
+            <BarCounter
+              value={stat.value}
+              maxValue={stat.maxValue}
+              label={stat.label}
+              Icon={stat.Icon}
+              suffix={stat.suffix}
+              color={stat.color}
+            />
+          </motion.div>
+        ))}
       </div>
     </div>
   );

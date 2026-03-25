@@ -15,17 +15,21 @@ export default function NavbarMobileToggle({
 }: Props) {
   return (
     <motion.div
-      className="block lg:hidden relative z-[60]"
+      className="block lg:hidden relative z-60"
       initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.24, ease: "easeOut" }}
     >
       <button
+        type="button"
         onClick={toggleMenu}
         aria-label={navbarOpen ? "Zamknij menu" : "Otwórz menu"}
         aria-expanded={navbarOpen}
+        aria-controls="mobile-navigation"
         className={`relative flex h-11 w-11 items-center justify-center rounded-xl bg-white/40 md:bg-white/80 backdrop-blur-lg transition-all duration-300 ${
-          navbarOpen ? "border border-transparent shadow-none" : "border border-slate-300 shadow-md"
+          navbarOpen
+            ? "border border-transparent shadow-none"
+            : "border border-slate-300 shadow-md"
         }`}
       >
         <span className="sr-only">

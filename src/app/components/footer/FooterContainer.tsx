@@ -7,7 +7,7 @@ import FooterCookieSettingsButton from "./FooterCookieSettingsButton";
 export default function FooterContainer() {
   return (
     <div className="w-[92%] mx-auto bg-white/70 backdrop-blur-lg rounded-lg shadow-lg px-6 py-5 mt-2">
-      <div className="flex flex-col items-center gap-4 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col items-center gap-4 md:flex-row md:justify-between">
         <FooterCopyright />
         <FooterTagline />
         <FooterSocials />

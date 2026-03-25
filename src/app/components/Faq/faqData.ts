@@ -1,6 +1,6 @@
-import { FAQItemInterface } from "./types"
+import { FAQItemData } from "./types";
 
-export const faqs: FAQItemInterface[] = [
+export const faqs: FAQItemData[] = [
   {
     question: "Na czym polega Twoje doradztwo?",
     answer:
@@ -26,4 +26,4 @@ export const faqs: FAQItemInterface[] = [
     answer:
       "Od lat zajmuję się doradztwem w zakresie OZE. Stawiam na szczerość, przejrzystość i indywidualne podejście do klienta. Klienci cenią mnie za rzetelność i wsparcie na każdym kroku.",
   },
-]
+];

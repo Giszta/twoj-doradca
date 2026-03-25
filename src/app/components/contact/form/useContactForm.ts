@@ -53,8 +53,6 @@ export function useContactForm() {
       case "area":
       case "budget":
       case "timeline":
-        return !!formData[currentStep.field];
-
       case "question":
         return !!formData[currentStep.field];
 
@@ -79,16 +77,11 @@ export function useContactForm() {
       case "product":
       case "area":
       case "budget":
-      case "timeline": {
-        const value = formData[currentStep.field];
-        const error = validateField(currentStep.field, value);
-        if (error) nextErrors[currentStep.field] = error;
-        break;
-      }
-
+      case "timeline":
       case "question": {
         const value = formData[currentStep.field];
         const error = validateField(currentStep.field, value);
+
         if (error) nextErrors[currentStep.field] = error;
         break;
       }

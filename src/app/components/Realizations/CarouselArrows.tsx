@@ -9,6 +9,7 @@ export default function CarouselArrows({ next, prev }: Props) {
   return (
     <>
       <button
+        type="button"
         onClick={prev}
         aria-label="Poprzedni slajd"
         className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 p-2 rounded-full text-white transition"
@@ -17,6 +18,7 @@ export default function CarouselArrows({ next, prev }: Props) {
       </button>
 
       <button
+        type="button"
         onClick={next}
         aria-label="Następny slajd"
         className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 p-2 rounded-full text-white transition"

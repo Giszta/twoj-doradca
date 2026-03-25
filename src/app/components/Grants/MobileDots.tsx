@@ -17,6 +17,7 @@ export default function MobileDots({
 
       {grants.map((_, i: number) => (
         <button
+        type="button"
           key={i}
           onClick={() => scrollToCard(i)}
           className={`h-2 rounded-full transition-all ${

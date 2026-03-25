@@ -2,12 +2,11 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { progressLabels } from "./form/config";
-import { useContactForm } from "./form/useContactForm";
 import ContactNavigation from "./form/ContactNavigation";
 import ContactProgress from "./form/ContactProgress";
+import ContactStepContent from "./form/ContactStepContent";
 import ContactSuccess from "./form/ContactSuccess";
-import ContactDetailsStep from "./form/steps/ContactDetailsStep";
-import OptionStep from "./form/steps/OptionStep";
+import { useContactForm } from "./form/useContactForm";
 
 export default function ContactForm() {
   const {
@@ -70,67 +69,14 @@ export default function ContactForm() {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="grid gap-4"
           >
-            {currentStep.type === "product" && (
-              <OptionStep
-                title={currentStep.title}
-                options={currentStep.options}
-                value={formData.product}
-                error={errors.product}
-                onSelect={(value) => updateField("product", value)}
-              />
-            )}
-
-            {currentStep.type === "question" && (
-              <OptionStep
-                title={`${step + 1}. ${
-                  currentQuestions[currentStep.questionIndex]?.question ?? ""
-                }`}
-                options={
-                  currentQuestions[currentStep.questionIndex]?.options ?? []
-                }
-                value={formData[currentStep.field]}
-                error={errors[currentStep.field]}
-                onSelect={(value) => updateField(currentStep.field, value)}
-              />
-            )}
-
-            {currentStep.type === "area" && (
-              <OptionStep
-                title={currentStep.title}
-                options={currentStep.options}
-                value={formData.area}
-                error={errors.area}
-                onSelect={(value) => updateField("area", value)}
-              />
-            )}
-
-            {currentStep.type === "budget" && (
-              <OptionStep
-                title={currentStep.title}
-                options={currentStep.options}
-                value={formData.budget}
-                error={errors.budget}
-                onSelect={(value) => updateField("budget", value)}
-              />
-            )}
-
-            {currentStep.type === "timeline" && (
-              <OptionStep
-                title={currentStep.title}
-                options={currentStep.options}
-                value={formData.timeline}
-                error={errors.timeline}
-                onSelect={(value) => updateField("timeline", value)}
-              />
-            )}
-
-            {currentStep.type === "contact" && (
-              <ContactDetailsStep
-                data={formData}
-                errors={errors}
-                onChange={updateField}
-              />
-            )}
+            <ContactStepContent
+              step={step}
+              currentStep={currentStep}
+              currentQuestions={currentQuestions}
+              formData={formData}
+              errors={errors}
+              onChange={updateField}
+            />
 
             <ContactNavigation
               step={step}

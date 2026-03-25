@@ -1,4 +1,9 @@
-import { ContactStep, ProductOption, QuestionConfig, productOptions } from "./types";
+import {
+  ContactStep,
+  ProductOption,
+  QuestionConfig,
+  productOptions,
+} from "./types";
 
 export const timelineOptions = [
   "Jak najszybciej",
@@ -32,7 +37,10 @@ export const progressLabels = [
   "Kontakt",
 ] as const;
 
-export const productQuestions: Record<ProductOption, readonly QuestionConfig[]> = {
+export const productQuestions: Record<
+  ProductOption,
+  readonly QuestionConfig[]
+> = {
   "Pompy ciepła gruntowe": [
     {
       question: "Jaki rodzaj gruntu posiadasz?",

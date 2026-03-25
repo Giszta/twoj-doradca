@@ -1,5 +1,6 @@
 "use client";
-import { useState, useRef } from "react";
+
+import { useRef, useState } from "react";
 import AboutStats from "./AboutStats";
 import AboutSteps from "./AboutSteps";
 import AboutVideo from "./AboutVideo";
@@ -7,22 +8,20 @@ import { videoTimestamps } from "./videoTimestamps";
 import Separator from "../Separator";
 
 export default function AboutSection() {
-  const [activeStep, setActiveStep] = useState<number>(0);
+  const [activeStep, setActiveStep] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleStepClick = (stepIndex: number) => {
     setActiveStep(stepIndex);
 
     if (videoRef.current) {
-      videoRef.current.currentTime =
-        videoTimestamps[stepIndex]?.start || 0;
+      videoRef.current.currentTime = videoTimestamps[stepIndex]?.start ?? 0;
     }
   };
 
   return (
     <section id="about" className="bg-gray-100">
-<Separator />
-
+      <Separator />
 
       <div className="max-w-7xl mx-auto px-6">
         <AboutStats />
@@ -37,7 +36,7 @@ export default function AboutSection() {
           </p>
 
           <p className="text-sm text-blue-600 font-semibold text-center md:text-left flex items-center justify-center md:justify-start gap-2">
-            <span className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></span>
+            <span className="w-2 h-2 bg-blue-600 rounded-full animate-pulse" />
             Kliknij krok aby przewinąć wideo
           </p>
         </div>
@@ -48,15 +47,14 @@ export default function AboutSection() {
             onStepClick={handleStepClick}
           />
 
-          <AboutVideo
-            videoRef={videoRef}
-            onStepChange={setActiveStep}
-          />
+          <AboutVideo videoRef={videoRef} onStepChange={setActiveStep} />
         </div>
 
         <div className="md:hidden mt-8 p-6 bg-linear-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-200">
           <p className="text-gray-700 leading-relaxed text-center">
-            💡 <strong>Dzięki temu procesowi</strong> masz pewność, że inwestujesz świadomie i zyskujesz realne oszczędności – bez stresu i bez przepłacania.
+            💡 <strong>Dzięki temu procesowi</strong> masz pewność, że
+            inwestujesz świadomie i zyskujesz realne oszczędności – bez stresu i
+            bez przepłacania.
           </p>
         </div>
       </div>

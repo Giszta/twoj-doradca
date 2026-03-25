@@ -10,7 +10,6 @@ import GrantsCTA from "./GrantsCTA";
 import MobileDots from "./MobileDots";
 
 export default function Grants() {
-
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
   const [activeCardIndex, setActiveCardIndex] = useState<number>(0);
 
@@ -18,7 +17,6 @@ export default function Grants() {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
   const toggleCard = (id: string): void => {
-
     const isOpening = expandedCard !== id;
 
     setExpandedCard(isOpening ? id : null);
@@ -27,7 +25,7 @@ export default function Grants() {
       setTimeout(() => {
         expandedRef.current?.scrollIntoView({
           behavior: "smooth",
-          block: "nearest"
+          block: "nearest",
         });
       }, 250);
     }
@@ -35,16 +33,14 @@ export default function Grants() {
 
   const scrollToContact = (): void => {
     const contactSection = document.getElementById("contact");
-    contactSection?.scrollIntoView({ 
+    contactSection?.scrollIntoView({
       behavior: "smooth",
-      block: "start" 
+      block: "start",
     });
   };
 
   const getDifficultyColor = (difficulty: string): string => {
-
     switch (difficulty) {
-
       case "Łatwy":
         return "bg-green-100 text-green-700";
 
@@ -60,15 +56,18 @@ export default function Grants() {
   };
 
   const scrollToCard = (index: number): void => {
-
     const container = scrollContainerRef.current;
     if (!container) return;
 
-    const cardWidth = container.scrollWidth / grants.length;
+    const target = container.children[index] as HTMLElement | undefined;
+    if (!target) return;
+
+    const targetLeft =
+      target.offsetLeft - (container.clientWidth - target.offsetWidth) / 2;
 
     container.scrollTo({
-      left: cardWidth * index,
-      behavior: "smooth"
+      left: Math.max(0, targetLeft),
+      behavior: "smooth",
     });
   };
 
@@ -83,30 +82,29 @@ export default function Grants() {
       setActiveCardIndex(Math.min(index, grants.length - 1));
     };
 
-    container.addEventListener('scroll', handleScroll);
-    return () => container.removeEventListener('scroll', handleScroll);
+    container.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => container.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <section id="grants" className="bg-gray-100">
-
       <div className="max-w-7xl mx-auto px-6 pb-20">
-
         <GrantsHeader />
 
         <div className="md:hidden text-center mb-4">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 rounded-full">
-            <span className="text-xs font-semibold text-blue-700">← Przesuń aby zobaczyć więcej →</span>
+            <span className="text-xs font-semibold text-blue-700">
+              ← Przesuń aby zobaczyć więcej →
+            </span>
           </div>
         </div>
 
         <div
           ref={scrollContainerRef}
-          className="mb-4 pt-5 flex md:grid md:grid-cols-3 md:items-start md:gap-8 overflow-x-auto md:overflow-visible scrollbar-hide snap-x snap-mandatory gap-4 pb-4 px-4 -mx-4"
+          className="mb-4 pt-5 flex md:grid md:grid-cols-3 md:items-start md:gap-8 overflow-x-auto overflow-y-hidden md:overflow-visible scrollbar-hide snap-x snap-mandatory touch-pan-x gap-4 pb-4 px-4 -mx-4"
         >
-
           {grants.map((grant, index) => (
-
             <GrantCard
               key={grant.id}
               grant={grant}
@@ -116,9 +114,7 @@ export default function Grants() {
               expandedRef={expandedRef}
               getDifficultyColor={getDifficultyColor}
             />
-
           ))}
-
         </div>
 
         <MobileDots
@@ -128,7 +124,6 @@ export default function Grants() {
         />
 
         <GrantsCTA scrollToContact={scrollToContact} />
-
       </div>
 
       <style jsx>{`
@@ -136,11 +131,11 @@ export default function Grants() {
           -ms-overflow-style: none;
           scrollbar-width: none;
         }
+
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
         }
       `}</style>
-
     </section>
   );
 }

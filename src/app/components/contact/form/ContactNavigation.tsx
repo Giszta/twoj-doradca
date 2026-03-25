@@ -14,12 +14,12 @@ export default function ContactNavigation({
   onPrev,
 }: Props) {
   return (
-    <div className="grid gap-4 sm:flex sm:justify-between mt-8">
+    <div className="mt-8 grid gap-4 sm:flex sm:justify-between">
       {step > 0 && (
         <button
           type="button"
           onClick={onPrev}
-          className="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 cursor-pointer transition"
+          className="rounded-lg border border-gray-300 px-4 py-2 transition cursor-pointer hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2"
         >
           Wstecz
         </button>
@@ -31,10 +31,10 @@ export default function ContactNavigation({
           name="intent"
           value="next"
           disabled={!isStepValid}
-          className={`order-first w-full sm:w-auto sm:order-last ml-auto px-6 py-2 rounded-lg bg-linear-to-r from-blue-600 to-cyan-500 text-white transition ${
+          className={`order-first ml-auto w-full rounded-lg bg-linear-to-r from-blue-600 to-cyan-500 px-6 py-2 text-white transition sm:order-last sm:w-auto ${
             isStepValid
-              ? "hover:opacity-90 cursor-pointer"
-              : "opacity-50 cursor-not-allowed"
+              ? "cursor-pointer hover:opacity-90"
+              : "cursor-not-allowed opacity-50"
           }`}
         >
           Dalej
@@ -45,10 +45,10 @@ export default function ContactNavigation({
           name="intent"
           value="submit"
           disabled={isSubmitting || !isStepValid}
-          className={`order-first w-full sm:w-auto sm:order-last ml-auto px-6 py-3 rounded-lg bg-linear-to-r from-blue-600 to-cyan-500 text-white font-semibold shadow-md transition ${
+          className={`order-first ml-auto w-full rounded-lg bg-linear-to-r from-blue-600 to-cyan-500 px-6 py-3 font-semibold text-white shadow-md transition sm:order-last sm:w-auto ${
             isSubmitting || !isStepValid
-              ? "opacity-70 cursor-not-allowed"
-              : "hover:shadow-lg hover:scale-105 cursor-pointer"
+              ? "cursor-not-allowed opacity-70"
+              : "cursor-pointer hover:scale-105 hover:shadow-lg"
           }`}
         >
           {isSubmitting ? "Wysyłanie..." : "Odbierz bezpłatną wycenę"}
