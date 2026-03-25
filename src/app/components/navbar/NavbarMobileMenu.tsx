@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import NavbarItem from "./NavbarItem"
+import MenuOverlay from "./MenuOverlay"
 import NavbarSocials from "./NavbarSocials"
 import { navbarItems } from "./navbarData"
 
@@ -14,6 +14,11 @@ export default function NavbarMobileMenu({
   activeSection,
   onClick,
 }: Props) {
+  const handleItemClick = (path?: string) => {
+    onClick(path)
+    close()
+  }
+
   return (
     <motion.div
       initial={{ x: "100%", opacity: 0.98 }}
@@ -25,23 +30,15 @@ export default function NavbarMobileMenu({
         damping: 30,
         mass: 0.95,
       }}
+      onClick={(e) => e.stopPropagation()}
       className="relative w-[82%] sm:w-2/5 bg-white shadow-xl p-8 flex flex-col space-y-6 border border-slate-200 rounded-l-2xl"
+      aria-label="Menu mobilne"
     >
-      <ul className="flex flex-col gap-6 text-lg font-medium mt-14">
-        {navbarItems.map((link) => (
-          <li key={link.path}>
-            <NavbarItem
-              href={link.path}
-              title={link.title}
-              onClick={(path) => {
-                onClick(path)
-                close()
-              }}
-              isActive={activeSection === link.path}
-            />
-          </li>
-        ))}
-      </ul>
+      <MenuOverlay
+        links={navbarItems}
+        activeSection={activeSection}
+        onItemClick={handleItemClick}
+      />
 
       <NavbarSocials />
     </motion.div>

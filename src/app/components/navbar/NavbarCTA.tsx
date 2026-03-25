@@ -2,6 +2,7 @@
 
 import React from "react"
 import { motion } from "framer-motion"
+import { scrollToSection } from "./scrollToSection"
 
 interface Props {
   onClick: (path?: string) => void
@@ -14,20 +15,7 @@ export default function NavbarCTA({ onClick }: Props) {
     onClick("#contact")
 
     requestAnimationFrame(() => {
-      const section = document.querySelector("#contact")
-
-      if (!section) return
-
-      const navbarHeight = 70
-      const offset = 20
-
-      const sectionPosition =
-        (section as HTMLElement).getBoundingClientRect().top + window.scrollY
-
-      window.scrollTo({
-        top: sectionPosition - navbarHeight - offset,
-        behavior: "smooth",
-      })
+      scrollToSection("#contact")
     })
   }
 

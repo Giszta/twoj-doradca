@@ -1,15 +1,14 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { SocialLink } from "./types"
+import { motion } from "framer-motion";
+import { SocialLink } from "./types";
 
 type Props = {
-  link: SocialLink
-}
+  link: SocialLink;
+};
 
 export default function SocialIcon({ link }: Props) {
-
-  const { href, Icon, hover, label } = link
+  const { href, Icon, hover, label } = link;
 
   return (
     <motion.a
@@ -19,10 +18,9 @@ export default function SocialIcon({ link }: Props) {
       aria-label={label}
       whileHover={{ scale: 1.2, rotate: 5 }}
       whileTap={{ scale: 0.9 }}
-      className={`transition-colors duration-300 ${hover}`}
+      className={`transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 ${hover}`}
     >
       <Icon className="w-6 h-6" />
     </motion.a>
-  )
-
+  );
 }

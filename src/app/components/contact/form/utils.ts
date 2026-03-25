@@ -1,4 +1,4 @@
-import { ContactFormData, ContactFormErrors, ContactField } from "./types";
+import { ContactField, ContactFormData, ContactFormErrors } from "./types";
 
 export const initialFormData: ContactFormData = {
   product: "",

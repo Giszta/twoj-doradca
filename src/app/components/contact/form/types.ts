@@ -26,7 +26,7 @@ export type ContactFormData = {
   email: string;
   phone: string;
   message: string;
-    consentRequired: boolean;
+  consentRequired: boolean;
   consentEmailMarketing: boolean;
   consentPhoneMarketing: boolean;
   consentNewsletter: boolean;
@@ -37,12 +37,40 @@ export type ContactFormErrors = Partial<Record<keyof ContactFormData, string>>;
 export type ContactField = keyof ContactFormData;
 
 export type ContactStep =
-  | { type: "product"; title: string; field: "product"; options: readonly ProductOption[] }
-  | { type: "question"; title: string; questionIndex: 0 | 1 | 2; field: "answer1" | "answer2" | "answer3" }
-  | { type: "area"; title: string; field: "area"; options: readonly string[] }
-  | { type: "budget"; title: string; field: "budget"; options: readonly string[] }
-  | { type: "timeline"; title: string; field: "timeline"; options: readonly string[] }
-  | { type: "contact"; title: string };
+  | {
+      type: "product";
+      title: string;
+      field: "product";
+      options: readonly ProductOption[];
+    }
+  | {
+      type: "question";
+      title: string;
+      questionIndex: 0 | 1 | 2;
+      field: "answer1" | "answer2" | "answer3";
+    }
+  | {
+      type: "area";
+      title: string;
+      field: "area";
+      options: readonly string[];
+    }
+  | {
+      type: "budget";
+      title: string;
+      field: "budget";
+      options: readonly string[];
+    }
+  | {
+      type: "timeline";
+      title: string;
+      field: "timeline";
+      options: readonly string[];
+    }
+  | {
+      type: "contact";
+      title: string;
+    };
 
 export type SocialContact = {
   id: string;

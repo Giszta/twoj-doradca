@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl" className="hide-scrollbar">
-      <body suppressHydrationWarning>
+      <body>
         {children}
         <CookieBanner />
       </body>

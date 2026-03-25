@@ -1,30 +1,21 @@
+"use client";
+
 import Image from "next/image";
 import { Product } from "./types";
+import { scrollToSection } from "./utils/scrollToSection";
 
 type Props = {
   product: Product;
 };
 
 export default function MobileProductCard({ product }: Props) {
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  };
-
   return (
-    <div className="snap-center shrink-0 w-[75vw] h-105">
-      <div className="bg-white rounded-3xl overflow-hidden border border-gray-300 shadow-lg h-full">
-        
-        <div className="relative bg-linear-to-br from-blue-500 to-cyan-500 h-60 flex items-center justify-center">
-
+    <div className="h-105 w-[75vw] shrink-0 snap-center">
+      <div className="h-full overflow-hidden rounded-3xl border border-gray-300 bg-white shadow-lg">
+        <div className="relative flex h-60 items-center justify-center bg-linear-to-br from-blue-500 to-cyan-500">
           <div className="absolute inset-0 opacity-10">
             <div
-              className="w-full h-full"
+              className="h-full w-full"
               style={{
                 backgroundImage:
                   "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
@@ -33,13 +24,13 @@ export default function MobileProductCard({ product }: Props) {
             />
           </div>
 
-          <div className="absolute top-4 right-4 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full">
+          <div className="absolute top-4 right-4 rounded-full bg-white/90 px-3 py-1 backdrop-blur-sm">
             <span className="text-xs font-bold text-blue-700">
               {product.badge}
             </span>
           </div>
 
-          <div className="relative w-32 h-32">
+          <div className="relative h-32 w-32">
             <Image
               src={product.image}
               alt={product.name}
@@ -50,18 +41,19 @@ export default function MobileProductCard({ product }: Props) {
         </div>
 
         <div className="p-6">
-          <h3 className="text-md font-bold text-gray-900 mb-3 text-center">
+          <h3 className="mb-3 text-center text-md font-bold text-gray-900">
             {product.name}
           </h3>
 
-          <p className="text-xs text-gray-600 text-center leading-relaxed line-clamp-3 mb-4">
+          <p className="mb-4 line-clamp-3 text-center text-xs leading-relaxed text-gray-600">
             {product.description}
           </p>
 
           <div className="text-center">
-            <button 
-              onClick={scrollToContact}
-              className="px-6 py-2 bg-linear-to-r text-xs from-blue-500 to-cyan-500 text-white font-semibold rounded-full hover:shadow-lg active:scale-95 transition-all"
+            <button
+              type="button"
+              onClick={() => scrollToSection("contact")}
+              className="rounded-full bg-linear-to-r from-blue-500 to-cyan-500 px-6 py-2 text-xs font-semibold text-white transition-all hover:shadow-lg active:scale-95"
             >
               Dowiedz się więcej
             </button>

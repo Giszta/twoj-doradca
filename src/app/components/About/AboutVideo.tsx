@@ -1,5 +1,6 @@
 "use client";
-import { useEffect, useState, RefObject } from "react";
+
+import { useEffect, useRef, useState, type RefObject } from "react";
 import { FaVolumeMute, FaVolumeUp } from "react-icons/fa";
 import { videoTimestamps } from "./videoTimestamps";
 
@@ -10,32 +11,70 @@ interface Props {
 
 export default function AboutVideo({ videoRef, onStepChange }: Props) {
   const [muted, setMuted] = useState(true);
+  const currentStepRef = useRef(0);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
+    video.muted = true;
+    setMuted(true);
+
     const handleTimeUpdate = () => {
       const currentTime = video.currentTime;
-      const activeStep = videoTimestamps.findIndex(
-        (t) => currentTime >= t.start && currentTime < t.end
+
+      const nextStep = videoTimestamps.findIndex(
+        (timestamp) =>
+          currentTime >= timestamp.start && currentTime < timestamp.end,
       );
-      onStepChange(activeStep !== -1 ? activeStep : 0);
+
+      const normalizedStep = nextStep !== -1 ? nextStep : 0;
+
+      if (currentStepRef.current !== normalizedStep) {
+        currentStepRef.current = normalizedStep;
+        onStepChange(normalizedStep);
+      }
     };
 
     video.addEventListener("timeupdate", handleTimeUpdate);
     return () => video.removeEventListener("timeupdate", handleTimeUpdate);
   }, [videoRef, onStepChange]);
 
-const toggleMute = () => {
-  const video = videoRef.current;
-  if (!video) return;               
-  video.muted = !muted;             
-  setMuted(!muted);
-};
+  useEffect(() => {
+    const container = containerRef.current;
+    const video = videoRef.current;
+
+    if (!container || !video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          video.muted = true;
+          setMuted(true);
+        }
+      },
+      {
+        threshold: 0.3,
+      },
+    );
+
+    observer.observe(container);
+
+    return () => observer.disconnect();
+  }, [videoRef]);
+
+  const toggleMute = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const nextMuted = !video.muted;
+    video.muted = nextMuted;
+    setMuted(nextMuted);
+  };
 
   return (
-    <div className="lg:sticky lg:top-24">
+    <div ref={containerRef} className="lg:sticky lg:top-24">
       <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
         <video
           ref={videoRef}
@@ -48,11 +87,13 @@ const toggleMute = () => {
         />
 
         <button
+          type="button"
           onClick={toggleMute}
           className={`absolute bottom-4 right-4 w-12 h-12 md:w-14 md:h-14 bg-white/90 hover:bg-white rounded-full shadow-xl flex items-center justify-center transition-all hover:scale-110 ${
-            muted ? 'animate-pulse' : ''
+            muted ? "animate-pulse" : ""
           }`}
-          aria-label={muted ? 'Włącz dźwięk' : 'Wyłącz dźwięk'}
+          aria-label={muted ? "Włącz dźwięk" : "Wyłącz dźwięk"}
+          aria-pressed={!muted}
         >
           {muted ? (
             <FaVolumeMute className="text-lg md:text-xl text-gray-700" />

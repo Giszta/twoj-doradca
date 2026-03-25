@@ -16,10 +16,10 @@ export default function FormOptionButton({
       type="button"
       onClick={onClick}
       aria-pressed={active}
-      className={`p-3 sm:p-4 rounded-lg border transition cursor-pointer text-xs sm:text-base ${
+      className={`rounded-lg border p-3 text-xs transition cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 sm:p-4 sm:text-base ${
         active
-          ? "bg-blue-600 text-white border-blue-600"
-          : "bg-white hover:bg-gray-100 border-gray-300"
+          ? "border-blue-600 bg-blue-600 text-white"
+          : "border-gray-300 bg-white hover:bg-gray-100"
       } ${className}`}
     >
       {label}

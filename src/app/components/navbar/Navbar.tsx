@@ -9,6 +9,8 @@ import NavbarMobileMenu from "./NavbarMobileMenu"
 import NavbarMobileToggle from "./NavbarMobileToggle"
 import { useActiveSection } from "./useActiveSection"
 
+const LANDING_SCROLL_OFFSET = 40
+
 export default function Navbar() {
   const [navbarOpen, setNavbarOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -17,25 +19,35 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const landingSection = document.querySelector("#landing") as HTMLElement | null
+      const landingSection = document.querySelector("#landing")
 
-      if (!landingSection) {
+      if (!(landingSection instanceof HTMLElement)) {
         setScrolled(window.scrollY > window.innerHeight)
         return
       }
 
-      const landingBottom = landingSection.offsetTop + landingSection.offsetHeight
-      setScrolled(window.scrollY >= landingBottom-40)
+      const landingBottom =
+        landingSection.offsetTop +
+        landingSection.offsetHeight -
+        LANDING_SCROLL_OFFSET
+
+      setScrolled(window.scrollY >= landingBottom)
     }
 
     handleScroll()
     window.addEventListener("scroll", handleScroll, { passive: true })
 
-    return () => window.removeEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
   }, [])
 
-  const handleNavItemClick = () => {
+  const closeMenu = () => {
     setNavbarOpen(false)
+  }
+
+  const toggleMenu = () => {
+    setNavbarOpen((prev) => !prev)
   }
 
   return (
@@ -46,28 +58,26 @@ export default function Navbar() {
         <NavbarMobileToggle
           navbarOpen={navbarOpen}
           scrolled={scrolled}
-          toggleMenu={() => setNavbarOpen((prev) => !prev)}
+          toggleMenu={toggleMenu}
         />
 
-        <NavbarDesktop
-          activeSection={activeSection}
-          onClick={handleNavItemClick}
-        />
+        <NavbarDesktop activeSection={activeSection} onClick={closeMenu} />
 
         <AnimatePresence>
           {navbarOpen && (
-            <motion.div 
-            initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.22, ease: "easeOut" }}
-      className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-end xl:hidden z-50"
-      onClick={() => setNavbarOpen(false)}
-    >
+            <motion.div
+              id="mobile-navigation"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-end xl:hidden z-50"
+              onClick={closeMenu}
+            >
               <NavbarMobileMenu
-                close={() => setNavbarOpen(false)}
+                close={closeMenu}
                 activeSection={activeSection}
-                onClick={handleNavItemClick}
+                onClick={closeMenu}
               />
             </motion.div>
           )}

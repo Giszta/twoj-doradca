@@ -7,3 +7,4 @@ export type CookieConsent = {
 };
 
 export const COOKIE_CONSENT_KEY = "cookie-consent";
+export const COOKIE_SETTINGS_EVENT = "open-cookie-settings";

@@ -1,4 +1,4 @@
-export interface FAQItemInterface {
-  question: string
-  answer: string
-}
+export type FAQItemData = {
+  question: string;
+  answer: string;
+};

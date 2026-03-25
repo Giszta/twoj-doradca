@@ -17,7 +17,14 @@ export default function ContactProgress({ step, steps }: Props) {
         </span>
       </div>
 
-      <div className="relative h-2 w-full overflow-hidden rounded-full bg-gray-200">
+      <div
+        className="relative h-2 w-full overflow-hidden rounded-full bg-gray-200"
+        role="progressbar"
+        aria-valuemin={1}
+        aria-valuemax={steps.length}
+        aria-valuenow={step + 1}
+        aria-label={`Postęp formularza: krok ${step + 1} z ${steps.length}`}
+      >
         <div
           className="absolute left-0 top-0 h-2 rounded-full bg-linear-to-r from-blue-600 to-cyan-500 transition-all duration-500 ease-in-out"
           style={{ width: `${progress}%` }}
@@ -50,7 +57,7 @@ export default function ContactProgress({ step, steps }: Props) {
               </div>
 
               <span
-                className={`block max-w-full text-[11px] leading-tight whitespace-normal wrap-break-words ${
+                className={`block max-w-full break-words text-[11px] leading-tight whitespace-normal ${
                   isActive ? "font-semibold text-blue-600" : "text-gray-500"
                 }`}
               >

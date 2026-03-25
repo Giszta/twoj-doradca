@@ -8,40 +8,46 @@ import EmailIcon from "@/assets/icons/email.svg?react"
 const socials = [
   {
     href: "https://www.instagram.com/twoj.doradca.oze/",
+    label: "Instagram",
     Icon: InstagramIcon,
     hover: "hover:text-pink-500",
   },
   {
     href: "https://www.youtube.com/@TwojDoradcaOZE",
+    label: "YouTube",
     Icon: YouTubeIcon,
     hover: "hover:text-red-500",
   },
   {
     href: "https://www.tiktok.com/@twojdoradca",
+    label: "TikTok",
     Icon: TikTokIcon,
     hover: "hover:text-black",
   },
   {
     href: "https://www.facebook.com/profile.php?id=61567533345453",
+    label: "Facebook",
     Icon: FacebookIcon,
     hover: "hover:text-blue-600",
   },
   {
     href: "mailto:Kontakt@czyste-powietrze-dotacja.pl",
+    label: "Email",
     Icon: EmailIcon,
     hover: "hover:text-cyan-600",
   },
-]
+] as const
 
 export default function NavbarSocials() {
   return (
     <div className="flex gap-5 justify-center">
-      {socials.map(({ href, Icon, hover }) => (
+      {socials.map(({ href, label, Icon, hover }) => (
         <motion.a
           key={href}
           href={href}
-          target="_blank"
-          rel="noopener noreferrer"
+          target={href.startsWith("mailto:") ? undefined : "_blank"}
+          rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+          aria-label={label}
           whileHover={{ scale: 1.2, rotate: 5 }}
           whileTap={{ scale: 0.9 }}
           className={`transition-colors ${hover}`}

@@ -9,14 +9,14 @@ export function useActiveSection() {
   useEffect(() => {
     const sections = navbarItems
       .map((item) => document.querySelector(item.path))
-      .filter(Boolean) as HTMLElement[]
+      .filter((section): section is HTMLElement => section instanceof HTMLElement)
 
     if (!sections.length) return
 
     const updateActiveSection = () => {
       const currentScroll = window.scrollY + NAVBAR_OFFSET
 
-      const firstSectionTop = sections[0].offsetTop
+      const firstSectionTop = sections[0]?.offsetTop ?? 0
       if (currentScroll < firstSectionTop) {
         setActiveSection("")
         return

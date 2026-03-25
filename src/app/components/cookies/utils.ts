@@ -1,5 +1,19 @@
 import { COOKIE_CONSENT_KEY, CookieConsent } from "./types";
 
+function isCookieConsent(value: unknown): value is CookieConsent {
+  if (!value || typeof value !== "object") return false;
+
+  const consent = value as Record<string, unknown>;
+
+  return (
+    consent.necessary === true &&
+    typeof consent.analytics === "boolean" &&
+    typeof consent.marketing === "boolean" &&
+    typeof consent.functional === "boolean" &&
+    typeof consent.updatedAt === "string"
+  );
+}
+
 export function getDefaultConsent(): CookieConsent {
   return {
     necessary: true,
@@ -32,7 +46,8 @@ export function loadConsent(): CookieConsent | null {
   if (!raw) return null;
 
   try {
-    return JSON.parse(raw) as CookieConsent;
+    const parsed: unknown = JSON.parse(raw);
+    return isCookieConsent(parsed) ? parsed : null;
   } catch {
     return null;
   }

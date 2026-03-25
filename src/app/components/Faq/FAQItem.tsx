@@ -1,30 +1,38 @@
-"use client"
+"use client";
 
-import { FAQItemInterface } from "./types"
-import FAQButton from "./FAQButton"
-import FAQAnswer from "./FAQAnswer"
+import { FAQItemData } from "./types";
+import FAQButton from "./FAQButton";
+import FAQAnswer from "./FAQAnswer";
 
 type Props = {
-  faq: FAQItemInterface
-  isOpen: boolean
-  onToggle: () => void
-}
+  faq: FAQItemData;
+  index: number;
+  isOpen: boolean;
+  onToggle: () => void;
+};
 
-export default function FAQItem({ faq, isOpen, onToggle }: Props) {
+export default function FAQItem({ faq, index, isOpen, onToggle }: Props) {
+  const buttonId = `faq-button-${index}`;
+  const panelId = `faq-panel-${index}`;
+
   return (
-    <div className="border border-blue-200 rounded-2xl shadow-md hover:shadow-lg bg-white/70 backdrop-blur-sm transition w-full">
-
-      <FAQButton
-        question={faq.question}
-        isOpen={isOpen}
-        onClick={onToggle}
-      />
+    <article className="w-full rounded-2xl border border-blue-200 bg-white/70 shadow-md backdrop-blur-sm transition hover:shadow-lg">
+      <h3>
+        <FAQButton
+          id={buttonId}
+          controlsId={panelId}
+          question={faq.question}
+          isOpen={isOpen}
+          onClick={onToggle}
+        />
+      </h3>
 
       <FAQAnswer
+        id={panelId}
+        labelledBy={buttonId}
         answer={faq.answer}
         isOpen={isOpen}
       />
-
-    </div>
-  )
+    </article>
+  );
 }
