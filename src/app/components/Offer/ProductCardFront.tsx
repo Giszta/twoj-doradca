@@ -41,6 +41,7 @@ export default function ProductCardFront({ product }: Props) {
                 src={product.image}
                 alt={product.name}
                 fill
+                sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-contain drop-shadow-2xl"
               />
             </div>

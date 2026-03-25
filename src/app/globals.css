@@ -2,14 +2,6 @@
 @import "tailwindcss";
 
 :root {
-  --bg-primary: oklch(0.95 0.005 120);
-  --gray-primary: oklch(0.88 0.007 120);
-  --gray-secondary: oklch(0.35 0.02 260);
-  --green-primary: oklch(0.55 0.12 150);
-  --green-primary-hover: oklch(0.42 0.12 150);
-  --green-secondary: oklch(0.78 0.08 150);
-  --yellow-primary: oklch(0.82 0.15 95);
-
   --scrollbar-thumb: #93c5fd;
   --scrollbar-thumb-hover: #60a5fa;
 }
