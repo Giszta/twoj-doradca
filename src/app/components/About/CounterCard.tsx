@@ -38,18 +38,18 @@ export default function CounterCard({
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow"
+      className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow"
     >
       <div className="flex flex-col items-center">
         <div
-          className={`w-16 h-16 md:w-20 md:h-20 bg-linear-to-br ${colorClasses[color]} rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 shadow-md`}
+          className={`w-16 h-16 md:w-16 md:h-16 bg-linear-to-br ${colorClasses[color]} rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 shadow-md`}
         >
-          <Icon className="text-2xl md:text-3xl text-white" />
+          <Icon className="text-2xl md:text-2xl text-white" />
         </div>
 
         <div className="flex items-baseline gap-1 mb-2">
           <span
-            className={`text-4xl md:text-5xl font-black bg-linear-to-br ${colorClasses[color]} bg-clip-text text-transparent`}
+            className={`text-4xl md:text-3xl font-black bg-linear-to-br ${colorClasses[color]} bg-clip-text text-transparent`}
           >
             {count}
           </span>
@@ -59,7 +59,7 @@ export default function CounterCard({
           </span>
         </div>
 
-        <span className="text-center text-sm md:text-base text-gray-600 font-semibold leading-tight px-2">
+        <span className="text-center text-sm md:text-sm text-gray-600 font-semibold leading-tight px-2">
           {label}
         </span>
       </div>

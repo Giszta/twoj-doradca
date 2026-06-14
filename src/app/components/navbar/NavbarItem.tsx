@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import React from "react"
-import { motion } from "framer-motion"
-import { scrollToSection } from "./scrollToSection"
+import React from "react";
+import { motion } from "framer-motion";
+import { scrollToSection } from "./scrollToSection";
 
 interface NavbarItemProps {
-  href: `#${string}`
-  title: string
-  onClick?: (href?: string) => void
-  isActive?: boolean
+  href: `#${string}`;
+  title: string;
+  onClick?: (href?: string) => void;
+  isActive?: boolean;
 }
 
 export default function NavbarItem({
@@ -18,14 +18,14 @@ export default function NavbarItem({
   isActive = false,
 }: NavbarItemProps) {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    onClick?.(href)
+    onClick?.(href);
 
     requestAnimationFrame(() => {
-      scrollToSection(href)
-    })
-  }
+      scrollToSection(href);
+    });
+  };
 
   return (
     <motion.div
@@ -37,7 +37,7 @@ export default function NavbarItem({
         href={href}
         onClick={handleClick}
         aria-current={isActive ? "page" : undefined}
-        className={`block py-2 transition-colors ${
+        className={`block py-2 transition-colors text-sm font-base ${
           isActive
             ? "text-blue-600 font-semibold"
             : "text-gray-700 hover:text-blue-600"
@@ -53,5 +53,5 @@ export default function NavbarItem({
         />
       </a>
     </motion.div>
-  )
+  );
 }

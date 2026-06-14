@@ -54,29 +54,29 @@ export default function StepCard({ step, index, isActive, onClick }: Props) {
             repeatDelay: 1,
           }}
           className={`
-            w-12 h-12 md:w-14 md:h-14
+            w-12 h-12 md:w-12 md:h-12
             bg-linear-to-br ${colorClass}
             rounded-xl flex items-center justify-center
             shrink-0 shadow-md
             ${isActive ? "shadow-blue-300" : ""}
           `}
         >
-          <step.icon className="text-xl md:text-2xl text-white" />
+          <step.icon className="text-xl md:text-xl text-white" />
         </motion.div>
 
         <div className="flex-1 min-w-0">
-          <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">
+          <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
             KROK {index + 1}
           </span>
           <h4
             className={`
-              text-base md:text-lg font-bold mb-1
+              text-base font-bold mb-1
               ${isActive ? "text-blue-600" : "text-gray-900"}
             `}
           >
             {step.title}
           </h4>
-          <p className="text-sm text-gray-600 leading-relaxed line-clamp-2 md:line-clamp-none">
+          <p className="text-xs text-gray-600 leading-relaxed line-clamp-2 md:line-clamp-none">
             {step.text}
           </p>
         </div>

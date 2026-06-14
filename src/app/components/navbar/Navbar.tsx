@@ -1,57 +1,57 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { AnimatePresence, motion } from "framer-motion"
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
-import NavbarLogo from "./NavbarLogo"
-import NavbarDesktop from "./NavbarDesktop"
-import NavbarMobileMenu from "./NavbarMobileMenu"
-import NavbarMobileToggle from "./NavbarMobileToggle"
-import { useActiveSection } from "./useActiveSection"
+import NavbarLogo from "./NavbarLogo";
+import NavbarDesktop from "./NavbarDesktop";
+import NavbarMobileMenu from "./NavbarMobileMenu";
+import NavbarMobileToggle from "./NavbarMobileToggle";
+import { useActiveSection } from "./useActiveSection";
 
-const LANDING_SCROLL_OFFSET = 40
+const LANDING_SCROLL_OFFSET = 40;
 
 export default function Navbar() {
-  const [navbarOpen, setNavbarOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const [navbarOpen, setNavbarOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const activeSection = useActiveSection()
+  const activeSection = useActiveSection();
 
   useEffect(() => {
     const handleScroll = () => {
-      const landingSection = document.querySelector("#landing")
+      const landingSection = document.querySelector("#landing");
 
       if (!(landingSection instanceof HTMLElement)) {
-        setScrolled(window.scrollY > window.innerHeight)
-        return
+        setScrolled(window.scrollY > window.innerHeight);
+        return;
       }
 
       const landingBottom =
         landingSection.offsetTop +
         landingSection.offsetHeight -
-        LANDING_SCROLL_OFFSET
+        LANDING_SCROLL_OFFSET;
 
-      setScrolled(window.scrollY >= landingBottom)
-    }
+      setScrolled(window.scrollY >= landingBottom);
+    };
 
-    handleScroll()
-    window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", handleScroll)
-    }
-  }, [])
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const closeMenu = () => {
-    setNavbarOpen(false)
-  }
+    setNavbarOpen(false);
+  };
 
   const toggleMenu = () => {
-    setNavbarOpen((prev) => !prev)
-  }
+    setNavbarOpen((prev) => !prev);
+  };
 
   return (
-    <header className="fixed top-2 z-50 flex w-[90%] justify-between items-center mx-auto h-16 gap-6">
+    <header className="fixed top-2 z-50 flex w-[90%] justify-between items-center mx-auto h-14 gap-6">
       <NavbarLogo />
 
       <nav className="flex-1 flex items-center justify-end h-full">
@@ -84,5 +84,5 @@ export default function Navbar() {
         </AnimatePresence>
       </nav>
     </header>
-  )
+  );
 }

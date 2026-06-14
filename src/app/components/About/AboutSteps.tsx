@@ -110,7 +110,7 @@ export default function AboutSteps({ activeStep, onStepClick }: Props) {
         viewport={{ once: true }}
         className="hidden md:block mt-8 p-6 bg-linear-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-200"
       >
-        <p className="text-gray-700 leading-relaxed">
+        <p className="text-gray-700 leading-relaxed text-sm">
           💡 <strong>Dzięki temu procesowi</strong> masz pewność, że inwestujesz
           świadomie i zyskujesz realne oszczędności – bez stresu i bez
           przepłacania.

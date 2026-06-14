@@ -8,14 +8,11 @@ type Props = {
   onHover?: (value: boolean) => void;
 };
 
-export default function ProductCard({
-  product,
-  onHover = () => {}
-}: Props) {
+export default function ProductCard({ product, onHover = () => {} }: Props) {
   return (
     <div
-      className="shrink-0 w-87.5 h-112.5 group"
-      style={{ perspective: '1000px' }}
+      className="shrink-0 w-75 h-100 group"
+      style={{ perspective: "1000px" }}
       onMouseEnter={() => onHover(true)}
       onMouseLeave={() => onHover(false)}
     >

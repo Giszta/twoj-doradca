@@ -40,7 +40,7 @@ export default function AnimatedCounter({ value, duration = 1000 }: Props) {
         requestAnimationFrame(animate);
         observer.unobserve(el);
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
 
     observer.observe(el);
@@ -49,7 +49,7 @@ export default function AnimatedCounter({ value, duration = 1000 }: Props) {
   }, [value, duration]);
 
   return (
-    <span ref={ref} className="text-2xl md:text-4xl font-black text-green-600">
+    <span ref={ref} className="text-2xl md:text-2xl font-black text-green-600">
       {count.toLocaleString()} zł
     </span>
   );

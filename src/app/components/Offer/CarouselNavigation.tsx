@@ -15,7 +15,7 @@ type Props = {
 export default function CarouselNavigation({
   products,
   activeIndex,
-  onSelect
+  onSelect,
 }: Props) {
   return (
     <div className="flex justify-center items-center gap-2 mb-10">
@@ -29,7 +29,7 @@ export default function CarouselNavigation({
               key={product.id}
               onClick={() => onSelect?.(index)}
               title={product.name}
-              className={`relative flex items-center gap-2 px-4 py-2.5 rounded-full transition-all duration-300 ${
+              className={`relative flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${
                 isActive
                   ? "bg-linear-to-br from-blue-500 to-cyan-500 text-white shadow-md"
                   : "text-gray-600 hover:bg-gray-100 hover:text-blue-600"
@@ -42,7 +42,7 @@ export default function CarouselNavigation({
               />
 
               {isActive && (
-                <span className="text-sm font-semibold whitespace-nowrap">
+                <span className="text-xs font-semibold whitespace-nowrap">
                   {product.name.split(" ").slice(0, 2).join(" ")}
                 </span>
               )}

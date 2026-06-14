@@ -8,7 +8,6 @@ interface GrantsCTAProps {
 }
 
 export default function GrantsCTA({ scrollToContact }: GrantsCTAProps) {
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -17,18 +16,17 @@ export default function GrantsCTA({ scrollToContact }: GrantsCTAProps) {
       transition={{ duration: 0.6, delay: 0.8 }}
       className="text-center"
     >
-
       <div className="hidden md:block bg-linear-to-r from-blue-600 to-cyan-500 rounded-2xl p-10 shadow-2xl text-white">
-        <h3 className="text-3xl font-bold mb-4">
+        <h3 className="text-2xl font-bold mb-4">
           Nie wiesz, z którego programu skorzystać?
         </h3>
-        <p className="text-xl text-blue-100 mb-6 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-base text-blue-100 mb-6 max-w-2xl mx-auto leading-relaxed">
           Skontaktuj się ze mną – przeanalizuję Twoją sytuację i dobiorę
           najlepszą dotację. Zajmę się wszystkimi formalnościami za Ciebie.
         </p>
-        <button 
+        <button
           onClick={scrollToContact}
-          className="px-8 py-4 bg-white text-blue-600 font-bold rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-2"
+          className="px-8 py-4 bg-white text-sm text-blue-600 font-bold rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-2"
         >
           Sprawdź czy się kwalifikujesz
           <FaArrowRight />
@@ -40,23 +38,21 @@ export default function GrantsCTA({ scrollToContact }: GrantsCTAProps) {
           <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
             <FaStar className="text-3xl text-yellow-300" />
           </div>
-          <h3 className="text-xl font-bold mb-2">
-            Potrzebujesz pomocy?
-          </h3>
+          <h3 className="text-xl font-bold mb-2">Potrzebujesz pomocy?</h3>
           <p className="text-sm text-blue-100 leading-relaxed">
             Dobiorę najlepszą dotację i załatwię formalności za Ciebie
           </p>
         </div>
 
         <div className="space-y-3">
-          <button 
+          <button
             onClick={scrollToContact}
             className="w-full py-3 bg-white text-blue-600 font-bold rounded-xl shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2"
           >
             Bezpłatna konsultacja
             <FaArrowRight />
           </button>
-          
+
           <div className="flex items-center gap-2">
             <div className="flex-1 h-px bg-white/30"></div>
             <span className="text-xs text-blue-100 font-semibold">lub</span>

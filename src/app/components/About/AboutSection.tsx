@@ -27,25 +27,22 @@ export default function AboutSection() {
         <AboutStats />
 
         <div className="mb-8">
-          <h3 className="text-2xl md:text-3xl font-bold mb-3 text-center md:text-left">
+          <h3 className="text-2xl md:text-2xl font-bold mb-3 text-center md:text-left">
             Jak pracuję?
           </h3>
 
-          <p className="text-gray-600 text-base md:text-lg text-center md:text-left mb-4">
+          <p className="text-gray-600 text-sm  text-center md:text-left mb-4">
             Sprawdzony proces w 7 krokach
           </p>
 
-          <p className="text-sm text-blue-600 font-semibold text-center md:text-left flex items-center justify-center md:justify-start gap-2">
+          <p className="text-xs text-blue-600 font-semibold text-center md:text-left flex items-center justify-center md:justify-start gap-2">
             <span className="w-2 h-2 bg-blue-600 rounded-full animate-pulse" />
             Kliknij krok aby przewinąć wideo
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-          <AboutSteps
-            activeStep={activeStep}
-            onStepClick={handleStepClick}
-          />
+          <AboutSteps activeStep={activeStep} onStepClick={handleStepClick} />
 
           <AboutVideo videoRef={videoRef} onStepChange={setActiveStep} />
         </div>
