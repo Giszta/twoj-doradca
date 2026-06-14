@@ -14,10 +14,10 @@ export default function AboutStats() {
         viewport={{ once: true }}
         className="text-center mb-6 md:mb-12"
       >
-        <h2 className="text-xl md:text-3xl font-bold mb-2 bg-linear-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+        <h2 className="text-xl md:text-2xl font-bold mb-2 bg-linear-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
           Liczby mówią same za siebie
         </h2>
-        <p className="text-gray-600 text-xs md:text-base px-4">
+        <p className="text-gray-600 text-xs md:text-sm px-4">
           Zaufało mi setki zadowolonych klientów
         </p>
       </motion.div>

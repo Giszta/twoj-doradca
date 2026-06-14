@@ -11,7 +11,7 @@ import {
   FaChevronDown,
   FaClock,
   FaTasks,
-  FaStar
+  FaStar,
 } from "react-icons/fa";
 
 interface GrantCardProps {
@@ -29,7 +29,7 @@ export default function GrantCard({
   expandedCard,
   toggleCard,
   expandedRef,
-  getDifficultyColor
+  getDifficultyColor,
 }: GrantCardProps) {
   const Icon = grant.icon;
   const isExpanded = expandedCard === grant.id;
@@ -75,27 +75,31 @@ export default function GrantCard({
               </div>
             </div>
 
-            <h3 className="text-sm md:text-xl font-bold text-gray-900 mb-2">
+            <h3 className="text-sm md:text-lg font-bold text-gray-900 mb-2">
               {grant.title}
             </h3>
 
-            <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-semibold border ${grant.statusColor}`}>
+            <div
+              className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold border ${grant.statusColor}`}
+            >
               {grant.status}
             </div>
           </div>
 
           <div className="p-4 md:p-6 flex flex-col flex-1">
-            <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4 leading-relaxed">
+            <p className="text-sm  text-gray-600 mb-3 md:mb-4 leading-relaxed">
               {grant.description}
             </p>
 
             <div className="flex gap-2 mb-4 flex-wrap">
-              <div className="flex items-center gap-2 px-2.5 py-1.5 md:px-3 md:py-2 bg-gray-100 rounded-lg text-xs md:text-sm">
+              <div className="flex items-center gap-2 px-2.5 py-1.5 md:px-3 md:py-2 bg-gray-100 rounded-lg text-xs ">
                 <FaClock className="text-blue-600" />
                 <span className="font-semibold">{grant.timeline}</span>
               </div>
 
-              <div className={`flex items-center gap-2 px-2.5 py-1.5 md:px-3 md:py-2 rounded-lg text-xs md:text-sm font-semibold ${getDifficultyColor(grant.difficulty)}`}>
+              <div
+                className={`flex items-center gap-2 px-2.5 py-1.5 md:px-3 md:py-2 rounded-lg text-xs font-semibold ${getDifficultyColor(grant.difficulty)}`}
+              >
                 <FaTasks />
                 <span>{grant.difficulty}</span>
               </div>
@@ -116,7 +120,7 @@ export default function GrantCard({
               onClick={() => toggleCard(grant.id)}
               aria-expanded={isExpanded}
               aria-controls={`grant-panel-${grant.id}`}
-              className="w-full py-2.5 md:py-3 text-sm md:text-base bg-linear-to-r from-blue-600 to-cyan-500 text-white font-semibold rounded-xl hover:shadow-lg transition-all flex items-center justify-center gap-2 mt-auto"
+              className="w-full py-2.5 md:py-3 text-sm  bg-linear-to-r from-blue-600 to-cyan-500 text-white font-semibold rounded-xl hover:shadow-lg transition-all flex items-center justify-center gap-2 mt-auto"
             >
               {isExpanded ? "Zwiń szczegóły" : "Sprawdź wymagania"}
 

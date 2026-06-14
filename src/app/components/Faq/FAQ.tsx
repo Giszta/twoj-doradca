@@ -20,10 +20,7 @@ export default function FAQ() {
         <Separator />
 
         <div className="mb-8">
-          <h2
-            id="faq-heading"
-            className="text-2xl font-bold text-gray-900 sm:text-3xl"
-          >
+          <h2 id="faq-heading" className="text-2xl font-bold text-gray-900 ">
             Najczęściej zadawane pytania
           </h2>
         </div>

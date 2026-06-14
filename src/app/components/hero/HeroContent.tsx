@@ -1,14 +1,13 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import HeroCTA from "./HeroCTA"
+import { motion } from "framer-motion";
+import HeroCTA from "./HeroCTA";
 
 export default function HeroContent() {
   return (
     <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 w-full max-w-6xl">
-
       <motion.span
-        className="inline-block mb-6 px-4 py-1 border border-white/30 rounded-full text-white text-xs md:text-base backdrop-blur-sm"
+        className="inline-block mb-6 px-4 py-1 border border-white/30 rounded-full text-white text-xs md:text-sm backdrop-blur-sm"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -17,7 +16,7 @@ export default function HeroContent() {
       </motion.span>
 
       <motion.h1
-        className="text-3xl md:text-6xl font-extrabold text-white leading-snug drop-shadow-2xl"
+        className="text-3xl md:text-5xl font-extrabold text-white leading-snug drop-shadow-2xl"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -27,14 +26,12 @@ export default function HeroContent() {
       </motion.h1>
 
       <motion.p
-        className="mt-6 text-white/90 text-sm md:text-lg max-w-3xl"
+        className="mt-6 text-white/90 text-sm md:text-lg max-w-8/12"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.8 }}
       >
-        <span className="text-2xl md:text-3xl">
-          Pomagam jej uniknąć!
-        </span>
+        <span className="text-xl md:text-2xl">Pomagam jej uniknąć!</span>
         <br />
         <br />
         Dobieram najlepsze rozwiązania dopasowane do Twojej sytuacji i potrzeb.
@@ -45,14 +42,13 @@ export default function HeroContent() {
       <HeroCTA />
 
       <motion.span
-        className="inline-block mt-5 md:mt-20 px-4 py-1 border border-white/30 rounded-full text-white text-xs md:text-base backdrop-blur-sm"
+        className="inline-block mt-5 md:mt-20 px-4 py-1 border border-white/30 rounded-full text-white text-xs md:text-sm backdrop-blur-sm"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
         Bezpłatnie | bez zobowiązań | 100% satysfakcji
       </motion.span>
-
     </div>
-  )
+  );
 }

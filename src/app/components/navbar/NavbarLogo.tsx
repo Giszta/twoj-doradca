@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import Image from "next/image"
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function NavbarLogo() {
   return (
@@ -20,5 +20,5 @@ export default function NavbarLogo() {
         priority
       />
     </motion.div>
-  )
+  );
 }

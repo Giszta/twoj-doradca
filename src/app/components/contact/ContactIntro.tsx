@@ -11,17 +11,21 @@ export default function ContactIntro() {
       viewport={{ once: true }}
       className="text-center lg:text-left"
     >
-      <h2 id="contact-heading" className="text-3xl font-bold text-gray-900 mb-6">
+      <h2
+        id="contact-heading"
+        className="text-2xl font-bold text-gray-900 mb-6"
+      >
         Masz pytania? <br /> Zrób pierwszy krok do oszczędności!
       </h2>
 
-      <p className="text-lg text-gray-600 mb-6">
+      <p className="text-sm text-gray-600 mb-6">
         Wypełnij prosty formularz – przygotuję indywidualną ofertę, doradzę
         najlepsze rozwiązania i podpowiem, jak uzyskać dotacje.
       </p>
 
-      <p className="text-lg text-gray-700 font-medium">
-        To nic nie kosztuje, a możesz zyskać realne oszczędności i komfort na lata.
+      <p className="text-sm text-gray-700 font-medium">
+        To nic nie kosztuje, a możesz zyskać realne oszczędności i komfort na
+        lata.
       </p>
     </motion.div>
   );

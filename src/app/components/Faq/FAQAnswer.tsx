@@ -9,12 +9,7 @@ type Props = {
   answer: string;
 };
 
-export default function FAQAnswer({
-  id,
-  labelledBy,
-  isOpen,
-  answer,
-}: Props) {
+export default function FAQAnswer({ id, labelledBy, isOpen, answer }: Props) {
   return (
     <AnimatePresence initial={false}>
       {isOpen && (
@@ -33,7 +28,7 @@ export default function FAQAnswer({
           }}
           className="overflow-hidden px-6"
         >
-          <div className="min-w-0 pb-4 text-sm leading-relaxed text-gray-700 wrap-break-words whitespace-normal sm:text-base">
+          <div className="min-w-0 pb-4 text-sm leading-relaxed text-gray-700 wrap-break-words whitespace-normal ">
             {answer}
           </div>
         </motion.div>

@@ -37,37 +37,37 @@ export default function SocialCard({ contact, index }: Props) {
         <div
           className={`absolute inset-0 rounded-full bg-linear-to-br ${contact.gradient} opacity-20 blur-lg`}
         />
-       <div className="relative w-16 h-16">
-  <Image
-    src={contact.img}
-    alt={contact.alt}
-    fill
-    sizes="(max-width: 768px) 100vw, 16vw"
-    className="object-contain drop-shadow-lg transition-transform duration-200 group-hover:scale-105"
-    priority={index === 0}
-  />
-</div>
+        <div className="relative w-16 h-16">
+          <Image
+            src={contact.img}
+            alt={contact.alt}
+            fill
+            sizes="(max-width: 768px) 100vw, 16vw"
+            className="object-contain drop-shadow-lg transition-transform duration-200 group-hover:scale-105"
+            priority={index === 0}
+          />
+        </div>
       </div>
 
-      <h3 className="mb-1 text-center text-lg font-bold text-gray-900 md:text-xl">
+      <h3 className="mb-1 text-center text-base font-bold text-gray-900 ">
         {contact.alt}
       </h3>
 
-      <p className="mb-3 text-center text-xs font-medium text-gray-500 md:text-sm">
+      <p className="mb-3 text-center text-xs font-medium text-gray-500 ">
         {contact.platform}
       </p>
 
-      <p className="mb-4 flex-1 text-center text-xs leading-relaxed text-gray-600 md:text-sm">
+      <p className="mb-4 flex-1 text-center text-xs leading-relaxed text-gray-600 ">
         {contact.description}
       </p>
 
       <div
-        className={`mb-4 rounded-full bg-linear-to-r ${contact.gradient} px-3 py-1 text-center text-xs font-semibold text-white`}
+        className={`mb-4 rounded-full bg-linear-to-r ${contact.gradient} px-3 py-1 text-center text-[11px] font-semibold text-white`}
       >
         {contact.stats}
       </div>
 
-      <div className="flex items-center gap-2 text-sm font-bold text-gray-700 transition-colors group-hover:text-gray-900">
+      <div className="flex items-center gap-2 text-xs font-bold text-gray-700 transition-colors group-hover:text-gray-900">
         <span>Odwiedź</span>
         <FaArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
       </div>

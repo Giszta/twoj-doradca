@@ -17,7 +17,7 @@ export default function HeroCTA() {
     >
       <button
         onClick={handleScroll}
-        className="px-8 py-3 rounded-full text-white font-semibold shadow-md hover:shadow-lg bg-linear-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+        className="px-8 py-3 rounded-full text-sm text-white font-semibold shadow-md hover:shadow-lg bg-linear-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
       >
         Sprawdź czy to ma sens w Twoim domu
       </button>

@@ -16,7 +16,7 @@ export default function FooterLegalLinks() {
         <Link
           key={link.href}
           href={link.href}
-          className="text-sm text-gray-600 transition-colors hover:text-blue-600 hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2"
+          className="text-[10px] text-gray-600 transition-colors hover:text-blue-600 hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2"
         >
           {link.label}
         </Link>

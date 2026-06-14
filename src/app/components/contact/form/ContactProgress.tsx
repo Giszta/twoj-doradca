@@ -18,7 +18,7 @@ export default function ContactProgress({ step, steps }: Props) {
       </div>
 
       <div
-        className="relative h-2 w-full overflow-hidden rounded-full bg-gray-200"
+        className="relative h-2 w-full overflow-hidden rounded-full bg-gray-200 "
         role="progressbar"
         aria-valuemin={1}
         aria-valuemax={steps.length}
@@ -33,7 +33,9 @@ export default function ContactProgress({ step, steps }: Props) {
 
       <div
         className="mt-5 hidden gap-2 sm:grid"
-        style={{ gridTemplateColumns: `repeat(${steps.length}, minmax(0, 1fr))` }}
+        style={{
+          gridTemplateColumns: `repeat(${steps.length}, minmax(0, 1fr))`,
+        }}
       >
         {steps.map((label, index) => {
           const isActive = index === step;
@@ -49,15 +51,15 @@ export default function ContactProgress({ step, steps }: Props) {
                   isActive
                     ? "border-blue-600 bg-blue-600 text-white"
                     : isDone
-                    ? "border-cyan-500 bg-cyan-500 text-white"
-                    : "border-gray-300 bg-white text-gray-500"
+                      ? "border-cyan-500 bg-cyan-500 text-white"
+                      : "border-gray-300 bg-white text-gray-500"
                 }`}
               >
                 {index + 1}
               </div>
 
               <span
-                className={`block max-w-full break-words text-[11px] leading-tight whitespace-normal ${
+                className={`block max-w-full wrap-break-words text-[9px] leading-tight whitespace-normal ${
                   isActive ? "font-semibold text-blue-600" : "text-gray-500"
                 }`}
               >
