@@ -8,6 +8,8 @@ export interface Grant {
   icon: ElementType;
   status: string;
   statusColor: string;
+  badge?: string;
+  badgeColor?: string;
   maxAmount: number;
   benefits: string[];
   requirements: string[];

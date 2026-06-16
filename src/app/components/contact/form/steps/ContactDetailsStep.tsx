@@ -6,15 +6,13 @@ import { ContactFormData, ContactFormErrors } from "../types";
 type Props = {
   data: ContactFormData;
   errors: ContactFormErrors;
-  onChange: (field: keyof ContactFormData, value: string | boolean) => void;
+  onChange: (field: string, value: string | boolean) => void;
 };
 
 export default function ContactDetailsStep({ data, errors, onChange }: Props) {
   return (
     <div className="grid gap-4">
-      <h2 className="mt-8 font-semibold sm:text-lg">
-        8. Twoje dane kontaktowe
-      </h2>
+      <h2 className="mt-8 font-semibold sm:text-lg">Twoje dane kontaktowe</h2>
 
       <TextField
         id="contact-name"
@@ -35,19 +33,37 @@ export default function ContactDetailsStep({ data, errors, onChange }: Props) {
         onChange={(value) => onChange("email", value)}
       />
 
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <TextField
+          id="contact-phone"
+          label="Numer telefonu"
+          type="tel"
+          value={data.phone}
+          error={errors.phone}
+          autoComplete="tel"
+          onChange={(value) => onChange("phone", value)}
+        />
+
+        <TextField
+          id="contact-postal-code"
+          label="Kod pocztowy"
+          value={data.postalCode}
+          error={errors.postalCode}
+          autoComplete="postal-code"
+          onChange={(value) => onChange("postalCode", value)}
+        />
+      </div>
+
       <TextField
-        id="contact-phone"
-        label="Numer telefonu"
-        type="tel"
-        value={data.phone}
-        error={errors.phone}
-        autoComplete="tel"
-        onChange={(value) => onChange("phone", value)}
+        id="contact-preferred-hours"
+        label="Preferowane godziny kontaktu (opcjonalnie)"
+        value={data.preferredContactHours}
+        onChange={(value) => onChange("preferredContactHours", value)}
       />
 
       <TextField
         id="contact-message"
-        label="Dodatkowe informacje"
+        label="Dodatkowe informacje (opcjonalnie)"
         value={data.message}
         multiline
         rows={3}
@@ -67,7 +83,7 @@ export default function ContactDetailsStep({ data, errors, onChange }: Props) {
           </Link>{" "}
           i{" "}
           <Link href="/privacyPolicy" className="text-blue-600 underline">
-            Polityką Prywatności
+            Politykę Prywatności
           </Link>{" "}
           www.twojdoradcaoze.pl oraz zgadzam się na ich stosowanie i akceptuję
           ich treść.

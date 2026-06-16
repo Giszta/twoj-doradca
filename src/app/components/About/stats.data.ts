@@ -11,8 +11,8 @@ export const stats: StatItem[] = [
     color: "blue",
   },
   {
-    value: 500,
-    maxValue: 510,
+    value: 600,
+    maxValue: 610,
     label: "Zrealizowanych projektów",
     Icon: FaProjectDiagram,
     suffix: "+",

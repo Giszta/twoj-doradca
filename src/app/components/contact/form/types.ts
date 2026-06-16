@@ -12,19 +12,26 @@ export type ProductOption = (typeof productOptions)[number];
 export type QuestionConfig = {
   question: string;
   options: readonly string[];
+  followUp?: {
+    triggerOption: string;
+    label?: string;
+    placeholder?: string;
+  };
+  showIf?: {
+    questionIndex: number;
+    answer: string;
+  };
 };
 
 export type ContactFormData = {
   product: ProductOption | "";
-  answer1: string;
-  answer2: string;
-  answer3: string;
-  area: string;
-  budget: string;
-  timeline: string;
+  answers: string[];
+  answerDetails: Record<number, string>;
   name: string;
   email: string;
   phone: string;
+  postalCode: string;
+  preferredContactHours: string;
   message: string;
   consentRequired: boolean;
   consentEmailMarketing: boolean;
@@ -32,7 +39,7 @@ export type ContactFormData = {
   consentNewsletter: boolean;
 };
 
-export type ContactFormErrors = Partial<Record<keyof ContactFormData, string>>;
+export type ContactFormErrors = Partial<Record<string, string>>;
 
 export type ContactField = keyof ContactFormData;
 
@@ -46,26 +53,7 @@ export type ContactStep =
   | {
       type: "question";
       title: string;
-      questionIndex: 0 | 1 | 2;
-      field: "answer1" | "answer2" | "answer3";
-    }
-  | {
-      type: "area";
-      title: string;
-      field: "area";
-      options: readonly string[];
-    }
-  | {
-      type: "budget";
-      title: string;
-      field: "budget";
-      options: readonly string[];
-    }
-  | {
-      type: "timeline";
-      title: string;
-      field: "timeline";
-      options: readonly string[];
+      questionIndex: number;
     }
   | {
       type: "contact";

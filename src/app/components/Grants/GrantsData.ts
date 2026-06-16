@@ -1,4 +1,4 @@
-import { FaWind, FaHome, FaFire } from "react-icons/fa";
+import { FaBatteryFull, FaHome, FaFire } from "react-icons/fa";
 import { Grant } from "./types";
 
 export const grants: Grant[] = [
@@ -10,6 +10,8 @@ export const grants: Grant[] = [
     icon: FaHome,
     status: "Nowe budynki",
     statusColor: "bg-blue-100 text-blue-700 border-blue-300",
+    badge: "Najpopularniejsze",
+    badgeColor: "bg-orange-100 text-orange-700 border-orange-300",
     maxAmount: 21000,
     benefits: [
       "Dofinansowanie do 21 000 zł",
@@ -18,12 +20,13 @@ export const grants: Grant[] = [
     ],
     requirements: [
       "Nowy budynek (pozwolenie po 2021)",
-      "Standard WT2021 lub wyższy",
-      "Pompa ciepła jako główne źródło",
-      "Dokumentacja energetyczna"
+      "EP poniżej 55kwh/m2",
+      "Pompa ciepła jako jedyne źródło",
+      "Charakterystyka energetyczna ",
     ],
     timeline: "2-4 miesiące",
     difficulty: "Łatwy",
+    recommended: true,
   },
 
   {
@@ -33,46 +36,45 @@ export const grants: Grant[] = [
       "Wsparcie przy wymianie starego źródła ciepła na ekologiczne rozwiązanie.",
     image: "/img/grants/czyste-powietrze.png",
     icon: FaFire,
-    status: "Najpopularniejszy",
-    statusColor: "bg-orange-100 text-orange-700 border-orange-300",
-    maxAmount: 45000,
-    benefits: [
-      "Dofinansowanie do 45 000 zł",
-      "Na pompę ciepła lub kocioł gazowy",
-      "Dla istniejących budynków",
-    ],
-    requirements: [
-      "Istniejący budynek mieszkalny",
-      "Demontaż starego pieca",
-      "Dochód poniżej progu",
-      "Audyt energetyczny"
-    ],
-    timeline: "4-8 miesięcy",
-    difficulty: "Średni",
-    recommended: true
-  },
-    {
-    id: "wiatrowa",
-    title: "Moja elektrownia wiatrowa",
-    description:
-      "Program dotacji wspierający budowę mikroinstalacji wiatrowych dla gospodarstw domowych.",
-    image: "/img/grants/moja-elektrownia-wiatrowa.png",
-    icon: FaWind,
-    status: "Nowość 2025",
+    status: "Budynki modernizowane",
     statusColor: "bg-green-100 text-green-700 border-green-300",
     maxAmount: 45000,
     benefits: [
       "Dofinansowanie do 45 000 zł",
-      "Wsparcie dla przydomowych turbin",
+      "Na pompę ciepła",
+      "Dla istniejących budynków",
+    ],
+    requirements: [
+      "Istniejący budynek mieszkalny",
+      "Własność od min. 3 lat ",
+      "Audyt energetyczny",
+      "Demontaż starego pieca",
+    ],
+    timeline: "4-8 miesięcy",
+    difficulty: "Średni",
+  },
+  {
+    id: "magazyny",
+    title: "Przydomowe magazyny energii",
+    description:
+      "Program dotacji na instalację przydomowych magazynów energii dla gospodarstw domowych.",
+    image: "/img/grants/magazyny-energii.png",
+    icon: FaBatteryFull,
+    status: "Dostępne wkrótce",
+    statusColor: "bg-gray-100 text-gray-600 border-gray-300",
+    maxAmount: 30000,
+    benefits: [
+      "Dofinansowanie do 30 000 zł",
+      "Większa niezależność energetyczna",
       "Możliwość łączenia z fotowoltaiką",
     ],
     requirements: [
       "Gospodarstwo domowe",
-      "Odpowiednie warunki wiatrowe (min. 4 m/s)",
-      "Zgoda sąsiadów w promieniu 100m",
-      "Pozwolenie na budowę"
+      "Istniejąca instalacja fotowoltaiczna",
+      "Certyfikowany magazyn energii",
+      "Dokumentacja techniczna",
     ],
     timeline: "3-6 miesięcy",
     difficulty: "Średni",
-  }
+  },
 ];

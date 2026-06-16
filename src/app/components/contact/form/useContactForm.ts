@@ -1,10 +1,17 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { formSteps, productQuestions } from "./config";
-import { ContactField, ContactFormData, ContactFormErrors } from "./types";
+import { productQuestions } from "./config";
+import {
+  ContactFormData,
+  ContactFormErrors,
+  ContactStep,
+  ProductOption,
+  productOptions,
+} from "./types";
 import {
   initialFormData,
+  validateAnswerAtIndex,
   validateContactData,
   validateField,
 } from "./utils";
@@ -16,33 +23,108 @@ export function useContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const currentStep = formSteps[step];
+  // Compute visible steps dynamically — respects showIf conditions
+  const currentSteps = useMemo((): readonly ContactStep[] => {
+    const productStep: ContactStep = {
+      type: "product",
+      title: "Czym się interesujesz?",
+      field: "product",
+      options: productOptions,
+    };
+
+    const contactStep: ContactStep = {
+      type: "contact",
+      title: "Twoje dane kontaktowe",
+    };
+
+    if (!formData.product) {
+      return [productStep, contactStep];
+    }
+
+    const questions = productQuestions[formData.product];
+    const questionSteps: ContactStep[] = questions
+      .map((q, i) => ({ q, i }))
+      .filter(({ q }) => {
+        if (!q.showIf) return true;
+        return formData.answers[q.showIf.questionIndex] === q.showIf.answer;
+      })
+      .map(({ i }) => ({
+        type: "question" as const,
+        title: `Pytanie`,
+        questionIndex: i,
+      }));
+
+    return [productStep, ...questionSteps, contactStep];
+  }, [formData.product, formData.answers]);
+
+  const progressLabels = useMemo(() => {
+    let qNum = 0;
+    return currentSteps.map((s) => {
+      if (s.type === "product") return "Produkt";
+      if (s.type === "question") { qNum++; return `Pyt. ${qNum}`; }
+      return "Kontakt";
+    });
+  }, [currentSteps]);
+
+  const safeStep = Math.min(step, currentSteps.length - 1);
+  const currentStep = currentSteps[safeStep];
 
   const currentQuestions = useMemo(() => {
     if (!formData.product) return [];
     return productQuestions[formData.product];
   }, [formData.product]);
 
-  const updateField = (field: ContactField, value: string | boolean) => {
-    setFormData((prev) => {
-      const next = { ...prev, [field]: value };
+  const updateField = (field: string, value: string | boolean) => {
+    const answerMatch = field.match(/^answers_(\d+)$/);
+    const answerDetailMatch = field.match(/^answerDetails_(\d+)$/);
 
-      if (field === "product" && prev.product !== value) {
-        next.answer1 = "";
-        next.answer2 = "";
-        next.answer3 = "";
-      }
+    if (answerMatch) {
+      const index = parseInt(answerMatch[1], 10);
+      setFormData((prev) => {
+        const newAnswers = [...prev.answers];
+        newAnswers[index] = value as string;
 
-      return next;
-    });
+        const newDetails = { ...prev.answerDetails };
+        // Clear follow-up detail for this answer
+        delete newDetails[index];
+
+        // Clear answers for conditional questions whose showIf is no longer satisfied
+        if (prev.product) {
+          const questions = productQuestions[prev.product];
+          questions.forEach((q, i) => {
+            if (
+              q.showIf &&
+              q.showIf.questionIndex === index &&
+              newAnswers[index] !== q.showIf.answer
+            ) {
+              newAnswers[i] = "";
+              delete newDetails[i];
+            }
+          });
+        }
+
+        return { ...prev, answers: newAnswers, answerDetails: newDetails };
+      });
+    } else if (answerDetailMatch) {
+      const index = parseInt(answerDetailMatch[1], 10);
+      setFormData((prev) => ({
+        ...prev,
+        answerDetails: { ...prev.answerDetails, [index]: value as string },
+      }));
+    } else if (field === "product") {
+      setFormData((prev) => ({
+        ...prev,
+        product: value as ProductOption | "",
+        answers: [],
+        answerDetails: {},
+      }));
+    } else {
+      setFormData((prev) => ({ ...prev, [field]: value }));
+    }
 
     setErrors((prev) => {
       const next = { ...prev };
-      const error = validateField(field, value);
-
-      if (error) next[field] = error;
-      else delete next[field];
-
+      delete next[field];
       return next;
     });
   };
@@ -50,11 +132,10 @@ export function useContactForm() {
   const isCurrentStepValid = () => {
     switch (currentStep.type) {
       case "product":
-      case "area":
-      case "budget":
-      case "timeline":
+        return !!formData.product;
+
       case "question":
-        return !!formData[currentStep.field];
+        return !!formData.answers[currentStep.questionIndex];
 
       case "contact":
         return (
@@ -74,15 +155,19 @@ export function useContactForm() {
     const nextErrors: ContactFormErrors = {};
 
     switch (currentStep.type) {
-      case "product":
-      case "area":
-      case "budget":
-      case "timeline":
-      case "question": {
-        const value = formData[currentStep.field];
-        const error = validateField(currentStep.field, value);
+      case "product": {
+        const error = validateField("product", formData.product);
+        if (error) nextErrors.product = error;
+        break;
+      }
 
-        if (error) nextErrors[currentStep.field] = error;
+      case "question": {
+        const errorKey = `answers_${currentStep.questionIndex}`;
+        const error = validateAnswerAtIndex(
+          formData.answers,
+          currentStep.questionIndex
+        );
+        if (error) nextErrors[errorKey] = error;
         break;
       }
 
@@ -98,7 +183,7 @@ export function useContactForm() {
 
   const next = () => {
     if (!validateCurrentStep()) return;
-    setStep((prev) => Math.min(prev + 1, formSteps.length - 1));
+    setStep((prev) => Math.min(prev + 1, currentSteps.length - 1));
   };
 
   const prev = () => {
@@ -113,9 +198,7 @@ export function useContactForm() {
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
@@ -134,9 +217,11 @@ export function useContactForm() {
   };
 
   return {
-    step,
+    step: safeStep,
     currentStep,
+    currentSteps,
     currentQuestions,
+    progressLabels,
     formData,
     errors,
     isSubmitting,
@@ -146,6 +231,6 @@ export function useContactForm() {
     next,
     prev,
     submit,
-    totalSteps: formSteps.length,
+    totalSteps: currentSteps.length,
   };
 }
