@@ -1,41 +1,10 @@
-import {
-  ContactStep,
-  ProductOption,
-  QuestionConfig,
-  productOptions,
-} from "./types";
+import { ProductOption, QuestionConfig } from "./types";
 
-export const timelineOptions = [
-  "Jak najszybciej",
-  "1-3 miesiące",
-  "3-6 miesięcy",
-  "Powyżej 6 miesięcy",
-] as const;
-
-export const budgetOptions = [
-  "< 30 000 zł",
-  "30-50 tys. zł",
-  "50-100 tys. zł",
-  "> 100 tys. zł",
-] as const;
-
-export const areaSizeOptions = [
-  "< 100 m²",
-  "100-150 m²",
-  "150-200 m²",
-  "> 200 m²",
-] as const;
-
-export const progressLabels = [
-  "Produkt",
-  "Pyt. 1",
-  "Pyt. 2",
-  "Pyt. 3",
-  "Metraż",
-  "Budżet",
-  "Termin",
-  "Kontakt",
-] as const;
+const OTHER_PRODUCTS_FOLLOW_UP = {
+  triggerOption: "Tak",
+  label: "Jakie produkty Cię interesują?",
+  placeholder: "np. fotowoltaika, ogrzewanie podłogowe, magazyn energii...",
+} as const;
 
 export const productQuestions: Record<
   ProductOption,
@@ -43,144 +12,190 @@ export const productQuestions: Record<
 > = {
   "Pompy ciepła gruntowe": [
     {
-      question: "Jaki rodzaj gruntu posiadasz?",
-      options: ["Glina", "Piasek", "Skała", "Nie wiem"],
+      question:
+        "Czy budynek, w którym planujesz pompę ciepła, jest nowy (w trakcie budowy lub świeżo wybudowany)?",
+      options: ["Tak", "Nie (modernizowany)"],
     },
     {
-      question: "Jaka powierzchnia działki?",
-      options: ["< 500 m²", "500-1000 m²", "1000-2000 m²", "> 2000 m²"],
+      question: "Kiedy planujesz skorzystać z oferty na pompę ciepła?",
+      options: [
+        "Do 7 dni – jestem gotowy, proszę o kontakt jak najszybciej",
+        "W ciągu 2–3 tygodni – potrzebuję krótkiego czasu na decyzję",
+        "Do 3 miesięcy",
+        "Nie jestem jeszcze zdecydowany – proszę o więcej informacji",
+      ],
     },
     {
-      question: "Obecne źródło ogrzewania?",
-      options: ["Gaz", "Węgiel", "Olej", "Prąd", "Inne"],
+      question: "Jakiej mocy pompy ciepła potrzebujesz?",
+      options: ["< 5 kW", "5–10 kW", "10–15 kW", "> 15 kW"],
+    },
+    {
+      question: "Na jakim etapie budowy jesteś aktualnie?",
+      options: [
+        "Wybór projektu / Fundamenty",
+        "Stan surowy otwarty",
+        "Stan surowy zamknięty",
+        "Wylewki i tynki zrobione",
+      ],
+    },
+    {
+      question:
+        "Czy oprócz pompy ciepła interesujesz się innymi produktami?",
+      options: ["Tak", "Nie"],
+      followUp: OTHER_PRODUCTS_FOLLOW_UP,
+    },
+    {
+      question:
+        "Jaka powierzchnia budynku (w m²) ma być ogrzewana pompą ciepła?",
+      options: ["< 100 m²", "100–150 m²", "150–200 m²", "> 200 m²"],
     },
   ],
   "Pompy ciepła powietrzne": [
     {
-      question: "Miejsce montażu jednostki zewnętrznej?",
-      options: ["Przy ścianie domu", "W ogrodzie", "Na dachu", "Nie wiem"],
+      question:
+        "Czy budynek, w którym planujesz pompę ciepła, jest nowy (w trakcie budowy lub świeżo wybudowany)?",
+      options: ["Tak", "Nie (modernizowany)"],
     },
     {
-      question: "Czy potrzebujesz funkcji chłodzenia?",
-      options: ["Tak", "Nie", "Nie jestem pewien"],
+      question: "Kiedy planujesz skorzystać z oferty na pompę ciepła?",
+      options: [
+        "Do 7 dni – jestem gotowy, proszę o kontakt jak najszybciej",
+        "W ciągu 2–3 tygodni – potrzebuję krótkiego czasu na decyzję",
+        "Do 3 miesięcy",
+        "Nie jestem jeszcze zdecydowany – proszę o więcej informacji",
+      ],
     },
     {
-      question: "Obecne źródło ogrzewania?",
-      options: ["Gaz", "Węgiel", "Olej", "Prąd", "Inne"],
+      question: "Jakiej mocy pompy ciepła potrzebujesz?",
+      options: ["< 5 kW", "5–10 kW", "10–15 kW", "> 15 kW"],
+    },
+    {
+      question: "Na jakim etapie budowy jesteś aktualnie?",
+      options: [
+        "Wybór projektu / Fundamenty",
+        "Stan surowy otwarty",
+        "Stan surowy zamknięty",
+        "Wylewki i tynki zrobione",
+      ],
+    },
+    {
+      question:
+        "Czy oprócz pompy ciepła interesujesz się innymi produktami?",
+      options: ["Tak", "Nie"],
+      followUp: OTHER_PRODUCTS_FOLLOW_UP,
     },
   ],
   Fotowoltaika: [
     {
-      question: "Średnie zużycie prądu miesięcznie?",
-      options: ["< 200 kWh", "200-400 kWh", "400-600 kWh", "> 600 kWh"],
+      question: "Czy jesteś właścicielem budynku jednorodzinnego?",
+      options: ["Tak", "Nie"],
     },
     {
-      question: "Rodzaj dachu?",
+      question: "Czy posiadasz już instalację fotowoltaiczną?",
+      options: ["Tak", "Nie"],
+    },
+    {
+      question: "Czy chcesz rozbudować instalację fotowoltaiczną?",
+      options: ["Tak", "Nie"],
+      showIf: { questionIndex: 1, answer: "Tak" },
+    },
+    {
+      question: "Czy posiadasz magazyn energii?",
+      options: ["Tak", "Nie"],
+      showIf: { questionIndex: 1, answer: "Tak" },
+    },
+    {
+      question: "Na jakiej konstrukcji chcesz zamontować fotowoltaikę?",
       options: [
-        "Skośny (dachówka)",
-        "Skośny (blachodachówka)",
-        "Płaski",
-        "Inne",
+        "Blachodachówka",
+        "Blachotrapez",
+        "Dachówka",
+        "Instalacja gruntowa",
+        "Dach płaski",
       ],
     },
     {
-      question: "Kierunek połaci dachowej?",
-      options: ["Południe", "Południowy-Wschód", "Południowy-Zachód", "Inne"],
+      question: "Ile płacisz aktualnie za prąd?",
+      options: ["< 500 zł", "500–1000 zł", "1000–1500 zł", "> 1500 zł"],
+    },
+    {
+      question: "Kiedy planujesz skorzystać z oferty na fotowoltaikę?",
+      options: [
+        "Do 7 dni – jestem gotowy, proszę o kontakt jak najszybciej",
+        "W ciągu 2–3 tygodni – potrzebuję krótkiego czasu na decyzję",
+        "Do 3 miesięcy",
+        "Nie jestem jeszcze zdecydowany – proszę o więcej informacji",
+      ],
+    },
+    {
+      question:
+        "Czy oprócz fotowoltaiki interesujesz się innymi produktami?",
+      options: ["Tak", "Nie"],
+      followUp: OTHER_PRODUCTS_FOLLOW_UP,
     },
   ],
   "Ogrzewanie podłogowe": [
     {
-      question: "Rodzaj podłogi do ogrzewania?",
-      options: ["Płytki", "Panele", "Drewno", "Kamień", "Inne"],
+      question:
+        "Czy budynek, w którym planujesz instalację, jest nowy (w trakcie budowy lub świeżo wybudowany)?",
+      options: ["Tak", "Nie (modernizowany)"],
     },
     {
-      question: "Ile pomieszczeń do ogrzania?",
-      options: ["1-3", "4-6", "7-10", "> 10"],
+      question: "Jaka jest powierzchnia budynku?",
+      options: ["< 100 m²", "100–150 m²", "150–200 m²", "> 200 m²"],
     },
     {
-      question: "Stan budynku?",
-      options: ["Nowy budynek", "Modernizacja", "Remont generalny"],
+      question: "Kiedy planujesz skorzystać z oferty na ogrzewanie podłogowe?",
+      options: [
+        "Do 7 dni – jestem gotowy, proszę o kontakt jak najszybciej",
+        "W ciągu 2–3 tygodni – potrzebuję krótkiego czasu na decyzję",
+        "Do 3 miesięcy",
+        "Nie jestem jeszcze zdecydowany – proszę o więcej informacji",
+      ],
+    },
+    {
+      question:
+        "Czy oprócz ogrzewania podłogowego interesujesz się innymi produktami?",
+      options: ["Tak", "Nie"],
+      followUp: OTHER_PRODUCTS_FOLLOW_UP,
     },
   ],
   Rekuperacja: [
     {
-      question: "Kubatura budynku?",
-      options: ["< 300 m³", "300-500 m³", "500-800 m³", "> 800 m³"],
+      question:
+        "Czy budynek, w którym planujesz instalację, jest nowy (w trakcie budowy lub świeżo wybudowany)?",
+      options: ["Tak", "Nie (modernizowany)"],
     },
     {
-      question: "Liczba kondygnacji?",
-      options: ["1", "2", "3", "> 3"],
-    },
-    {
-      question: "Czy w domu są alergicy?",
+      question:
+        "Czy oprócz rekuperacji interesujesz się innymi produktami?",
       options: ["Tak", "Nie"],
+      followUp: OTHER_PRODUCTS_FOLLOW_UP,
     },
   ],
   "Magazyn energii": [
     {
       question: "Czy posiadasz już instalację fotowoltaiczną?",
-      options: ["Tak", "Nie", "Planuję montaż"],
+      options: ["Tak", "Nie"],
     },
     {
       question: "Jaka pojemność magazynu Cię interesuje?",
-      options: ["< 5 kWh", "5-10 kWh", "10-15 kWh", "> 15 kWh"],
+      options: ["< 10 kWh", "10–15 kWh", "15–20 kWh", "> 20 kWh"],
     },
     {
-      question: "Główny cel instalacji?",
+      question: "Kiedy planujesz skorzystać z oferty na magazyn energii?",
       options: [
-        "Niezależność energetyczna",
-        "Obniżenie rachunków",
-        "Ochrona przed blackoutem",
+        "Do 7 dni – jestem gotowy, proszę o kontakt jak najszybciej",
+        "W ciągu 2–3 tygodni – potrzebuję krótkiego czasu na decyzję",
+        "Do 3 miesięcy",
+        "Nie jestem jeszcze zdecydowany – proszę o więcej informacji",
       ],
+    },
+    {
+      question:
+        "Czy oprócz magazynu energii interesujesz się innymi produktami?",
+      options: ["Tak", "Nie"],
+      followUp: OTHER_PRODUCTS_FOLLOW_UP,
     },
   ],
 };
-
-export const formSteps: readonly ContactStep[] = [
-  {
-    type: "product",
-    title: "1. Czym się interesujesz?",
-    field: "product",
-    options: productOptions,
-  },
-  {
-    type: "question",
-    title: "2. Pytanie 1",
-    questionIndex: 0,
-    field: "answer1",
-  },
-  {
-    type: "question",
-    title: "3. Pytanie 2",
-    questionIndex: 1,
-    field: "answer2",
-  },
-  {
-    type: "question",
-    title: "4. Pytanie 3",
-    questionIndex: 2,
-    field: "answer3",
-  },
-  {
-    type: "area",
-    title: "5. Powierzchnia domu do ogrzania?",
-    field: "area",
-    options: areaSizeOptions,
-  },
-  {
-    type: "budget",
-    title: "6. Planowany budżet?",
-    field: "budget",
-    options: budgetOptions,
-  },
-  {
-    type: "timeline",
-    title: "7. Preferowany termin realizacji?",
-    field: "timeline",
-    options: timelineOptions,
-  },
-  {
-    type: "contact",
-    title: "8. Twoje dane kontaktowe",
-  },
-];

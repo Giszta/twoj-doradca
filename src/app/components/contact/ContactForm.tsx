@@ -1,7 +1,6 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { progressLabels } from "./form/config";
 import ContactNavigation from "./form/ContactNavigation";
 import ContactProgress from "./form/ContactProgress";
 import ContactStepContent from "./form/ContactStepContent";
@@ -13,6 +12,7 @@ export default function ContactForm() {
     step,
     currentStep,
     currentQuestions,
+    progressLabels,
     formData,
     errors,
     isSubmitting,
@@ -52,7 +52,7 @@ export default function ContactForm() {
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.3 }}
       viewport={{ once: true }}
-      className="bg-white rounded-2xl shadow-xl p-6 sm:p-10"
+      className="bg-white rounded-2xl shadow-xl p-4 sm:p-10"
     >
       <ContactProgress step={step} steps={progressLabels} />
 

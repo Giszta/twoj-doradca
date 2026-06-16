@@ -2,28 +2,54 @@ import { FAQItemData } from "./types";
 
 export const faqs: FAQItemData[] = [
   {
-    question: "Na czym polega Twoje doradztwo?",
+    question: "Jak wygląda współpraca?",
     answer:
-      "Pomagam kompleksowo – od analizy potrzeb, przez dobór instalacji fotowoltaicznej, pomp ciepła czy magazynu energii, aż po wsparcie w uzyskaniu dotacji i finansowania.",
+      "Zaczynamy od bezpłatnej konsultacji, podczas której poznaję Twój dom i potrzeby. Następnie przygotowuję rekomendację najlepszego rozwiązania oraz prowadzę Cię przez cały proces realizacji.",
   },
   {
-    question: "Czy zajmujesz się formalnościami?",
+    question: "Czy pompa ciepła sprawdzi się w moim domu?",
     answer:
-      "Tak. Zajmuję się wszystkimi formalnościami, od dokumentów urzędowych po zgłoszenia do operatora sieci. Dzięki temu oszczędzasz czas i nerwy.",
+      "W większości przypadków tak. Każdy budynek analizuję indywidualnie, aby dobrać rozwiązanie zapewniające komfort i możliwie najniższe koszty eksploatacji.",
   },
   {
-    question: "Czy Twoje doradztwo jest bezpłatne?",
+    question: "Powietrzna czy gruntowa pompa ciepła?",
     answer:
-      "Tak – moje doradztwo jest bezpłatne. Zarabiam na prowizji od dostawców i instalatorów, a Ty nie ponosisz dodatkowych kosztów.",
+      "To zależy od warunków technicznych, budżetu i oczekiwań. Pomagam porównać wszystkie opcje i wybrać rozwiązanie najlepiej dopasowane do Twojego domu.",
   },
   {
-    question: "Czy mogę liczyć na wsparcie po instalacji?",
+    question: "Czy pomagacie w uzyskaniu dotacji?",
     answer:
-      "Oczywiście. Doradzam nie tylko na etapie inwestycji, ale również po montażu – w zakresie optymalizacji, serwisów i rozbudowy instalacji.",
+      "Tak. Pomagam w wyborze dostępnych programów wsparcia i wskazuję, jakie dokumenty będą potrzebne do uzyskania dofinansowania.",
   },
   {
-    question: "Dlaczego warto wybrać właśnie Ciebie?",
+    question: "Czy wykonujecie również odwierty pod gruntowe pompy ciepła?",
     answer:
-      "Od lat zajmuję się doradztwem w zakresie OZE. Stawiam na szczerość, przejrzystość i indywidualne podejście do klienta. Klienci cenią mnie za rzetelność i wsparcie na każdym kroku.",
+      "Tak. Współpracuję ze sprawdzonymi wykonawcami, którzy realizują cały proces – od projektu geologicznego po wykonanie odwiertów.",
+  },
+  {
+    question:
+      "Czy mogę zlecić również ogrzewanie podłogowe i instalację centralnego ogrzewania?",
+    answer:
+      "Tak. Pomagam w realizacji kompletnych instalacji grzewczych, obejmujących zarówno ogrzewanie podłogowe, jak i grzejnikowe.",
+  },
+  {
+    question: "Czy warto połączyć pompę ciepła z fotowoltaiką?",
+    answer:
+      "Tak. To jedno z najczęściej wybieranych rozwiązań, które pozwala zwiększyć wykorzystanie własnej energii i ograniczyć koszty eksploatacji domu.",
+  },
+  {
+    question: "Czy magazyn energii ma sens?",
+    answer:
+      "Tak, szczególnie w połączeniu z fotowoltaiką. Pozwala magazynować nadwyżki energii i wykorzystywać je wtedy, gdy są najbardziej potrzebne.",
+  },
+  {
+    question: "Na jakim obszarze działasz?",
+    answer:
+      "Obsługuję klientów z całej Polski, współpracując ze sprawdzonymi ekipami wykonawczymi i producentami urządzeń.",
+  },
+  {
+    question: "Dlaczego warto skorzystać z mojej pomocy?",
+    answer:
+      "Moim celem nie jest sprzedaż konkretnego urządzenia, ale pomoc w wyborze najlepszego rozwiązania dla Twojego domu. Dzięki temu podejmujesz świadomą decyzję i unikasz kosztownych błędów.",
   },
 ];

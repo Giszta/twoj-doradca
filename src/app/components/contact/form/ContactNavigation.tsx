@@ -19,7 +19,7 @@ export default function ContactNavigation({
         <button
           type="button"
           onClick={onPrev}
-          className="text-sm rounded-lg border border-gray-300 px-4 py-2 transition cursor-pointer hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2"
+          className="text-sm w-full sm:w-auto rounded-lg border border-gray-300 px-4 py-2 transition cursor-pointer hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2"
         >
           Wstecz
         </button>

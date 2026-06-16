@@ -79,10 +79,19 @@ export default function GrantCard({
               {grant.title}
             </h3>
 
-            <div
-              className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold border ${grant.statusColor}`}
-            >
-              {grant.status}
+            <div className="flex items-center gap-2 flex-wrap">
+              <div
+                className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold border ${grant.statusColor}`}
+              >
+                {grant.status}
+              </div>
+              {grant.badge && (
+                <div
+                  className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold border ${grant.badgeColor}`}
+                >
+                  {grant.badge}
+                </div>
+              )}
             </div>
           </div>
 

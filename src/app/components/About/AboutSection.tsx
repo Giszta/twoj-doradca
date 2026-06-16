@@ -27,14 +27,15 @@ export default function AboutSection() {
         <AboutStats />
 
         <div className="mb-8">
-          <h3 className="text-2xl md:text-2xl font-bold mb-3 text-center md:text-left">
+          <p className="text-xs font-semibold text-blue-600 uppercase tracking-widest mb-2 text-center md:text-left">
             Jak pracuję?
-          </h3>
-
-          <p className="text-gray-600 text-sm  text-center md:text-left mb-4">
-            Sprawdzony proces w 7 krokach
           </p>
-
+          <h2 className="text-3xl font-bold text-gray-900 mb-3 text-center md:text-left">
+            Sprawdzony proces w 7 krokach
+          </h2>
+          <p className="text-gray-600 max-w-lg text-base leading-relaxed text-center md:text-left mb-4">
+            Od pierwszej rozmowy do gotowej instalacji — prowadzę Cię przez każdy etap.
+          </p>
           <p className="text-xs text-blue-600 font-semibold text-center md:text-left flex items-center justify-center md:justify-start gap-2">
             <span className="w-2 h-2 bg-blue-600 rounded-full animate-pulse" />
             Kliknij krok aby przewinąć wideo

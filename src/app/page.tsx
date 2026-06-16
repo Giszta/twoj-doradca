@@ -6,7 +6,7 @@ import Opinions from "./components/opinions/Opinions";
 import Contact from "./components/contact/Contact";
 import OfferSection from "./components/Offer/OfferSection";
 import Grants from "./components/Grants/GrantSection";
-import RealizacjeCarousel from "./components/Realizations/RealizationCarousel";
+import RealizationsSection from "./components/Realizations/RealizationsSection";
 import AboutSection from "./components/About/AboutSection";
 
 export default function Home() {
@@ -26,7 +26,7 @@ export default function Home() {
         <OfferSection />
         <AboutSection />
         <Grants />
-        <RealizacjeCarousel />
+        <RealizationsSection />
         <Opinions />
         <Faq />
         <Contact />

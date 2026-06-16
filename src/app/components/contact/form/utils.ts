@@ -1,16 +1,14 @@
-import { ContactField, ContactFormData, ContactFormErrors } from "./types";
+import { ContactFormData, ContactFormErrors } from "./types";
 
 export const initialFormData: ContactFormData = {
   product: "",
-  answer1: "",
-  answer2: "",
-  answer3: "",
-  area: "",
-  budget: "",
-  timeline: "",
+  answers: [],
+  answerDetails: {},
   name: "",
   email: "",
   phone: "",
+  postalCode: "",
+  preferredContactHours: "",
   message: "",
   consentRequired: false,
   consentEmailMarketing: false,
@@ -26,19 +24,15 @@ export function isValidPhone(phone: string) {
   return /^\d{9}$/.test(phone.replace(/\s/g, ""));
 }
 
+export function isValidPostalCode(code: string) {
+  return /^\d{2}-\d{3}$/.test(code.trim());
+}
+
 export function validateField(
-  field: ContactField,
+  field: string,
   value: string | boolean
 ): string | undefined {
-  if (
-    field === "product" ||
-    field === "answer1" ||
-    field === "answer2" ||
-    field === "answer3" ||
-    field === "area" ||
-    field === "budget" ||
-    field === "timeline"
-  ) {
+  if (field === "product") {
     if (!value) return "To pole jest wymagane.";
   }
 
@@ -56,10 +50,24 @@ export function validateField(
     if (!isValidPhone(value)) return "Wpisz 9-cyfrowy numer telefonu.";
   }
 
+  if (field === "postalCode" && typeof value === "string") {
+    if (value.trim() && !isValidPostalCode(value)) {
+      return "Wpisz kod pocztowy w formacie XX-XXX.";
+    }
+  }
+
   if (field === "consentRequired" && value !== true) {
     return "Musisz zaakceptować regulamin i politykę prywatności.";
   }
 
+  return undefined;
+}
+
+export function validateAnswerAtIndex(
+  answers: string[],
+  index: number
+): string | undefined {
+  if (!answers[index]) return "To pole jest wymagane.";
   return undefined;
 }
 
@@ -71,11 +79,13 @@ export function validateContactData(
   const nameError = validateField("name", data.name);
   const emailError = validateField("email", data.email);
   const phoneError = validateField("phone", data.phone);
+  const postalCodeError = validateField("postalCode", data.postalCode);
   const consentError = validateField("consentRequired", data.consentRequired);
 
   if (nameError) nextErrors.name = nameError;
   if (emailError) nextErrors.email = emailError;
   if (phoneError) nextErrors.phone = phoneError;
+  if (postalCodeError) nextErrors.postalCode = postalCodeError;
   if (consentError) nextErrors.consentRequired = consentError;
 
   return nextErrors;

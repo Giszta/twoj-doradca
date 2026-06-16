@@ -1,6 +1,3 @@
-export interface Realization {
-  id: number
-  src: string
-  alt: string
-  opis: string
-}
+// Types for the realizations section
+// (reserved for future use)
+export {};

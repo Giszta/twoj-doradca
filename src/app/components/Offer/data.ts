@@ -5,67 +5,63 @@ export const products: Product[] = [
   {
     id: "pompy-gruntowe",
     name: "Pompy ciepła gruntowe",
-    description:
-      "Najbardziej efektywne rozwiązanie wykorzystujące stabilną temperaturę gruntu.",
+    description: "Najwyższa efektywność i stabilna praca przez cały rok.",
     details:
-      "Współczynnik efektywności COP nawet do 5.0. Stabilna praca przez cały rok. Najniższe koszty eksploatacji.",
-    image: "/img/offer/pompa-ciepla.png",
+      "Projekt, dokumentacja, odwierty, montaż i serwis. Wszystkie prace realizujemy własnymi ekipami, dzięki czemu masz pewność jakości na każdym etapie.",
+    image: "/img/offer/pompa-gruntowa.png",
     icon: Thermometer,
-    badge: "Najefektywniejsze"
+    badge: "Najefektywniejsze",
   },
   {
     id: "pompy-powietrzne",
     name: "Pompy ciepła powietrzne",
     description:
-      "Wszechstronne i ekonomiczne rozwiązanie do ogrzewania i chłodzenia.",
+      "Ekonomiczne i wszechstronne rozwiązanie do ogrzewania, chłodzenia i przygotowania ciepłej wody.",
     details:
-      "Łatwy montaż bez kosztownych prac ziemnych. Funkcja chłodzenia w lecie. Idealne do modernizacji.",
+      "Łatwy montaż bez kosztownych prac ziemnych, idealne rozwiązanie zarówno do nowych, jak i modernizowanych budynków.",
     image: "/img/offer/pompa-ciepla.png",
     icon: Wind,
-    badge: "Popularne"
+    badge: "Popularne",
   },
   {
     id: "fotowoltaika",
     name: "Fotowoltaika",
-    description:
-      "Instalacje fotowoltaiczne pozwalające oszczędzać na rachunkach za prąd.",
+    description: "Produkuj własną energię i obniż rachunki za prąd.",
     details:
-      "Panele premium z gwarancją 25 lat. Zwrot inwestycji już po 5-7 latach.",
+      "Od doboru mocy instalacji po zgłoszenie do zakładu energetycznego – wszystkim zajmiemy się za Ciebie.",
     image: "/img/offer/fotowoltaika.png",
     icon: Sun,
-    badge: "Gwarancja 25 lat"
+    badge: "Gwarancja 25 lat",
   },
   {
     id: "podlogowka",
-    name: "Ogrzewanie podłogowe",
+    name: "Centralne ogrzewanie",
     description:
-      "Komfortowe i energooszczędne ogrzewanie dla całego domu.",
+      "Nowoczesne systemy ogrzewania dla nowych i modernizowanych domów.",
     details:
-      "Równomierne rozprowadzenie ciepła. Brak kurzu i przeciągów.",
+      "Kompleksowo realizujemy instalacje ogrzewania podłogowego i grzejnikowego – od projektu po uruchomienie systemu.",
     image: "/img/offer/podlogowka.png",
     icon: Home,
-    badge: "Komfort +40%"
+    badge: "Komfort +40%",
   },
   {
     id: "rekuperacja",
     name: "Rekuperacja",
-    description:
-      "Nowoczesne systemy wentylacji z odzyskiem ciepła.",
+    description: "Świeże powietrze, mniej wilgoci, większy komfort.",
     details:
-      "Odzysk do 90% ciepła. Świeże powietrze bez otwierania okien.",
+      "Kompleksowa realizacja systemów rekuperacji – od projektu po montaż i uruchomienie instalacji.",
     image: "/img/offer/rekuperacja.png",
     icon: Droplets,
-    badge: "Odzysk 90%"
+    badge: "Odzysk 90%",
   },
   {
     id: "magazyn",
     name: "Magazyn energii",
-    description:
-      "Zaawansowane systemy magazynowania energii elektrycznej.",
+    description: "Większa niezależność energetyczna dla Twojego domu.",
     details:
-      "Pełna niezależność energetyczna. Ochrona przed blackoutem.",
-    image: "/img/offer/fotowoltaika.png",
+      "Magazynuj energię i zarządzaj nią inteligentnie dzięki nowoczesnym systemom optymalizacji zużycia prądu.",
+    image: "/img/offer/magazyn-energii.png",
     icon: Battery,
-    badge: "Niezależność"
-  }
+    badge: "Niezależność",
+  },
 ];

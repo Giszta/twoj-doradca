@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { productQuestions } from "@/app/components/contact/form/config";
+import { ProductOption } from "@/app/components/contact/form/types";
 
 export async function POST(request: NextRequest) {
   try {
@@ -6,15 +8,13 @@ export async function POST(request: NextRequest) {
 
     const {
       product,
-      answer1,
-      answer2,
-      answer3,
-      area,
-      budget,
-      timeline,
+      answers,
+      answerDetails,
       name,
       email,
       phone,
+      postalCode,
+      preferredContactHours,
       message,
       consentRequired,
       consentEmailMarketing,
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
       consentNewsletter,
     } = data;
 
-    if (!product || !area || !budget || !timeline || !name || !email || !phone) {
+    if (!product || !name || !email || !phone) {
       return NextResponse.json(
         { success: false, message: "Brak wymaganych danych." },
         { status: 400 }
@@ -39,7 +39,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const questionLabels = getQuestionLabels(product);
+    const questions = productQuestions[product as ProductOption] ?? [];
+    const answerLines = questions
+      .map((q, i) => {
+        const answer = (answers as string[])[i] || "-";
+        const detail = (answerDetails as Record<number, string>)[i];
+        const detailLine = detail ? `\n   Szczegóły: ${detail}` : "";
+        return `${q.question}\n→ ${answer}${detailLine}`;
+      })
+      .join("\n\n");
 
     const emailContent = `
 NOWE ZAPYTANIE Z FORMULARZA KONTAKTOWEGO
@@ -48,20 +56,15 @@ NOWE ZAPYTANIE Z FORMULARZA KONTAKTOWEGO
 ZAINTERESOWANIE:
 ${product}
 
-SZCZEGÓŁY PRODUKTU:
-${questionLabels[0]}: ${answer1 || "-"}
-${questionLabels[1]}: ${answer2 || "-"}
-${questionLabels[2]}: ${answer3 || "-"}
-
-INFORMACJE OGÓLNE:
-Powierzchnia domu: ${area}
-Budżet: ${budget}
-Termin realizacji: ${timeline}
+ODPOWIEDZI:
+${answerLines || "-"}
 
 DANE KONTAKTOWE:
 Imię i nazwisko: ${name}
 Email: ${email}
 Telefon: ${phone}
+Kod pocztowy: ${postalCode || "-"}
+Preferowane godziny kontaktu: ${preferredContactHours || "-"}
 
 ${message ? `DODATKOWE INFORMACJE:\n${message}\n` : ""}
 
@@ -90,41 +93,4 @@ Data wysłania: ${new Date().toLocaleString("pl-PL")}
       { status: 500 }
     );
   }
-}
-
-function getQuestionLabels(product: string): string[] {
-  const questions: Record<string, string[]> = {
-    "Pompy ciepła gruntowe": [
-      "Rodzaj gruntu",
-      "Powierzchnia działki",
-      "Obecne źródło ogrzewania",
-    ],
-    "Pompy ciepła powietrzne": [
-      "Miejsce montażu jednostki zewnętrznej",
-      "Funkcja chłodzenia",
-      "Obecne źródło ogrzewania",
-    ],
-    Fotowoltaika: [
-      "Zużycie prądu miesięcznie",
-      "Rodzaj dachu",
-      "Kierunek połaci dachowej",
-    ],
-    "Ogrzewanie podłogowe": [
-      "Rodzaj podłogi",
-      "Liczba pomieszczeń",
-      "Stan budynku",
-    ],
-    Rekuperacja: [
-      "Kubatura budynku",
-      "Liczba kondygnacji",
-      "Alergicy w domu",
-    ],
-    "Magazyn energii": [
-      "Instalacja fotowoltaiczna",
-      "Pojemność magazynu",
-      "Główny cel instalacji",
-    ],
-  };
-
-  return questions[product] || ["Pytanie 1", "Pytanie 2", "Pytanie 3"];
 }
