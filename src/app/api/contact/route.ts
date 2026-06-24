@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     if (!product || !name || !email || !phone) {
       return NextResponse.json(
         { success: false, message: "Brak wymaganych danych." },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
           success: false,
           message: "Musisz zaakceptować regulamin i politykę prywatności.",
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -73,11 +73,15 @@ export async function POST(request: NextRequest) {
       <h2 style="margin:0 0 12px;font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;">Zainteresowanie</h2>
       <p style="margin:0 0 24px;font-size:18px;font-weight:700;color:#1d4ed8;">${product}</p>
 
-      ${answersHtml ? `
+      ${
+        answersHtml
+          ? `
       <h2 style="margin:0 0 12px;font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;">Odpowiedzi</h2>
       <table style="width:100%;border-collapse:collapse;margin-bottom:24px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;">
         ${answersHtml}
-      </table>` : ""}
+      </table>`
+          : ""
+      }
 
       <h2 style="margin:0 0 12px;font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;">Dane kontaktowe</h2>
       <table style="width:100%;border-collapse:collapse;margin-bottom:24px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;">
@@ -88,9 +92,13 @@ export async function POST(request: NextRequest) {
         ${preferredContactHours ? `<tr><td style="padding:8px 12px;color:#6b7280;font-size:13px;">Preferowane godziny</td><td style="padding:8px 12px;font-size:13px;">${preferredContactHours}</td></tr>` : ""}
       </table>
 
-      ${message ? `
+      ${
+        message
+          ? `
       <h2 style="margin:0 0 8px;font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;">Dodatkowe informacje</h2>
-      <p style="margin:0 0 24px;padding:12px;background:#f9fafb;border-radius:8px;font-size:13px;color:#374151;">${message}</p>` : ""}
+      <p style="margin:0 0 24px;padding:12px;background:#f9fafb;border-radius:8px;font-size:13px;color:#374151;">${message}</p>`
+          : ""
+      }
 
       <h2 style="margin:0 0 8px;font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;">Zgody marketingowe</h2>
       <p style="margin:0;font-size:12px;color:#9ca3af;">
@@ -109,7 +117,7 @@ export async function POST(request: NextRequest) {
 </html>`;
 
     const { error } = await resend.emails.send({
-      from: "Formularz OZE <onboarding@resend.dev>",
+      from: "Formularz OZE <formularz@twojdoradcaoze.pl>",
       to: ["adigi96@gmail.com"],
       subject: `Nowe zapytanie — ${product} | ${name}`,
       html,
@@ -119,7 +127,7 @@ export async function POST(request: NextRequest) {
       console.error("Resend error:", error);
       return NextResponse.json(
         { success: false, message: "Błąd podczas wysyłania wiadomości." },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -131,7 +139,7 @@ export async function POST(request: NextRequest) {
     console.error("Error processing form:", error);
     return NextResponse.json(
       { success: false, message: "Wystąpił błąd podczas wysyłania formularza" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
