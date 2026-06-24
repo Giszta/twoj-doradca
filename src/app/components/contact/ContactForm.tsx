@@ -17,7 +17,7 @@ export default function ContactForm() {
     errors,
     isSubmitting,
     isSubmitted,
-    isCurrentStepValid,
+    validateSingleField,
     updateField,
     next,
     prev,
@@ -76,13 +76,13 @@ export default function ContactForm() {
               formData={formData}
               errors={errors}
               onChange={updateField}
+              onBlurField={validateSingleField}
             />
 
             <ContactNavigation
               step={step}
               totalSteps={totalSteps}
               isSubmitting={isSubmitting}
-              isStepValid={isCurrentStepValid()}
               onPrev={prev}
             />
           </motion.div>

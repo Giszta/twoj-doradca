@@ -16,6 +16,7 @@ type Props = {
   formData: ContactFormData;
   errors: ContactFormErrors;
   onChange: (field: string, value: string | boolean) => void;
+  onBlurField: (field: string, value: string | boolean) => void;
 };
 
 export default function ContactStepContent({
@@ -25,6 +26,7 @@ export default function ContactStepContent({
   formData,
   errors,
   onChange,
+  onBlurField,
 }: Props) {
   switch (currentStep.type) {
     case "product":
@@ -90,6 +92,7 @@ export default function ContactStepContent({
           data={formData}
           errors={errors}
           onChange={onChange}
+          onBlurField={onBlurField}
         />
       );
 

@@ -23,7 +23,6 @@ export function useContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // Compute visible steps dynamically — respects showIf conditions
   const currentSteps = useMemo((): readonly ContactStep[] => {
     const productStep: ContactStep = {
       type: "product",
@@ -83,12 +82,8 @@ export function useContactForm() {
       setFormData((prev) => {
         const newAnswers = [...prev.answers];
         newAnswers[index] = value as string;
-
         const newDetails = { ...prev.answerDetails };
-        // Clear follow-up detail for this answer
         delete newDetails[index];
-
-        // Clear answers for conditional questions whose showIf is no longer satisfied
         if (prev.product) {
           const questions = productQuestions[prev.product];
           questions.forEach((q, i) => {
@@ -102,7 +97,6 @@ export function useContactForm() {
             }
           });
         }
-
         return { ...prev, answers: newAnswers, answerDetails: newDetails };
       });
     } else if (answerDetailMatch) {
@@ -122,6 +116,7 @@ export function useContactForm() {
       setFormData((prev) => ({ ...prev, [field]: value }));
     }
 
+    // Clear error for this field when updated
     setErrors((prev) => {
       const next = { ...prev };
       delete next[field];
@@ -129,26 +124,18 @@ export function useContactForm() {
     });
   };
 
-  const isCurrentStepValid = () => {
-    switch (currentStep.type) {
-      case "product":
-        return !!formData.product;
-
-      case "question":
-        return !!formData.answers[currentStep.questionIndex];
-
-      case "contact":
-        return (
-          !!formData.name.trim() &&
-          !!formData.email.trim() &&
-          !!formData.phone.trim() &&
-          formData.consentRequired === true &&
-          Object.keys(validateContactData(formData)).length === 0
-        );
-
-      default:
-        return true;
-    }
+  // Validate a single field and update errors — used by onBlur handlers
+  const validateSingleField = (field: string, value: string | boolean) => {
+    const error = validateField(field, value);
+    setErrors((prev) => {
+      const next = { ...prev };
+      if (error) {
+        next[field] = error;
+      } else {
+        delete next[field];
+      }
+      return next;
+    });
   };
 
   const validateCurrentStep = () => {
@@ -160,17 +147,12 @@ export function useContactForm() {
         if (error) nextErrors.product = error;
         break;
       }
-
       case "question": {
         const errorKey = `answers_${currentStep.questionIndex}`;
-        const error = validateAnswerAtIndex(
-          formData.answers,
-          currentStep.questionIndex
-        );
+        const error = validateAnswerAtIndex(formData.answers, currentStep.questionIndex);
         if (error) nextErrors[errorKey] = error;
         break;
       }
-
       case "contact": {
         Object.assign(nextErrors, validateContactData(formData));
         break;
@@ -194,7 +176,6 @@ export function useContactForm() {
     if (!validateCurrentStep()) return false;
 
     setIsSubmitting(true);
-
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -202,9 +183,7 @@ export function useContactForm() {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) {
-        throw new Error("Nie udało się wysłać formularza.");
-      }
+      if (!response.ok) throw new Error("Nie udało się wysłać formularza.");
 
       setIsSubmitted(true);
       return true;
@@ -226,7 +205,7 @@ export function useContactForm() {
     errors,
     isSubmitting,
     isSubmitted,
-    isCurrentStepValid,
+    validateSingleField,
     updateField,
     next,
     prev,
