@@ -17,11 +17,13 @@ export const initialFormData: ContactFormData = {
 };
 
 export function isValidEmail(email: string) {
-  return /\S+@\S+\.\S+/.test(email);
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
 }
 
 export function isValidPhone(phone: string) {
-  return /^\d{9}$/.test(phone.replace(/\s/g, ""));
+  // Accept: 9 digits, optionally prefixed with +48 or 48, spaces/dashes allowed
+  const cleaned = phone.replace(/[\s\-\(\)]/g, "");
+  return /^(\+?48)?[4-9]\d{8}$/.test(cleaned);
 }
 
 export function isValidPostalCode(code: string) {
@@ -33,31 +35,32 @@ export function validateField(
   value: string | boolean
 ): string | undefined {
   if (field === "product") {
-    if (!value) return "To pole jest wymagane.";
+    if (!value) return "Wybierz produkt, który Cię interesuje.";
   }
 
-  if (field === "name" && typeof value === "string" && !value.trim()) {
-    return "Imię i nazwisko jest wymagane.";
+  if (field === "name" && typeof value === "string") {
+    if (!value.trim()) return "Wpisz imię i nazwisko.";
+    if (value.trim().length < 3) return "Imię i nazwisko jest za krótkie.";
   }
 
   if (field === "email" && typeof value === "string") {
-    if (!value.trim()) return "Adres e-mail jest wymagany.";
-    if (!isValidEmail(value)) return "Niepoprawny adres e-mail.";
+    if (!value.trim()) return "Wpisz adres e-mail.";
+    if (!isValidEmail(value)) return "Niepoprawny adres e-mail (np. jan@example.pl).";
   }
 
   if (field === "phone" && typeof value === "string") {
-    if (!value.trim()) return "Numer telefonu jest wymagany.";
-    if (!isValidPhone(value)) return "Wpisz 9-cyfrowy numer telefonu.";
+    if (!value.trim()) return "Wpisz numer telefonu.";
+    if (!isValidPhone(value)) return "Wpisz poprawny numer telefonu (9 cyfr, np. 600 123 456).";
   }
 
   if (field === "postalCode" && typeof value === "string") {
     if (value.trim() && !isValidPostalCode(value)) {
-      return "Wpisz kod pocztowy w formacie XX-XXX.";
+      return "Wpisz kod pocztowy w formacie XX-XXX (np. 00-001).";
     }
   }
 
   if (field === "consentRequired" && value !== true) {
-    return "Musisz zaakceptować regulamin i politykę prywatności.";
+    return "Akceptacja regulaminu jest wymagana do wysłania formularza.";
   }
 
   return undefined;
@@ -67,13 +70,11 @@ export function validateAnswerAtIndex(
   answers: string[],
   index: number
 ): string | undefined {
-  if (!answers[index]) return "To pole jest wymagane.";
+  if (!answers[index]) return "Wybierz jedną z opcji.";
   return undefined;
 }
 
-export function validateContactData(
-  data: ContactFormData
-): ContactFormErrors {
+export function validateContactData(data: ContactFormData): ContactFormErrors {
   const nextErrors: ContactFormErrors = {};
 
   const nameError = validateField("name", data.name);

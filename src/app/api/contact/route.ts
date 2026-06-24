@@ -139,7 +139,7 @@ export async function POST(request: NextRequest) {
     console.error("Error processing form:", error);
     return NextResponse.json(
       { success: false, message: "Wystąpił błąd podczas wysyłania formularza" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

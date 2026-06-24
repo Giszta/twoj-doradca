@@ -2,7 +2,6 @@ type Props = {
   step: number;
   totalSteps: number;
   isSubmitting: boolean;
-  isStepValid: boolean;
   onPrev: () => void;
 };
 
@@ -10,7 +9,6 @@ export default function ContactNavigation({
   step,
   totalSteps,
   isSubmitting,
-  isStepValid,
   onPrev,
 }: Props) {
   return (
@@ -30,12 +28,7 @@ export default function ContactNavigation({
           type="submit"
           name="intent"
           value="next"
-          disabled={!isStepValid}
-          className={`text-sm order-first ml-auto w-full rounded-lg bg-linear-to-r from-blue-600 to-cyan-500 px-6 py-2 text-white transition sm:order-last sm:w-auto ${
-            isStepValid
-              ? "cursor-pointer hover:opacity-90"
-              : "cursor-not-allowed opacity-50"
-          }`}
+          className="text-sm order-first ml-auto w-full rounded-lg bg-linear-to-r from-blue-600 to-cyan-500 px-6 py-2 text-white transition sm:order-last sm:w-auto cursor-pointer hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2"
         >
           Dalej
         </button>
@@ -44,9 +37,9 @@ export default function ContactNavigation({
           type="submit"
           name="intent"
           value="submit"
-          disabled={isSubmitting || !isStepValid}
+          disabled={isSubmitting}
           className={`text-sm order-first ml-auto w-full rounded-lg bg-linear-to-r from-blue-600 to-cyan-500 px-6 py-3 font-semibold text-white shadow-md transition sm:order-last sm:w-auto ${
-            isSubmitting || !isStepValid
+            isSubmitting
               ? "cursor-not-allowed opacity-70"
               : "cursor-pointer hover:scale-105 hover:shadow-lg"
           }`}

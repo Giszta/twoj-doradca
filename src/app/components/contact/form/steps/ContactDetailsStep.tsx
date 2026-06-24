@@ -2,14 +2,16 @@ import Link from "next/link";
 import CheckboxField from "../fields/CheckboxField";
 import TextField from "../fields/TextField";
 import { ContactFormData, ContactFormErrors } from "../types";
+import { validateField } from "../utils";
 
 type Props = {
   data: ContactFormData;
   errors: ContactFormErrors;
   onChange: (field: string, value: string | boolean) => void;
+  onBlurField: (field: string, value: string | boolean) => void;
 };
 
-export default function ContactDetailsStep({ data, errors, onChange }: Props) {
+export default function ContactDetailsStep({ data, errors, onChange, onBlurField }: Props) {
   return (
     <div className="grid gap-4">
       <h2 className="mt-8 font-semibold sm:text-lg">Twoje dane kontaktowe</h2>
@@ -21,6 +23,7 @@ export default function ContactDetailsStep({ data, errors, onChange }: Props) {
         error={errors.name}
         autoComplete="name"
         onChange={(value) => onChange("name", value)}
+        onBlur={(value) => onBlurField("name", value)}
       />
 
       <TextField
@@ -30,7 +33,9 @@ export default function ContactDetailsStep({ data, errors, onChange }: Props) {
         value={data.email}
         error={errors.email}
         autoComplete="email"
+        placeholder="jan@example.pl"
         onChange={(value) => onChange("email", value)}
+        onBlur={(value) => onBlurField("email", value)}
       />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -41,7 +46,9 @@ export default function ContactDetailsStep({ data, errors, onChange }: Props) {
           value={data.phone}
           error={errors.phone}
           autoComplete="tel"
+          placeholder="600 123 456"
           onChange={(value) => onChange("phone", value)}
+          onBlur={(value) => onBlurField("phone", value)}
         />
 
         <TextField
@@ -50,7 +57,9 @@ export default function ContactDetailsStep({ data, errors, onChange }: Props) {
           value={data.postalCode}
           error={errors.postalCode}
           autoComplete="postal-code"
+          placeholder="00-001"
           onChange={(value) => onChange("postalCode", value)}
+          onBlur={(value) => onBlurField("postalCode", value)}
         />
       </div>
 
@@ -58,6 +67,7 @@ export default function ContactDetailsStep({ data, errors, onChange }: Props) {
         id="contact-preferred-hours"
         label="Preferowane godziny kontaktu (opcjonalnie)"
         value={data.preferredContactHours}
+        placeholder="np. 9:00–17:00"
         onChange={(value) => onChange("preferredContactHours", value)}
       />
 
@@ -75,7 +85,10 @@ export default function ContactDetailsStep({ data, errors, onChange }: Props) {
           id="consent-required"
           checked={data.consentRequired}
           error={errors.consentRequired}
-          onChange={(checked) => onChange("consentRequired", checked)}
+          onChange={(checked) => {
+            onChange("consentRequired", checked);
+            onBlurField("consentRequired", checked);
+          }}
         >
           Oświadczam, że zapoznałem się/zapoznałam się z{" "}
           <Link href="/terms" className="text-blue-600 underline">
