@@ -118,7 +118,7 @@ export async function POST(request: NextRequest) {
 
     const { error } = await resend.emails.send({
       from: "Formularz OZE <formularz@twojdoradcaoze.pl>",
-      to: ["adigi96@gmail.com"],
+      to: ["tomasz@twojdoradcaoze.pl"],
       subject: `Nowe zapytanie — ${product} | ${name}`,
       html,
     });
